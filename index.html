@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Selena Gomez</title>
+        <title>ZenGaku</title>
         <link rel = "stylesheet" href = "assets/css/index.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +11,63 @@
         <header>
 
         </header>
-        <nav id = "navBar">
-            <a href="#" id = "sign-in-button">
-                <div>
-                    <img src="assets/resources/img/login-icon.png">
-                    <p>Sign in</p>
+        <div id = "login-menu" style="display: none;">
+            <div id = "close-button">
+                <div id = "close-line-container">
+                    <div class = "close-line" id = "close-left-line"></div>
+                    <div class = "close-line" id = "close-right-line"></div>
                 </div>
-            </a>
-            <a href = "#" id = "tree-cash-display">
-                <div>
-                    <div id = "tree-cash-inner-circle"></div>
-                        <img src = "assets/resources/img/leaf-tree.png">
-                    
-                    <p>696969</p>
+            </div>   
+            <div id = "login-logo-name">
+                <p>Login</p>
+            </div> 
+            <form id = "login-input">
+                <input id = "login-username-input" type = "text" placeholder="Username">
+                <input id = "login-password-input" type = "password" placeholder="Password">
+            </form>
+            <div id = "login-button-container">
+                <button>Login</button>
+                <div id = "other-button">
+                    <a><p>I don't have account.</p></a>
+                    <a><p>I forgot my password.</p></a>
                 </div>
-            </a>
+            </div>
+
+        </div>
+        <div id = "opened-bg-content" style="display: none;">
+        </div>
+        <nav id = "nav-bar">
+            <div id = "menu-button">
+                <div class = "row">
+                    <div class = "border-dot"></div>
+                    <div class = "border-dot"></div>
+                    <div class = "border-dot"></div>
+                </div>
+                <div class = "row">
+                    <div class = "border-dot"></div>
+                    <div class = "border-dot"></div>
+                    <div class = "border-dot"></div> 
+                </div>
+                <div class = "row">
+                    <div class = "border-dot"></div> 
+                    <div class = "border-dot"></div> 
+                    <div class = "border-dot"></div> 
+                </div>
+            </div>
+            <div id = "logo-name">
+                <p>ZENGAKU</p>
+            </div>
+            <div id = "login-button">
+                <p>Login</p>
+            </div>
+            <div id = "tree-button" style="display: none;">
+                <img src = "assets/resources/img/tree-icon.png">
+            </div>
         </nav>
+
+        <div id = "menu" style="display: none;">
+        </div>
+        <script src = "assets/js/index.js"></script>
         <footer>
 
         </footer>
