@@ -1,7 +1,7 @@
 package com.july.zengaku_full;
 
 import com.zengaku.mvc.controller.EmailFactory;
-import com.zengaku.mvc.controller.HashFactory;
+import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
         List<User> userList =  databaseSession.createQuery("FROM User").list();
         for(User user: userList){
             if(user.getUserName().equals(userName)){
-                if(user.getUserPassword().equals(HashFactory.encode(userPassword))){
+                if(user.getUserPassword().equals(SecureFactory.encode(userPassword))){
                     System.out.println("Login successfully");
                     out.println("Login successfully");
 
