@@ -55,7 +55,7 @@
         <form method="post" action="register_verification" class="auth-input" id="register-verification"
             style="display: none;">
             <div class="register-paragraph">
-                <p>We sent an email to ${sessionScope.userEmail}.</p>
+                <p>We sent an email containing code to ${email}</p>
                 <br>
             </div>
             <input class="auth-text-field" id="verification-code" name="verificationCode"
@@ -72,6 +72,9 @@
                 <div class="close-line close-left-line"></div>
                 <div class="close-line close-right-line"></div>
             </div>
+        </div>
+        <div id = "login-image">
+            <img src="#">
         </div>
         <div id="login-logo-name" class="auth-logo-name">
             <p>Login</p>
@@ -92,7 +95,45 @@
 
 
     <div id="opened-bg-content" style="display: none;">
+        <div id = "menu">
+            <a href="laicos.html">
+                <div class = "menu-item">
+                    <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                    <p class = "item-text">Social</p>
+                </div>
+            </a>
+            <div class = "menu-item">
+                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="#">
+                <p class = "item-text">item</p>
+            </div>
+            <div class = "menu-item">
+                <img class = "item-image" src="#">
+                <p class = "item-text">item</p>
+            </div>
+        </div>
     </div>
+
+    
 
     <nav id="nav-bar">
         <div id="menu-button">
@@ -123,8 +164,8 @@
         </div>
     </nav>
 
-    <div id="menu" style="display: none;">
-    </div>
+    <!-- <div id="menu" style="display: none;">
+    </div> -->
 
     <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
     <script src="assets/js/index.js"></script>
