@@ -1,18 +1,14 @@
 package com.july.zengaku_full;
 
 import com.zengaku.mvc.controller.EmailFactory;
-import com.zengaku.mvc.controller.HashFactory;
-import com.zengaku.mvc.controller.HibernateUtils;
-import com.zengaku.mvc.model.User;
+import com.zengaku.mvc.controller.SecureFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.hibernate.Session;
 
-import java.awt.font.ShapeGraphicAttribute;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,7 +26,7 @@ public class RegisterAccountServlet extends HttpServlet {
         if(userPassword.equals(repeatUserPassword)){
 
             httpSession.setAttribute("userName",userName);
-            httpSession.setAttribute("userPassword",HashFactory.encode(userPassword));
+            httpSession.setAttribute("userPassword", SecureFactory.encode(userPassword));
             httpSession.setAttribute("userEmail",userEmail);
             httpSession.setAttribute("registerVerification", (int)1);
             int verificationCode = (int)Math.floor(Math.random() * (999999 - 111111 + 1) + 100000);
