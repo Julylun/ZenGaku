@@ -3,6 +3,8 @@ const STATUS_NON_STATUS_REGISTERED = 0;
 const STATUS_REGISTERED = 1;
 const STATUS_VERIFICATED = 2;
 
+const STATUS_FORGET_EMAIL_SENT = 300;
+
 
 
 //Define------
@@ -53,6 +55,17 @@ function displayLoginMenu(){
 
 //Listener
 
+function getForgetAccept(){
+    var acceptContainer = document.createElement("input");
+    acceptContainer.type = "hidden";
+    acceptContainer.value = "${sessionScope.isAcceptForgetPassword}"
+    document.appendChild(acceptContainer);
+}
+window.addEventListener("forgetPasswordAccepted",function(){
+    console.log("OKAYYYYYY");
+    getForgetAccept();
+
+});
 haveAccountButton.addEventListener("mousedown",function handleMouseDown(){
     haveAccountButton.addEventListener("mouseup",displayLoginMenu);
 });
@@ -127,8 +140,11 @@ if(verificationLevel == STATUS_REGISTERED) {
     }
     document.getElementById("register-verification").style.display = "flex";
     document.getElementById("step_1").className = "step-box step-box-success";
-    document.getElementById("step_2").className = "step-box step-box-processing"
-} else {
-
+    document.getElementById("step_2").className = "step-box step-box-processing";
+} else if(verificationLevel == STATUS_FORGET_EMAIL_SENT){
+    console.log("HAAAAAAAAA");
+    hideAllAuthMenu();
+    forgetMenu.style.display = "block";
+    document.getElementById("recovery-email-auth").style.display = "none";
+    document.getElementById("recovery-notify-text").style.display = "flex";
 }
-

@@ -10,18 +10,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "New-Password", urlPatterns = {"/new-password"})
 public class NewPasswordServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session databaseSession = HibernateUtils.getSessionFactory().openSession();
+        PrintWriter out = resp.getWriter();
 
         String candidateToken = req.getParameter("token");
         if(candidateToken!=null){
@@ -34,8 +37,28 @@ public class NewPasswordServlet extends HttpServlet {
 
             if(candidateToken.equals(storedTokenObject.getToken())){
                 // update user password ( storedTokenObject.getUser())
+                HttpSession session = req.getSession();
+                session.setAttribute("isAcceptForgetPassword",true);
                 System.out.println("Update password successfully");
+                out.println("<html>" +
+                        "<head>" +
+                        "<title>" +
+                        "Forget Zengeku password is accepted" +
+                        "</title>" +
+                        "</head> " +
+                        "<body>" +
+                        "<p>" +
+                        "Your request is accepted! Go to your old tab to change your password." +
+                        "</p>"
+                        +"<script>" +
+                        "localStorage.setItem('forgetPasswordAccepted', 'true');" +
+                        "window.dispatchEvent(new Event('forgetPasswordAccepted'));" +
+                        "console.log('sent event')"+
+                        "</script>"+
+                        "</body>" +
+                        "</html>");
             }
+
         }
 
 

@@ -4,7 +4,6 @@
 <html>
 
 <head>
-    :
     <title>ZenGaku</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <meta charset="UTF-8">
@@ -28,7 +27,7 @@
         <p>Forget Password</p>
     </div>
     <!-- Quên mật khẩu: Nhập Mail-->
-    <form method = "post" action="recovery_email_auth" class = "auth-input" id = "recovery-email-auth"
+    <form method = "post" action="recover" class = "auth-input" id = "recovery-email-auth"
           style="display: flex;">
         <input class="auth-text-field" id="recovery-email-input" name="userRecoveryEmail" type="email"
                placeholder="Type your recovery email address">
