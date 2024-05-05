@@ -1,6 +1,32 @@
 html {
+    ;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
 
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+
 body {
     margin: 0px;
     width: 100vw;
@@ -8,6 +34,7 @@ body {
     justify-content : center;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden
 }
 #nav-bar {
     min-width: 250px;
@@ -29,7 +56,7 @@ body {
     width: 27px;
     height: 27px;
     margin-left: 20px;
-    
+
 }
 
 #nav-bar #logo-name {
@@ -71,10 +98,11 @@ body {
     top: 73px;
     background-color: rgb(255, 255, 255);
     display: flex;
-    overflow: scroll;
+    overflow: hidden;
     flex-direction: column;
     align-items: center;
-    
+    /* padding: 0; */
+
 }
 
 .post {
@@ -145,7 +173,7 @@ body {
     width: 90vw;
     display: flex;
     align-items: center;
-} 
+}
 .post-caption {
     width: 90vw;
     height: 40px;
@@ -174,7 +202,7 @@ body {
 }
 
 .comment-button {
-    
+
 }
 
 
@@ -200,7 +228,7 @@ body {
     max-height: 5vh;
     /* background-color: brown; */
     margin: min(calc(85vw / 8 * 3 / 10),10px);
-    
+
 }
 
 .nav-item-image {
@@ -209,7 +237,7 @@ body {
     max-width: 5vh;
     max-height: 5vh;
     /* filter: drop-shadow(30px 30px 30px rgb(0,0,0)); */
-    
+
     /* margin: min(calc(85vw / 8 * 3 / 10),10px); */
     /* -webkit-filter: drop-shadow(0px 0 1px #222); */
     filter: drop-shadow(0 0 2px #222);
@@ -223,18 +251,18 @@ body {
     src: url('../resources/font/Inter/Inter-ExtraBold.otf');
     font-weight: bold;
     /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: Inter;
     src: url('../resources/font/Inter/Inter-Medium.otf');
     font-weight: medium;
-    
-    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
-  }
 
-  @font-face {
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
+
+@font-face {
     font-family: Kavoon;
     src: url('../resources/font/Kavoon/Kavoon-Regular.ttf');
     font-weight: medium;
-  }
+}

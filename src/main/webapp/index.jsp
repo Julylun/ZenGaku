@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -96,7 +98,7 @@
 
     <div id="opened-bg-content" style="display: none;">
         <div id = "menu">
-            <a href="laicos.html">
+            <a href="laicos.jsp">
                 <div class = "menu-item">
                     <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
                     <p class = "item-text">Social</p>
