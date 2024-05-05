@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    :
     <title>ZenGaku</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <meta charset="UTF-8">
