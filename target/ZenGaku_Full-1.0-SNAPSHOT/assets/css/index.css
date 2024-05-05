@@ -422,59 +422,6 @@ body {
 
 
 
-  #menu {
-    position: absolute;
-    height: calc(100vh - 70px);
-    width: 100vw;
-    top: 70px;
-    /* float: left; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* display: ; */
-    /* justify-content: center; */
-    
-  }
-
-  #menu .menu-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: calc(100vw / 7);
-    height: calc(100vw / 7 + 40px);
-    /* background-color: #0fa; */
-    float: left;
-    margin-right: calc(100vw / 7 * 3 / 8);
-    margin-left: calc(100vw / 7 * 3 / 8);
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .item-image {
-    width: calc(100vw / 12);
-    height: calc(100vw / 12);
-  }
-
-  .item-text {
-    margin-top: 10px;
-    font-size: calc(100vw / 7 / 5);
-    /* height: calc(100vw / 7 / 3); */
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: center;
-    margin-bottom: 0px;
-    font-family: Inter;
-    font-weight: bold;
-    
-    /* margin-top: 3px; */
-  }
-
-  #menu .menu-item:hover {
-    cursor: pointer;
-  }
-
-
-
 
 #nav-bar {
     min-width: 250px;
@@ -521,11 +468,7 @@ body {
     /* height: 1vw; */
     width: 5px;
     height: 5px;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> HoangLuan
     max-width: 5px;
     max-height: 5px;
     border-radius: 5px;
@@ -641,11 +584,7 @@ body {
 
 @media(min-width: 767px) {
     body {
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> HoangLuan
     }
 
     #login-image {
@@ -659,11 +598,7 @@ body {
         font-size: 300px;
     }
 
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> HoangLuan
 }
 
 @font-face {

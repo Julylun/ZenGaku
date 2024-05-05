@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    :
     <title>ZenGaku</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <meta charset="UTF-8">
@@ -118,13 +119,6 @@
     </form>
 </div>
 
-<<<<<<< HEAD
-        <form method="post" action="register_verification" class="auth-input" id="register-verification"
-            style="display: none;">
-            <div class="register-paragraph">
-                <p>We sent an email containing code to ${email}</p>
-                <br>
-=======
 
 <div id="opened-bg-content" style="display: none;">
     <div id = "menu">
@@ -132,7 +126,6 @@
             <div class = "menu-item">
                 <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
                 <p class = "item-text">Social</p>
->>>>>>> HoangLuan
             </div>
         </a>
         <div class = "menu-item">
@@ -175,13 +168,6 @@
             <div class="border-dot"></div>
             <div class="border-dot"></div>
         </div>
-<<<<<<< HEAD
-        <div id = "login-image">
-            <img src="#">
-        </div>
-        <div id="login-logo-name" class="auth-logo-name">
-            <p>Login</p>
-=======
         <div class="row">
             <div class="border-dot"></div>
             <div class="border-dot"></div>
@@ -191,85 +177,8 @@
             <div class="border-dot"></div>
             <div class="border-dot"></div>
             <div class="border-dot"></div>
->>>>>>> HoangLuan
         </div>
     </div>
-<<<<<<< HEAD
-
-
-    <div id="opened-bg-content" style="display: none;">
-        <div id = "menu">
-            <a href="laicos.html">
-                <div class = "menu-item">
-                    <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                    <p class = "item-text">Social</p>
-                </div>
-            </a>
-            <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="#">
-                <p class = "item-text">item</p>
-            </div>
-            <div class = "menu-item">
-                <img class = "item-image" src="#">
-                <p class = "item-text">item</p>
-            </div>
-        </div>
-    </div>
-
-    
-
-    <nav id="nav-bar">
-        <div id="menu-button">
-            <div class="row">
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-            </div>
-            <div class="row">
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-            </div>
-            <div class="row">
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-                <div class="border-dot"></div>
-            </div>
-        </div>
-        <div id="logo-name">
-            <p>ZENGAKU</p>
-        </div>
-        <div id="login-button">
-            <p>Login</p>
-        </div>
-        <div id="tree-button" style="display: none;">
-            <img src="assets/resources/img/tree-icon.png">
-        </div>
-    </nav>
-
-    <!-- <div id="menu" style="display: none;">
-    </div> -->
-=======
     <div id="logo-name">
         <p>ZENGAKU</p>
     </div>
@@ -280,7 +189,6 @@
         <img src="assets/resources/img/tree-icon.png">
     </div>
 </nav>
->>>>>>> HoangLuan
 
 <!-- <div id="menu" style="display: none;">
 </div> -->

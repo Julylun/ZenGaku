@@ -17,7 +17,7 @@
 
 </header>
 
-<div class = "auth-menu" id = "forget-menu" style = "display: block;">
+<div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
         <div class="close-line-container">
             <div class="close-line close-left-line"></div>
