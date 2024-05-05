@@ -65,7 +65,7 @@ menuButton.addEventListener("mousedown", function handleMouseDown(){
             bgContent.id = "opened-bg-content";
             document.getElementById("logo-name").style.color = "black";
             document.getElementById("nav-bar").style.background = "rgba(0,0,0,0)";
-            bgContent.style.display = "block";
+            bgContent.style.display = "flex";
             for(let index = 0; index < arrayOfborderDot.length; index+=1) {
                 arrayOfborderDot[index].className = "black-border-dot";
             }

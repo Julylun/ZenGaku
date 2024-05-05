@@ -3,6 +3,8 @@ package com.zengaku.mvc.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public @Data class User {
@@ -19,4 +21,7 @@ public @Data class User {
 
     @Column(name = "userEmail", nullable = false)
     private String userEmail;
+
+    @OneToMany(mappedBy = "user")
+    private List<PasswordResetToken> tokenList;
 }
