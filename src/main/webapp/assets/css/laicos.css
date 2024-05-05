@@ -1,5 +1,5 @@
 html {
-    ;
+
 }
 
 /* width */
@@ -34,7 +34,7 @@ body {
     justify-content : center;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 #nav-bar {
     min-width: 250px;
@@ -110,15 +110,16 @@ body {
     width: 90vw;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .post-user-information {
-    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0);
     width: 90vw;
     max-height: 50px;
     display: flex;
     height: 10vw;
+    align-items: center;
 
 }
 
@@ -130,6 +131,7 @@ body {
     max-width: 50px;
     max-height: 50px;
     background-color: aqua;
+    margin-right: 10px;
     overflow: hidden;
 }
 
