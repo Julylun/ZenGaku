@@ -46,7 +46,7 @@ public class RegisterVerification extends HttpServlet {
         }
     }
 
-    @Override
+   @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //        super.doGet(req, resp);

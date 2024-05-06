@@ -32,10 +32,10 @@ public class PasswordResetToken {
         this.expiryTime = LocalDateTime.now().plusMinutes(5);
     }
 
-    public PasswordResetToken(String token,User user) {
+    public PasswordResetToken(String token, User user) {
         this.isUsed = false;
         this.token = token;
-        this.user =user;
+        this.user = user;
         this.expiryTime = LocalDateTime.now().plusMinutes(5);
     }
 
