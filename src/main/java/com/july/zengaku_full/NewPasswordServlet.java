@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 
@@ -26,7 +27,7 @@ public class NewPasswordServlet extends HttpServlet {
         req.getServletContext().getRequestDispatcher("/PasswordReset.jsp").forward(req, resp);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session databaseSession = HibernateUtils.getSessionFactory().openSession();
         PrintWriter out = resp.getWriter();
 
@@ -43,36 +44,41 @@ public class NewPasswordServlet extends HttpServlet {
             if (tokenList.size() != 0) {
                 PasswordResetToken storedTokenObject = tokenList.get(0);
                 if (SecureFactory.validateToken(storedTokenObject)) {
- 
+                    Transaction transaction = databaseSession.beginTransaction();
+
                     User user = storedTokenObject.getUser();
                     user.setUserPassword(HashFactory.encode(newPassword));
+
                     databaseSession.update(user);
 
 
                     storedTokenObject.setUsed(true);
                     databaseSession.update(storedTokenObject);
 
-                    databaseSession.close();
-                     HttpSession session = req.getSession();
-                session.setAttribute("isAcceptForgetPassword",true);
-                System.out.println("Update password successfully");
-                out.println("<html>" +
-                        "<head>" +
-                        "<title>" +
-                        "Forget Zengeku password is accepted" +
-                        "</title>" +
-                        "</head> " +
-                        "<body>" +
-                        "<p>" +
-                        "Your request is accepted! Go to your old tab to change your password." +
-                        "</p>"
-                        +"<script>" +
-                        "localStorage.setItem('forgetPasswordAccepted', 'true');" +
-                        "window.dispatchEvent(new Event('forgetPasswordAccepted'));" +
-                        "console.log('sent event')"+
-                        "</script>"+
-                        "</body>" +
-                        "</html>");
+                    transaction.commit();
+
+//                     HttpSession session = req.getSession();
+//                session.setAttribute("isAcceptForgetPassword",true);
+//                System.out.println("Update password successfully");
+//                out.println("<html>" +
+//                        "<head>" +
+//                        "<title>" +
+//                        "Forget Zengeku password is accepted" +
+//                        "</title>" +
+//                        "</head> " +
+//                        "<body>" +
+//                        "<p>" +
+//                        "Your request is accepted! Go to your old tab to change your password." +
+//                        "</p>"
+//                        +"<script>" +
+//                        "localStorage.setItem('forgetPasswordAccepted', 'true');" +
+//                        "window.dispatchEvent(new Event('forgetPasswordAccepted'));" +
+//                        "console.log('sent event')"+
+//                        "</script>"+
+//                        "</body>" +
+//                        "</html>");
+                    req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+
                     System.out.println("Update password successfully");
                 }
 
