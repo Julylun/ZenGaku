@@ -34,7 +34,11 @@
         <button class="auth-button" id="Confirm">Confirm</button>
     </form>
     <div class="register-paragraph" id = "recovery-notify-text" style="display: none;">
-        <p>We sent a reset password link to {sessionScope.userEmail}</p>
+        <p>We sent a reset password link to ${sessionScope.userRecoveryEmail}</p>
+        <br>
+    </div>
+    <div class="register-paragraph" id = "changed-password-notify-text" style="display: none;">
+        <p>You changed your password successfully!</p>
         <br>
     </div>
 </div>

@@ -41,7 +41,7 @@ public class PasswordResetServlet extends HttpServlet {
 
 
         if (userList.size() != 0) {
-
+            session.setAttribute("userRecoveryEmail",userEmail);
             User user = userList.get(0);
 
             PasswordResetToken PRToken = new PasswordResetToken(SecureFactory.generateToken(), user);

@@ -4,6 +4,7 @@ import com.zengaku.mvc.controller.HashFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.model.PasswordResetToken;
+import com.zengaku.mvc.model.RegisterCode;
 import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -44,6 +45,7 @@ public class NewPasswordServlet extends HttpServlet {
             if (tokenList.size() != 0) {
                 PasswordResetToken storedTokenObject = tokenList.get(0);
                 if (SecureFactory.validateToken(storedTokenObject)) {
+                    HttpSession session = req.getSession();
                     Transaction transaction = databaseSession.beginTransaction();
 
                     User user = storedTokenObject.getUser();
@@ -57,7 +59,7 @@ public class NewPasswordServlet extends HttpServlet {
 
                     transaction.commit();
 
-//                     HttpSession session = req.getSession();
+
 //                session.setAttribute("isAcceptForgetPassword",true);
 //                System.out.println("Update password successfully");
 //                out.println("<html>" +
@@ -77,6 +79,7 @@ public class NewPasswordServlet extends HttpServlet {
 //                        "</script>"+
 //                        "</body>" +
 //                        "</html>");
+                    session.setAttribute("registerVerification", RegisterCode.CHANGED_PASSWORD);
                     req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 
                     System.out.println("Update password successfully");

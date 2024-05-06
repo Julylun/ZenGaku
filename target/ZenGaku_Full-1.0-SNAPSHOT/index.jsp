@@ -1,4 +1,4 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,11 @@
         <button class="auth-button" id="Confirm">Confirm</button>
     </form>
     <div class="register-paragraph" id = "recovery-notify-text" style="display: none;">
-        <p>We sent a reset password link to {sessionScope.userEmail}</p>
+        <p>We sent a reset password link to ${sessionScope.userRecoveryEmail}</p>
+        <br>
+    </div>
+    <div class="register-paragraph" id = "changed-password-notify-text" style="display: none;">
+        <p>You changed your password successfully!</p>
         <br>
     </div>
 </div>
@@ -123,7 +127,7 @@
     <div id = "menu">
         <a href="laicos.jsp">
             <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <img class = "item-image" src="assets/resources/img/social-icon-black.svg">
                 <p class = "item-text">Social</p>
             </div>
         </a>
