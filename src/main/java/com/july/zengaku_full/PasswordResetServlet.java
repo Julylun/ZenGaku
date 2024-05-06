@@ -21,6 +21,8 @@ import com.zengaku.mvc.controller.SecureFactory;
 
 @WebServlet(name = "Password-Reset", urlPatterns = {"/recover"})
 public class PasswordResetServlet extends HttpServlet {
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session databaseSession = HibernateUtils.getSessionFactory().openSession();
 

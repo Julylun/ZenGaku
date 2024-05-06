@@ -1,8 +1,8 @@
 package com.july.zengaku_full;
 
-
+import com.zengaku.mvc.controller.HashFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
-
+import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.model.PasswordResetToken;
 import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
@@ -19,28 +19,42 @@ import java.util.List;
 
 @WebServlet(name = "New-Password", urlPatterns = {"/new-password"})
 public class NewPasswordServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getServletContext().getRequestDispatcher("/PasswordReset.jsp").forward(req, resp);
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session databaseSession = HibernateUtils.getSessionFactory().openSession();
 
         String candidateToken = req.getParameter("token");
-        if(candidateToken!=null){
+        String newPassword = req.getParameter("newPassword");
+
+        if (candidateToken != null) {
 
             String hql = "FROM PasswordResetToken p Where p.token = :token";
             Query query = databaseSession.createQuery(hql, PasswordResetToken.class);
             query.setParameter("token", candidateToken);
             List<PasswordResetToken> tokenList = query.getResultList();
-            PasswordResetToken storedTokenObject = tokenList.get(0);
 
-            if(candidateToken.equals(storedTokenObject.getToken())){
-                // update user password ( storedTokenObject.getUser())
-                System.out.println("Update password successfully");
+            if (tokenList.size() != 0) {
+                PasswordResetToken storedTokenObject = tokenList.get(0);
+                if (SecureFactory.validateToken(storedTokenObject)) {
+                    // update user password ( storedTokenObject.getUser())
+                    User user = storedTokenObject.getUser();
+                    user.setUserPassword(HashFactory.encode(newPassword));
+                    databaseSession.update(user);
+
+                    storedTokenObject.setUsed(true);
+                    databaseSession.update(storedTokenObject);
+
+                    databaseSession.close();
+                    System.out.println("Update password successfully");
+                }
+
+
             }
         }
-
-
-
-
 
 
     }
