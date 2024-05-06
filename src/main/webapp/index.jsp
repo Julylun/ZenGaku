@@ -1,4 +1,4 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 
 </header>
 
-<div class = "auth-menu" id = "forget-menu" style = "display: block;">
+<div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
         <div class="close-line-container">
             <div class="close-line close-left-line"></div>
@@ -123,7 +123,7 @@
     <div id = "menu">
         <a href="laicos.jsp">
             <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <img class = "item-image" src="assets/resources/img/social-icon-black.svg">
                 <p class = "item-text">Social</p>
             </div>
         </a>
