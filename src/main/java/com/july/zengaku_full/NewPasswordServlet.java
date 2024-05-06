@@ -10,11 +10,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "New-Password", urlPatterns = {"/new-password"})
@@ -24,8 +26,9 @@ public class NewPasswordServlet extends HttpServlet {
         req.getServletContext().getRequestDispatcher("/PasswordReset.jsp").forward(req, resp);
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session databaseSession = HibernateUtils.getSessionFactory().openSession();
+        PrintWriter out = resp.getWriter();
 
         String candidateToken = req.getParameter("token");
         String newPassword = req.getParameter("newPassword");
@@ -40,15 +43,36 @@ public class NewPasswordServlet extends HttpServlet {
             if (tokenList.size() != 0) {
                 PasswordResetToken storedTokenObject = tokenList.get(0);
                 if (SecureFactory.validateToken(storedTokenObject)) {
-                    // update user password ( storedTokenObject.getUser())
+ 
                     User user = storedTokenObject.getUser();
                     user.setUserPassword(HashFactory.encode(newPassword));
                     databaseSession.update(user);
+
 
                     storedTokenObject.setUsed(true);
                     databaseSession.update(storedTokenObject);
 
                     databaseSession.close();
+                     HttpSession session = req.getSession();
+                session.setAttribute("isAcceptForgetPassword",true);
+                System.out.println("Update password successfully");
+                out.println("<html>" +
+                        "<head>" +
+                        "<title>" +
+                        "Forget Zengeku password is accepted" +
+                        "</title>" +
+                        "</head> " +
+                        "<body>" +
+                        "<p>" +
+                        "Your request is accepted! Go to your old tab to change your password." +
+                        "</p>"
+                        +"<script>" +
+                        "localStorage.setItem('forgetPasswordAccepted', 'true');" +
+                        "window.dispatchEvent(new Event('forgetPasswordAccepted'));" +
+                        "console.log('sent event')"+
+                        "</script>"+
+                        "</body>" +
+                        "</html>");
                     System.out.println("Update password successfully");
                 }
 

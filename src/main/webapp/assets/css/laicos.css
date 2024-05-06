@@ -1,6 +1,32 @@
 html {
 
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+
 body {
     margin: 0px;
     width: 100vw;
@@ -8,6 +34,7 @@ body {
     justify-content : center;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 #nav-bar {
     min-width: 250px;
@@ -29,7 +56,7 @@ body {
     width: 27px;
     height: 27px;
     margin-left: 20px;
-    
+
 }
 
 #nav-bar #logo-name {
@@ -71,26 +98,28 @@ body {
     top: 73px;
     background-color: rgb(255, 255, 255);
     display: flex;
-    overflow: scroll;
+    overflow: hidden;
     flex-direction: column;
     align-items: center;
-    
+    /* padding: 0; */
+
 }
 
 .post {
     height: 60vh;
     width: 90vw;
     margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: blueviolet;
+    margin-bottom: 40px;
+    /* background-color: blueviolet; */
 }
 
 .post-user-information {
-    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0);
     width: 90vw;
     max-height: 50px;
     display: flex;
     height: 10vw;
+    align-items: center;
 
 }
 
@@ -99,9 +128,13 @@ body {
     height: 10vw;
     width: 10vw;
     border-radius: 10vw;
+    border-style: solid;
+    border-color: #959595;
+    border-width: 1px;
     max-width: 50px;
     max-height: 50px;
-    background-color: aqua;
+    /* background-color: aqua; */
+    margin-right: 10px;
     overflow: hidden;
 }
 
@@ -111,7 +144,7 @@ body {
     height: 10vw;
     max-width: 50px;
     max-height: 50px;
-    background-color: coral;
+    /* background-color: coral; */
 }
 
 .user-hyperlink {
@@ -122,9 +155,18 @@ body {
     font-size: min(4vw,20px);
     font-family: Inter;
 }
+.time-privacy {
+    display: flex;
+    font-family: Inter;
+}
+
 
 .privacy-icon {
-    margin-left: 10px;
+    margin-left: 5px;
+    width: 3.5vw;
+    height: 3.5vw;
+    max-width: 20px;
+    max-height: 20px;
 }
 
 .post-time {
@@ -136,32 +178,95 @@ body {
     flex-direction: column;
 }
 .post-image {
+    margin-top: 10px;
     width: 90vw;
     height: calc(60vh - 10vw - 40px - 30px);
     background-color: blue;
+    border-radius: min(4vw,20px);
+    overflow: hidden;
+    border: 3px;
 }
+.post-image img {
+    width: 90vw;
+    height: calc(60vh - 10vw - 40px - 30px);
+    object-fit: cover;
+}
+
 .post-control-pane {
     height: 30px;
     width: 90vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-} 
+}
+
+.tree-heart-button {
+    cursor: pointer;
+    display: block;
+    /* align-items: center; */
+    caret-color: transparent;
+}
+
+.tree-heart-button img { 
+    width: 7vw;
+    height: 7vw;
+    max-width: 36px;
+    max-height: 36px;
+    margin-left: 10px;
+}
+
+.tree-heart-button input{
+    display: none;
+}
+
+.tree-heart-image-checked {
+    display: none;
+}
+
+
+.tree-heart-button input:checked ~ .tree-heart-image-checked {
+    display: inline;
+}
+
+.tree-heart-button input:checked ~ .tree-heart-image-unchecked {
+	display: none;
+}
+
+.comment-button img {
+    width: 6.5vw;
+    height: 6.5vw;
+    max-width: 34px;
+    max-height: 34px;
+    margin-left: 20px;
+}
+
+.share-button img {
+    width: 6.5vw;
+    height: 6.5vw;
+    max-width: 34px;
+    max-height: 34px;
+    margin-left: 20px;
+}
+
 .post-caption {
     width: 90vw;
-    height: 40px;
+    height: auto;
     background-color: rgb(158, 255, 255);
     display: flex;
+    align-items: end;
 }
 
-.post-caption p {
-    /* margin: 0; */
-}
 
 .user-name-caption {
+    font-family: Inter;
     margin: 0px 10px 0px 0px;
+    font-size: min(4vw,17px);
 }
 
 .user-caption {
+    font-family: Inter-Light;
+    font-size: min(4vw,17px);
     margin: 0px 0px 0px 0px;
 }
 
@@ -169,12 +274,17 @@ body {
     margin: 0px;
 }
 
-.time-privacy {
+.line-container {
     display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-top: 20px;
 }
 
-.comment-button {
-    
+.end-post-line{
+    width: 80vw;
+    height: 1px;
+    background-color: rgb(230, 230, 230);
 }
 
 
@@ -200,7 +310,7 @@ body {
     max-height: 5vh;
     /* background-color: brown; */
     margin: min(calc(85vw / 8 * 3 / 10),10px);
-    
+
 }
 
 .nav-item-image {
@@ -209,7 +319,7 @@ body {
     max-width: 5vh;
     max-height: 5vh;
     /* filter: drop-shadow(30px 30px 30px rgb(0,0,0)); */
-    
+
     /* margin: min(calc(85vw / 8 * 3 / 10),10px); */
     /* -webkit-filter: drop-shadow(0px 0 1px #222); */
     filter: drop-shadow(0 0 2px #222);
@@ -223,18 +333,30 @@ body {
     src: url('../resources/font/Inter/Inter-ExtraBold.otf');
     font-weight: bold;
     /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
-  }
+}
+@font-face {
+    font-family: Inter-Medium;
+    src: url('../resources/font/Inter/Inter-Medium.otf');
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
 
-  @font-face {
+@font-face {
+    font-family: Inter-Light;
+    src: url('../resources/font/Inter/Inter-Light.otf');
+    font-weight: lighter;
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
+
+@font-face {
     font-family: Inter;
     src: url('../resources/font/Inter/Inter-Medium.otf');
     font-weight: medium;
-    
-    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
-  }
 
-  @font-face {
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
+
+@font-face {
     font-family: Kavoon;
     src: url('../resources/font/Kavoon/Kavoon-Regular.ttf');
     font-weight: medium;
-  }
+}

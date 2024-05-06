@@ -1,5 +1,6 @@
 package com.july.zengaku_full;
 
+import com.zengaku.mvc.model.RegisterCode;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession userSession =  req.getSession();
-        userSession.setAttribute("registerVerification", (int)0);
+        userSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
         userSession.setAttribute("loginVerification",false);
         req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
     }
