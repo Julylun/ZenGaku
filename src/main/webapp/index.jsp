@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="auth-menu" id="register-menu" style="display: block;">
+<div class="auth-menu" id="register-menu" style="display: none;">
     <div class="close-button">
         <div class="close-line-container">
             <div class="close-line close-left-line"></div>
@@ -67,7 +67,7 @@
     <div id="register-login-name" class="auth-logo-name">
         <p>Register</p>
     </div>
-    <form method="post" action="register_account" class="auth-input" id="register-input"  style="display: none;">
+    <form method="post" action="register_account" class="auth-input" id="register-input"  style="display: flex;">
         <input class="auth-text-field" id="register-username-input" name="userName" type="text"
                placeholder="Username">
         <input class="auth-text-field" id="register-password-input" name="userPassword" type="password"
@@ -94,7 +94,7 @@
     </form>
 
      <form method="post" action="information_creation" class="auth-input" id="information-creation"
-          style="display: flex;">
+          style="display: none;">
         <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
                placeholder="Type your last name">
         <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
@@ -103,6 +103,16 @@
                placeholder="Repeat your strong password">
         <button class="auth-button" id="create-account">Create</button>
     </form>
+
+    <form method="post" action="return-normal-page" class="auth-input" id="created-successfully-form"
+          style="display: none;">
+        <div class="register-paragraph" id = "created-notify-text">
+            <p>You created ZenGaku account successfully! Please return login page to login.</p>
+            <br>
+        </div>
+        <button class="auth-button" id="return-normal-page-button">Return</button>
+    </form>
+
 </div>
 
 

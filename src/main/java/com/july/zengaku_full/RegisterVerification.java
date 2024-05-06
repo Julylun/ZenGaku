@@ -33,12 +33,6 @@ public class RegisterVerification extends HttpServlet {
             if(!databaseSession.isConnected()){
                 req.getServletContext().getRequestDispatcher("/error.jsp").forward(req,resp);
             }
-            User user = new User();
-            user.setUserName(httpSession.getAttribute("userName").toString());
-            user.setUserPassword(httpSession.getAttribute("userPassword").toString());
-            user.setUserEmail(httpSession.getAttribute("userEmail").toString());
-            databaseSession.save(user);
-            databaseSession.close();
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
         }
         else {

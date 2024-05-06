@@ -2,6 +2,7 @@
 const STATUS_NON_STATUS_REGISTERED = 0;
 const STATUS_REGISTERED = 1;
 const STATUS_VERIFICATED = 2;
+const STATUS_CREATED = 3;
 const STATUS_CHANGED_PASSWORD = 400;
 const STATUS_FORGET_EMAIL_SENT = 300;
 
@@ -142,13 +143,13 @@ if(verificationLevel == STATUS_REGISTERED) {
     document.getElementById("step_1").className = "step-box step-box-success";
     document.getElementById("step_2").className = "step-box step-box-processing";
 } else if(verificationLevel == STATUS_FORGET_EMAIL_SENT){
-    hideAllAuthMenu();
+    // hideAllAuthMenu();
     forgetMenu.style.display = "block";
     document.getElementById("recovery-email-auth").style.display = "none";
     document.getElementById("recovery-notify-text").style.display = "flex";
     document.getElementById("changed-password-notify-text").style.display = "none";
 } else if(verificationLevel == STATUS_VERIFICATED){
-    hideAllAuthMenu();
+    // hideAllAuthMenu();
     let tmpArr = document.getElementsByClassName("auth-input")
     for(let tmpItem of tmpArr){
         tmpItem.style.display = "none";
@@ -157,7 +158,18 @@ if(verificationLevel == STATUS_REGISTERED) {
     document.getElementById("information-creation").style.display = "flex";
     document.getElementById("step_1").className = "step-box step-box-success";
     document.getElementById("step_2").className = "step-box step-box-success";
-    document.getElementById("step_2").className = "step-box step-box-processing";
+    document.getElementById("step_3").className = "step-box step-box-processing";
+}
+else if(verificationLevel == STATUS_CREATED) {
+    let tmpArr = document.getElementsByClassName("auth-input")
+    for(let tmpItem of tmpArr){
+        tmpItem.style.display = "none";
+    }
+    registerMenu.style.display = "block";
+    document.getElementById("created-successfully-form").style.display = "flex";
+    document.getElementById("step_1").className = "step-box step-box-success";
+    document.getElementById("step_2").className = "step-box step-box-success";
+    document.getElementById("step_3").className = "step-box step-box-success";
 }
  else if(verificationLevel == STATUS_CHANGED_PASSWORD) {
     hideAllAuthMenu();

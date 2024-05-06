@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
 
 <!DOCTYPE html>
 <html>
@@ -92,6 +92,27 @@
                onKeyPress="if(this.value.length==6) return false;" placeholder="Code - 6 digits" required>
         <button class="auth-button" id="_verify-button">Verify</button>
     </form>
+
+     <form method="post" action="information_creation" class="auth-input" id="information-creation"
+          style="display: none;">
+        <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
+               placeholder="Type your last name">
+        <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
+               placeholder="Type your first name">
+        <input class="auth-text-field" id="birthday-input" name="userBirthday" type="date"
+               placeholder="Repeat your strong password">
+        <button class="auth-button" id="create-account">Create</button>
+    </form>
+
+    <form method="post" action="return-normal-page" class="auth-input" id="created-successfully-form"
+          style="display: none;">
+        <div class="register-paragraph" id = "created-notify-text">
+            <p>You created ZenGaku account successfully! Please return login page to login.</p>
+            <br>
+        </div>
+        <button class="auth-button" id="return-normal-page-button">Return</button>
+    </form>
+
 </div>
 
 
