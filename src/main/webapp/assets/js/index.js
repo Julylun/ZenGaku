@@ -145,10 +145,21 @@ if(verificationLevel == STATUS_REGISTERED) {
     hideAllAuthMenu();
     forgetMenu.style.display = "block";
     document.getElementById("recovery-email-auth").style.display = "none";
-
     document.getElementById("recovery-notify-text").style.display = "flex";
     document.getElementById("changed-password-notify-text").style.display = "none";
-} else if(verificationLevel == STATUS_CHANGED_PASSWORD) {
+} else if(verificationLevel == STATUS_VERIFICATED){
+    hideAllAuthMenu();
+    let tmpArr = document.getElementsByClassName("auth-input")
+    for(let tmpItem of tmpArr){
+        tmpItem.style.display = "none";
+    }
+    registerMenu.style.display = "block";
+    document.getElementById("information-creation").style.display = "flex";
+    document.getElementById("step_1").className = "step-box step-box-success";
+    document.getElementById("step_2").className = "step-box step-box-success";
+    document.getElementById("step_2").className = "step-box step-box-processing";
+}
+ else if(verificationLevel == STATUS_CHANGED_PASSWORD) {
     hideAllAuthMenu();
     forgetMenu.style.display = "block";
     document.getElementById("recovery-email-auth").style.display = "none";

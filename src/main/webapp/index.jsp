@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
 
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="auth-menu" id="register-menu" style="display: none;">
+<div class="auth-menu" id="register-menu" style="display: block;">
     <div class="close-button">
         <div class="close-line-container">
             <div class="close-line close-left-line"></div>
@@ -67,7 +67,7 @@
     <div id="register-login-name" class="auth-logo-name">
         <p>Register</p>
     </div>
-    <form method="post" action="register_account" class="auth-input" id="register-input"  style="display: flex;">
+    <form method="post" action="register_account" class="auth-input" id="register-input"  style="display: none;">
         <input class="auth-text-field" id="register-username-input" name="userName" type="text"
                placeholder="Username">
         <input class="auth-text-field" id="register-password-input" name="userPassword" type="password"
@@ -91,6 +91,17 @@
         <input class="auth-text-field" id="verification-code" name="verificationCode"
                onKeyPress="if(this.value.length==6) return false;" placeholder="Code - 6 digits" required>
         <button class="auth-button" id="_verify-button">Verify</button>
+    </form>
+
+     <form method="post" action="information_creation" class="auth-input" id="information-creation"
+          style="display: flex;">
+        <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
+               placeholder="Type your last name">
+        <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
+               placeholder="Type your first name">
+        <input class="auth-text-field" id="birthday-input" name="userBirthday" type="date"
+               placeholder="Repeat your strong password">
+        <button class="auth-button" id="create-account">Create</button>
     </form>
 </div>
 
