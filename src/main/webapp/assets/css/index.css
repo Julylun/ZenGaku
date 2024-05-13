@@ -223,6 +223,24 @@ body {
     outline: none;
 }
 
+.failed-notify-element {
+    width: 70vw;
+    height: 40px;
+    background: rgba(255, 52, 52, 0.78);
+    color: white;
+    font-family: Inter-Light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: max(min(3vw,17px),10px);
+
+}
+.failed-notify-element p {
+    text-align: center;
+}
+
 #login-input input::placeholder {
     padding-left: 10px;
 }

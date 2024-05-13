@@ -123,13 +123,16 @@
             <div class="close-line close-right-line"></div>
         </div>
     </div>
-    <div id = "login-image">
-        <img src="#">
-    </div>
+<%--    <div id = "login-image">--%>
+<%--        <img src="#">--%>
+<%--    </div>--%>
     <div id="login-logo-name" class="auth-logo-name">
         <p>Login</p>
     </div>
     <form method="post" action="login" id="login-input" class="auth-input">
+        <div class = "failed-notify-element" style="display: none">
+            <p>Login failed. Check your username or password again.</p>
+        </div>
         <input class="auth-text-field" id="login-username-input" name="userName" type="text" placeholder="Username">
         <input class="auth-text-field" id="login-password-input" name="userPassword" type="password"
                placeholder="Password">
@@ -210,7 +213,7 @@
         <p>Login</p>
     </div>
     <div id="tree-button" style="display: none;">
-        <img src="assets/resources/img/tree-icon.png">
+        <img src="assets/resources/img/tree-icon.png" alt="">
     </div>
 </nav>
 
@@ -218,6 +221,7 @@
 </div> -->
 
 <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
+<input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="assets/js/index.js"></script>
 
 <footer>

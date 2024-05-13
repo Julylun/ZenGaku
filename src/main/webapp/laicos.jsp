@@ -6,6 +6,7 @@
         <link rel = "stylesheet" href="assets/css/laicos.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
+
     </head>
     <body>
         <nav id="nav-bar">
@@ -321,5 +322,11 @@
                 <img class = "nav-item-image" src = "assets/resources/img/home-icon.png">
             </div>
         </nav>
+
+
+        <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
+        <script src="assets/js/auth.js"></script>
+
+
     </body>
 </html>
