@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession userSession =  req.getSession();
         userSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
-        userSession.setAttribute("loginVerification",false);
+        userSession.setAttribute("loginStatus",false);
         req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
     }
 

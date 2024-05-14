@@ -15,6 +15,11 @@
 <header>
 
 </header>
+<div class = "loading-layer">
+    <img src="assets/resources/img/loading.gif">
+    <span>ZENGAKU</span>
+</div>
+
 
 <div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
@@ -34,7 +39,11 @@
         <button class="auth-button" id="Confirm">Confirm</button>
     </form>
     <div class="register-paragraph" id = "recovery-notify-text" style="display: none;">
-        <p>We sent a reset password link to {sessionScope.userEmail}</p>
+        <p>We sent a reset password link to ${sessionScope.userRecoveryEmail}</p>
+        <br>
+    </div>
+    <div class="register-paragraph" id = "changed-password-notify-text" style="display: none;">
+        <p>You changed your password successfully!</p>
         <br>
     </div>
 </div>
@@ -88,6 +97,27 @@
                onKeyPress="if(this.value.length==6) return false;" placeholder="Code - 6 digits" required>
         <button class="auth-button" id="_verify-button">Verify</button>
     </form>
+
+     <form method="post" action="information_creation" class="auth-input" id="information-creation"
+          style="display: none;">
+        <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
+               placeholder="Type your last name">
+        <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
+               placeholder="Type your first name">
+        <input class="auth-text-field" id="birthday-input" name="userBirthday" type="date"
+               placeholder="Repeat your strong password">
+        <button class="auth-button" id="create-account">Create</button>
+    </form>
+
+    <form method="post" action="return-normal-page" class="auth-input" id="created-successfully-form"
+          style="display: none;">
+        <div class="register-paragraph" id = "created-notify-text">
+            <p>You created ZenGaku account successfully! Please return login page to login.</p>
+            <br>
+        </div>
+        <button class="auth-button" id="return-normal-page-button">Return</button>
+    </form>
+
 </div>
 
 
@@ -98,13 +128,16 @@
             <div class="close-line close-right-line"></div>
         </div>
     </div>
-    <div id = "login-image">
-        <img src="#">
-    </div>
+<!-- <%--    <div id = "login-image">--%>
+<%--        <img src="#">--%>
+<%--    </div>--%> -->
     <div id="login-logo-name" class="auth-logo-name">
         <p>Login</p>
     </div>
     <form method="post" action="login" id="login-input" class="auth-input">
+        <div class = "failed-notify-element" style="display: none">
+            <p>Login failed. Check your username or password again.</p>
+        </div>
         <input class="auth-text-field" id="login-username-input" name="userName" type="text" placeholder="Username">
         <input class="auth-text-field" id="login-password-input" name="userPassword" type="password"
                placeholder="Password">
@@ -123,10 +156,38 @@
     <div id = "menu">
         <a href="laicos.jsp">
             <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+                <img class = "item-image" src="assets/resources/img/social-icon-black.svg">
                 <p class = "item-text">Social</p>
             </div>
         </a>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
             <p class = "item-text">item</p>
@@ -185,7 +246,7 @@
         <p>Login</p>
     </div>
     <div id="tree-button" style="display: none;">
-        <img src="assets/resources/img/tree-icon.png">
+        <img src="assets/resources/img/tree-icon.png" alt="">
     </div>
 </nav>
 
@@ -193,6 +254,7 @@
 </div> -->
 
 <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
+<input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="assets/js/index.js"></script>
 
 <footer>
