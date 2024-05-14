@@ -25,6 +25,7 @@ socket.onmessage = function(event) {
 
 //Define------
 ///////////////////
+const loadingFrame = document.getElementsByClassName("loading-layer").item(0);
 //-------Login - Register---------------
 const authMenuList = document.getElementsByClassName("auth-menu");
 
@@ -56,6 +57,10 @@ let loginStatus = document.getElementById("lg-vl").value;
 
 
 //function
+function changeBackgroundPicture(srcPath){
+    document.body.style.backgroundImage = "url('" + srcPath +"')";
+}
+
 function hideAllAuthMenu(){
     for(let authMenu of authMenuList){
         authMenu.style.display = "none";
@@ -71,6 +76,8 @@ function displayLoginMenu(){
 
 
 //Listener
+
+
 
 function getForgetAccept(){
     var acceptContainer = document.createElement("input");
@@ -122,29 +129,68 @@ for(let closeLine of closeLineList){
     })
 }
 
+
+window.addEventListener('resize',function(){
+    if(window.innerWidth < 767){
+        if(arrayOfborderDot[0].className == "border-dot"){
+            bgContent.id = "closed-bg-content";
+            
+        } else {
+            bgContent.id = "opened-bg-content";
+        }
+    } else {
+        if(arrayOfborderDot[0].className == "border-dot"){
+            bgContent.id = "big-closed-bg-content";
+            
+        } else {
+            bgContent.id = "big-opened-bg-content";
+        }
+    }
+})
 //Create animation when clicking on the menu button
 let count = 0;
 menuButton.addEventListener("mousedown", function handleMouseDown(){
     menuButton.addEventListener("mouseup", function handleMouseUp(){
         hideAllAuthMenu();
-        if(arrayOfborderDot[0].className == "border-dot"){
-            bgContent.id = "opened-bg-content";
-            document.getElementById("logo-name").style.color = "black";
-            document.getElementById("nav-bar").style.background = "rgba(0,0,0,0)";
-            bgContent.style.display = "flex";
-            for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                arrayOfborderDot[index].className = "black-border-dot";
+        if(window.innerWidth < 767){
+            if(arrayOfborderDot[0].className == "border-dot"){
+                bgContent.id = "opened-bg-content";
+                document.getElementById("logo-name").style.color = "black";
+                document.getElementById("nav-bar").style.background = "rgba(0,0,0,0)";
+                bgContent.style.display = "flex";
+                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                    arrayOfborderDot[index].className = "black-border-dot";
+                }
+            }
+            else {
+                bgContent.id = "closed-bg-content";
+                document.getElementById("logo-name").style.color = "white";
+                document.getElementById("nav-bar").style.background = "linear-gradient(180deg, rgba(0, 0, 0, 0.517) 40%, rgba(0, 0, 0, 0) 100%)";
+    
+                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                    arrayOfborderDot[index].className = "border-dot";
+                }
             }
         }
         else {
-            bgContent.id = "closed-bg-content";
-            document.getElementById("logo-name").style.color = "white";
-            document.getElementById("nav-bar").style.background = "linear-gradient(180deg, rgba(0, 0, 0, 0.517) 40%, rgba(0, 0, 0, 0) 100%)";
-
-            for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                arrayOfborderDot[index].className = "border-dot";
+            if(arrayOfborderDot[0].className == "border-dot"){
+                bgContent.id = "big-opened-bg-content";
+                
+                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                    arrayOfborderDot[index].className = "black-border-dot";
+                }
+                bgContent.style.display = "block";
             }
+            else {
+                bgContent.id = "big-closed-bg-content";
+                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                    arrayOfborderDot[index].className = "border-dot";
+                }
+            }
+            
+
         }
+        
         menuButton.removeEventListener("mouseup", handleMouseUp); //don't remove this
     });
 });
@@ -217,3 +263,9 @@ if(loginStatus == "true") {
     loginButton.style.display = "none";
     console.log("signed in");
 }
+
+
+
+window.addEventListener('load',function(){
+    loadingFrame.style.display = "none";
+})

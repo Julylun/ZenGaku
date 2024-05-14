@@ -1,0 +1,36 @@
+#foo {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 90vw;
+    width: 90vw;
+    top: 30px;
+    left: 5vw;
+    border-radius: 4vw;
+    backdrop-filter: blur(14px);
+}
+
+.foo-title {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    /* background-color: aquamarine; */
+    text-align: center;
+    color: white;
+    font-family: Inter;
+    font-weight: bold;
+    font-size: min(4vw,15px);
+}
+
+.foo-title div {
+    padding-top: 10px;
+}
+
+.foo-line {
+    height: 0.3px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.518);
+}
+
+.foo-add {
+    
+}

@@ -6,6 +6,7 @@
 <head>
     <title>ZenGaku</title>
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/indexFeature.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="#" />
@@ -15,6 +16,11 @@
 <header>
 
 </header>
+<div class = "loading-layer">
+    <img src="assets/resources/img/loading.gif">
+    <span>ZENGAKU</span>
+</div>
+
 
 <div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
@@ -123,9 +129,9 @@
             <div class="close-line close-right-line"></div>
         </div>
     </div>
-<%--    <div id = "login-image">--%>
+<!-- <%--    <div id = "login-image">--%>
 <%--        <img src="#">--%>
-<%--    </div>--%>
+<%--    </div>--%> -->
     <div id="login-logo-name" class="auth-logo-name">
         <p>Login</p>
     </div>
@@ -155,6 +161,34 @@
                 <p class = "item-text">Social</p>
             </div>
         </a>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item" id = "background-config-feature">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
             <p class = "item-text">item</p>
@@ -217,12 +251,28 @@
     </div>
 </nav>
 
+<div class = "content">
+    <div class = "content-item" id = "foo">
+        <div class = "foo-title">
+            <div>
+                <span>Background Configuration</span>
+            </div>
+        </div>
+        <div class = "foo-line"></div>
+        <div class = "foo-content">
+            <div class = "foo-add"></div>
+            <div class = "foo-choice"></div>
+        </div>
+    </div>
+</div>
+
 <!-- <div id="menu" style="display: none;">
 </div> -->
 
 <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
 <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/feature.js"></script>
 
 <footer>
 </footer>

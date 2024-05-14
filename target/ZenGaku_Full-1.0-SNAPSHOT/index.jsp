@@ -15,6 +15,11 @@
 <header>
 
 </header>
+<div class = "loading-layer">
+    <img src="assets/resources/img/loading.gif">
+    <span>ZENGAKU</span>
+</div>
+
 
 <div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
@@ -123,9 +128,9 @@
             <div class="close-line close-right-line"></div>
         </div>
     </div>
-<%--    <div id = "login-image">--%>
+<!-- <%--    <div id = "login-image">--%>
 <%--        <img src="#">--%>
-<%--    </div>--%>
+<%--    </div>--%> -->
     <div id="login-logo-name" class="auth-logo-name">
         <p>Login</p>
     </div>
@@ -155,6 +160,34 @@
                 <p class = "item-text">Social</p>
             </div>
         </a>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
+        <div class = "menu-item">
+            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">item</p>
+        </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
             <p class = "item-text">item</p>
