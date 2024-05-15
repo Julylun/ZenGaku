@@ -27,6 +27,9 @@
         <!-- Entity mapping -->
         <mapping class="com.zengaku.mvc.model.User"/>
         <mapping class="com.zengaku.mvc.model.PasswordResetToken"/>
+        <mapping class="com.zengaku.mvc.model.Post"/>
+        <mapping class="com.zengaku.mvc.model.Comment"/>
+
 
 
     </session-factory>
