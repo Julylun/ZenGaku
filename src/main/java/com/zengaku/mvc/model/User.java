@@ -3,7 +3,6 @@ package com.zengaku.mvc.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,6 +32,20 @@ public @Data class User {
     @Column(name = "userBirthday", nullable = false)
     private LocalDate userBirthday;
 
+    @Column(name = "userAvatar", nullable = false)
+    private String userAvatar;
+
     @OneToMany(mappedBy = "user")
     private List<PasswordResetToken> tokenList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Post> postsByUser;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> commentsByUser;
+
+    public User(){
+        this.userAvatar = "assets/resources/img/default-avt.png";
+    }
+
 }
