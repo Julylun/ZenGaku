@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer</title>
+<style>
+  body {
+    background-image: url("../resources/img/default-background.jpg");
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 5px solid #000; /*đường viền cho hình tròn */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content {
+  position: absolute;
+  width: calc(100% - 20px); 
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .option span {
+        margin: 0;
+  }
+  .active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  #startButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #4898e9;
+    color: rgb(241, 247, 240);
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="timer">
+    <div class="content">
+        <p class="option" id="pomodoro"> <span>Pomodoro</span></p>
+        <p class="option" id="shortBreak"> <span>Short Break</span></p>
+        <p class="option" id="longBreak"><span>Long Break</span></p>
+        <p id="startButton">Start</p>
+      </div>
+</div>
+
+<script>
+  let selectedOption = '';
+
+  document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function() {
+      document.querySelectorAll('.option').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      selectedOption = this.id;
+    });
+  });
+
+  document.getElementById('startButton').addEventListener('click', function() {
+    if (selectedOption) {
+      // Start the timer based on the selected option
+      alert('Starting ' + selectedOption);
+    } else {
+      alert('Please select an option first');
+    }
+  });
+</script>
+</body>
+</html>
+

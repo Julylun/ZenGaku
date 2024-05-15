@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database setting -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> <!-- Updated driver class -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/zengaku_db</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">12345</property>
+
+        <!-- JDBC connection pool -->
+        <property name="connection.pool_size">4</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property> <!-- Updated dialect -->
+
+        <!-- Session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Cache configuration -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.internal.NoCachingRegionFactory</property> <!-- Corrected cache provider class -->
+
+        <!-- SQL logging -->
+        <property name="show_sql">true</property>
+
+        <!-- Entity mapping -->
+        <mapping class="com.zengaku.mvc.model.User"/>
+        <mapping class="com.zengaku.mvc.model.PasswordResetToken"/>
+
+
+    </session-factory>
+</hibernate-configuration>
