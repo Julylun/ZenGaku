@@ -10,7 +10,7 @@ body {
     background-color: black;
     /* height: 100%; */
     margin: 0;
-    background-image: url("../resources/img/default-background.jpg");
+    background-image: url("../resources/img/defaultBackground/default-background.jpg");
     background-attachment: fixed;
     background-position: 0px;
     background-size: cover;
@@ -426,6 +426,10 @@ body {
 
 }
 
+#menu::-webkit-scrollbar{
+    width: 0px;
+}
+
 #menu .menu-item {
     display: flex;
     justify-content: center;
@@ -527,8 +531,8 @@ body {
 }
 
 #nav-bar #menu-button .black-border-dot {
-    background-color: black;
-    width: 5px;
+    background-color: rgb(121, 121, 121);
+    width: 5px; 
     height: 5px;
     border-radius: 5px;
     margin-bottom: 4px;

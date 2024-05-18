@@ -260,8 +260,69 @@
         </div>
         <div class = "foo-line"></div>
         <div class = "foo-content">
-            <div class = "foo-add"></div>
-            <div class = "foo-choice"></div>
+            <div class = "foo-add">
+                <img class = "foo-add-button" src = "#">
+            </div>
+            <div class = "foo-line"></div>
+            <div class = "foo-choice">
+                <ul>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background.jpg">
+                        <p>Background 1</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background1.png">
+                        <p>Background 2</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background2.jpg">
+                        <p>Background 3</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background3.jpg">
+                        <p>Background 4</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background4.jpg">
+                        <p>Background 5</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background5.jpg">
+                        <p>Background 6</p>
+                    </li>
+                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background6.jpg">
+                        <p>Background 7</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/LvNEPB5x7T8">
+                        <p>Background video</p>
+                    </li>
+                    <li class = "foo-item video" value="assets/resources/img/defaultBackground/video1.mp4">
+                        <p>Background video 1</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
+                        <p>Background video 2</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/kMCbva2SvMU">
+                        <p>Background video 3</p>
+                    </li>
+                    <!-- <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
+                        <p>Background video 4</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
+                        <p>Background video 5</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
+                        <p>Background video 6</p>
+                    </li>
+                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
+                        <p>Background video 7</p>
+                    </li> -->
+
+                </ul>
+            </div>
+            <div class = "foo-line"></div>
+            <div class = "foo-button-container">
+                <div class = "foo-button-item" id = "foo-apply-button">
+                    <span>Apply</span>
+                </div>
+                <div class = "foo-button-item" id = "foo-cancel-button">
+                    <span>Cancel</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -273,6 +334,23 @@
 <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="assets/js/index.js"></script>
 <script src="assets/js/feature.js"></script>
+
+<div class = "video-container">
+    <iframe id = "background-video" frameborder="0"
+            allowfullscreen=""
+            allow="accelerometer; autoplay;
+            clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Cherry Blossom Café 🌸 Café Ambience + 1 Hour Magical Solo Piano No Ads 🎹 Studying Music | Work Aid 🎧"
+
+            src=""></iframe>
+
+    <video autoplay muted loop style="display: none">
+        <source src = "" type = "video/mp4">
+    </video>
+</div>
+
 
 <footer>
 </footer>

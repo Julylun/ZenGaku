@@ -29,6 +29,8 @@
         <mapping class="com.zengaku.mvc.model.PasswordResetToken"/>
         <mapping class="com.zengaku.mvc.model.Post"/>
         <mapping class="com.zengaku.mvc.model.Comment"/>
+        <mapping class="com.zengaku.mvc.model.AuthToken"/>
+        <mapping class="com.zengaku.mvc.model.RefreshToken"/>
 
 
 

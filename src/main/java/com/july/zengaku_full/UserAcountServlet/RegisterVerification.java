@@ -31,7 +31,7 @@ public class RegisterVerification extends HttpServlet {
             httpSession.setAttribute("registerVerification", RegisterCode.VERIFICATED);
             Session databaseSession = HibernateUtils.getSessionFactory().openSession();
             if(!databaseSession.isConnected()){
-                req.getServletContext().getRequestDispatcher("/error.jsp").forward(req,resp);
+                req.getServletContext().getRequestDispatcher("/Error401.jsp").forward(req,resp);
             }
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
         }
