@@ -7,6 +7,7 @@ const STATUS_CHANGED_PASSWORD = 400;
 const STATUS_FORGET_EMAIL_SENT = 300;
 const STATUS_LOGIN_FAILED = -101;
 
+
 //Define------
 ///////////////////
 const loadingFrame = document.getElementsByClassName("loading-layer").item(0);
@@ -150,7 +151,7 @@ haveAccountButton.addEventListener("mousedown",function handleMouseDown(){
 });
 
 document.getElementById('background-config-feature').addEventListener('click',function(){
-    document.getElementById('foo').style.display = "block";
+    document.getElementById('background-config').style.display = "block";
 })
 
 //Display forget nmenu and close all auth menu

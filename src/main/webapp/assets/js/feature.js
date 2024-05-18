@@ -10,6 +10,8 @@ function changeBackgroundPicture(srcPath){
   document.body.style.backgroundImage = "url('" + srcPath +"')";
 }
 
+
+//FUNCTION------------------------------------------------------------------------------
 function makeid(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -23,6 +25,7 @@ function makeid(length) {
 }
 
 function addMovement(pressedElement,movementElement){
+  console.log("changed");
   function mouseMove(event){
     console.log("changed");
         newPosX = cursorX - event.clientX;
@@ -47,46 +50,121 @@ function addMovement(pressedElement,movementElement){
   });
 }
 
-let fooItemList = document.getElementsByClassName("foo-item");
-console.log(fooItemList)
-for(let fooItem of fooItemList){
-  fooItem.addEventListener('click',function(){
-    for(let _fooItem of fooItemList) {
-      _fooItem.classList.remove("foo-item-selected");
+//END FUNCTION------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
+
+
+//BACKGROUND CONFIGURATION FEATURES----------------------------------------------------------
+
+//change item to selected status when click on and remove the selection of previous selected item
+function addSelectedBCItemListener(){
+  let backgroundConfigItemList = document.getElementsByClassName("background-config-item");
+  function addListener(){
+    for(let _backgroundConfigItem of backgroundConfigItemList) {
+      _backgroundConfigItem.classList.remove("background-config-item-selected");
     }
-    fooItem.classList.add('foo-item-selected');
+    this.classList.add('background-config-item-selected');
     isVideo = false;
-    for(let className of fooItem.classList){
+    for(let className of this.classList){
       if(className == "video"){
         isVideo = true;
       }
     }
-    background = fooItem.getAttribute("value");
-  })
+    background = this.getAttribute("value");
+  }
+  for(let backgroundConfigItem of backgroundConfigItemList){
+    backgroundConfigItem.removeEventListener('click',addListener)
+  }
+  for(let backgroundConfigItem of backgroundConfigItemList){
+    backgroundConfigItem.addEventListener('click',addListener)
+  }
 }
 
-document.getElementById('foo-apply-button').addEventListener('click',function(){
+addSelectedBCItemListener();
+
+
+
+
+//change background when click on apply button
+document.getElementById('background-config-apply-button').addEventListener('click',function(){
   var videoElement = document.getElementById('background-video');
   if(isVideo){
     // videoElement.getElementsByTagName('source').item(0).setAttribute('src', background);
     videoElement.setAttribute('src', (background + url));
     // videoElement.style.display = "block";
     document.getElementsByClassName('video-container').item(0).style.display = "flex";
-    videoElement.load();
-    videoElement.play();
+    // videoElement.load();
+    // videoElement.play();
   } else {
     document.getElementsByClassName('video-container').item(0).style.display = "none";
-    videoElement.pause();
+    // videoElement.pause();
     changeBackgroundPicture(background);
   }
-  
 })
 
-document.getElementById('foo-cancel-button').addEventListener('click',function(){
-  document.getElementById('foo').style.display = "none";
+//Hide the Background Configuration box when click on cancel button
+document.getElementById('background-config-cancel-button').addEventListener('click',function(){
+  document.getElementsByClassName('background-config-choice').item(0).style.display = "flex";
+  document.getElementsByClassName('background-config-add-content').item(0).style.display = "none";
+  document.getElementById('background-config').style.display = "none";
 })
 
-addMovement(document.getElementsByClassName('foo-title').item(0),document.getElementById('foo'));
+//Hide all content when click on add button
+document.getElementsByClassName('background-config-add-button').item(0).addEventListener('click',function(){
+  document.getElementsByClassName('background-config-choice').item(0).style.display = "none";
+  document.getElementsByClassName('background-config-add-content').item(0).style.display = "flex";
+})
+
+//A funticon is used to add element to BackGround Configuration
+function getYotubeId(url) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+
+  return (match && match[2].length === 11)
+    ? match[2]
+    : null;
+}
+function addElementToBackgroundConfig(){
+  let node = document.createElement("li");
+  let p = document.createElement("p");
+  let backgroundURL = document.getElementsByClassName("background-config-text-field").item(0).value;
+
+  node.classList.add("background-config-item");
+
+  if(new URL(backgroundURL).hostname == "www.youtube.com"){
+    node.classList.add("video");
+    backgroundURL = "https://www.youtube.com/embed/" + getYotubeId(document.getElementsByClassName("background-config-text-field").item(0).value);
+  }
+
+  node.setAttribute('value',backgroundURL);
+
+  p.innerHTML = document.getElementsByClassName('background-config-name-field').item(0).value;
+  node.appendChild(p);
+
+  document.getElementsByClassName('background-config-choice').item(0).getElementsByTagName("ul").item(0).appendChild(node);
+
+  document.getElementsByClassName('background-config-choice').item(0).style.display = "flex";
+  document.getElementsByClassName('background-config-add-content').item(0).style.display = "none";
+
+  document.getElementsByClassName('background-config-name-field').item(0).value=""
+  document.getElementsByClassName("background-config-text-field").item(0).value = "";
+  addSelectedBCItemListener();
+}
+
+//Add element to Background configuration when click on add button
+document.getElementsByClassName('background-config-add-link-button').item(0).addEventListener('click', function(e){
+  e.preventDefault();
+  addElementToBackgroundConfig();
+})
+//END BACKGROUND CONFIGURATION FEATURES----------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+
+
+//ADD MOVEMENT--------------------------------------------------------------------------------------
+
+addMovement(document.getElementsByClassName('background-config-title').item(1),document.getElementById('background-config'));
+
+//END ADD MOVEMENT--------------------------------------------------------------------------------------
 
 // document.getElementById('background-config-feature').addEventListener('click',function(){
 //         let backgroundConfigFeatureTag = document.createElement("div");

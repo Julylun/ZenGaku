@@ -4,6 +4,7 @@ import com.zengaku.mvc.controller.HashFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.model.PasswordResetToken;
+import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
 import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
@@ -53,41 +54,23 @@ public class NewPasswordServlet extends HttpServlet {
 
                     databaseSession.update(user);
 
-
                     storedTokenObject.setUsed(true);
                     databaseSession.update(storedTokenObject);
 
                     transaction.commit();
 
-
-//                session.setAttribute("isAcceptForgetPassword",true);
-//                System.out.println("Update password successfully");
-//                out.println("<html>" +
-//                        "<head>" +
-//                        "<title>" +
-//                        "Forget Zengeku password is accepted" +
-//                        "</title>" +
-//                        "</head> " +
-//                        "<body>" +
-//                        "<p>" +
-//                        "Your request is accepted! Go to your old tab to change your password." +
-//                        "</p>"
-//                        +"<script>" +
-//                        "localStorage.setItem('forgetPasswordAccepted', 'true');" +
-//                        "window.dispatchEvent(new Event('forgetPasswordAccepted'));" +
-//                        "console.log('sent event')"+
-//                        "</script>"+
-//                        "</body>" +
-//                        "</html>");
                     session.setAttribute("registerVerification", RegisterCode.CHANGED_PASSWORD);
                     req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 
-                    System.out.println("Update password successfully");
+                    System.out.println(PrintColor.GREEN + "[NewPasswordServlet]> "
+                            + req.getRemoteAddr() + ":\tUpdate password successfully" + PrintColor.RESET);
                 }
-
 
             }
         }
+
+        System.out.println(PrintColor.RED + "[NewPasswordServlet]> "
+                + req.getRemoteAddr() + ":\tUpdate password failed" + PrintColor.RESET);
 
 
     }

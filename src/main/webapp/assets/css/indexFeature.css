@@ -26,7 +26,7 @@
 
 
 
-#foo {
+.content-item {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     height: 90vw;
@@ -41,7 +41,7 @@
     display: none;
 }
 
-.foo-title {
+.background-config-title {
     position: relative;
     height: 50px;
     width: 100%;
@@ -53,26 +53,24 @@
     font-size: min(4vw,15px);
 }
 
-.foo-title div {
+.background-config-title div {
     padding-top: 10px;
 }
 
-
-
-.foo-line {
+.background-config-line {
     height: 0.3px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.518);
 }
 
-.foo-content {
+.background-config-content {
     position: relative;
     width: 100%;
     height: calc((90vw - 50px));
     max-height: 365px;
 }
 
-.foo-add {
+.background-config-add {
     height: 25px;
     width: 100%;
     /* background-color: aqua; */
@@ -81,11 +79,20 @@
     align-items: center;
 }
 
-.foo-add-button {
+.background-config-add-button {
     margin-right: 10px;
-    }
+    width: 3vw;
+    height: 3vw;
+    max-width: 14px;
+    max-height: 14px;
+    min-width: 9px;
+    min-height: 9px;
+}
+.background-config-add-button:hover {
+    cursor: pointer;
+}
 
-.foo-choice {
+.background-config-choice {
     position: relative;
     width: 100%;
     height: calc((90vw - 50px - 25px)*13/15);
@@ -95,34 +102,34 @@
     /* background-color: blue; */
 }
 
-.foo-choice::-webkit-scrollbar {
+.background-config-choice::-webkit-scrollbar {
     width: 5px;
     height: 100%;
 }
 
-.foo-choice::-webkit-scrollbar-track {
+.background-config-choice::-webkit-scrollbar-track {
     width: 10px;
     height: 70vw;
     background-color: rgba(0, 0, 0, 0.305);
     
 }
 
-.foo-choice::-webkit-scrollbar-thumb {
+.background-config-choice::-webkit-scrollbar-thumb {
     width: 5px;
     height: auto;
     background-color: rgba(255, 255, 255, 0.164);
     border-radius: 50px;
 }
 
-.foo-choice ul {
+.background-config-choice ul {
     width: 100%;
     list-style: none;
-    padding: 0 10px 0 0;
+    padding: 0 0px 0 0;
     margin: 0;
 
 }
 
-.foo-choice li {
+.background-config-choice li {
     width: 100%;
     margin: 3px 0 3px 0;
     border-top: 0.5px solid rgba(255, 255, 255, 0.2);
@@ -130,7 +137,7 @@
     transition: ease-in-out .2s;
 }
 
-.foo-choice li:hover{
+.background-config-choice li:hover{
     width: 100%;
     margin: 3px 0 3px 0;
     cursor: pointer;
@@ -139,7 +146,7 @@
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
 }
 
-.foo-choice-selected li {
+.background-config-choice-selected li {
     width: 100%;
     margin: 3px 0 3px 0;
     background-color: rgba(255, 255, 255, 0.7);
@@ -147,25 +154,25 @@
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
 }
 
-.foo-item-selected {
+.background-config-item-selected {
     background-color: rgba(255, 255, 255, 0.675);
 }
 
-.foo-choice ul li p {
+.background-config-choice ul li p {
     color: white;
     margin: 10px 0 10px 10px;
     font-size: max(min(3.5vw,17px),9px);
     font-family: Inter;
 }
 
-.foo-button-container {
+.background-config-button-container {
     position: relative;
     display: flex;
     height: calc((90vw - 50px - 25px)*2/15);
     
 }
 
-.foo-button-item {
+.background-config-button-item {
     height: 100%;
     width: 50%;
     max-height: 46px;
@@ -181,12 +188,45 @@
 
 
 
-.foo-button-item:hover {
+.background-config-button-item:hover {
     background: rgba(255, 255, 255, 0.293);
 }
 
-.foo-button-item:active{
+.background-config-button-item:active{
     background: rgba(255, 255, 255, 0.478);
+}
+
+.background-config-add-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-self: center; */
+    height: calc((90vw - 50px - 25px)*13/15);
+    max-height: 294px;
+}
+
+.background-config-type-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.background-config-field {
+    width: 60vw;
+    height: 10vw;
+    border-radius: 3vw;
+    max-height: 50px;
+    max-width: 350px;
+    min-width: 155px;
+
+}
+
+.background-config-add-link-button {
+    /* background-color: aqua; */
+    height: 40px;
+    width: 80px;
 }
 
 

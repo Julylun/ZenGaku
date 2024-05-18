@@ -157,17 +157,17 @@
     <div id = "menu">
         <a href="laicos.jsp">
             <div class = "menu-item">
-                <img class = "item-image" src="assets/resources/img/social-icon-black.svg">
+                <img class = "item-image" title="Social media" src="assets/resources/img/social-icon-black.svg">
                 <p class = "item-text">Social</p>
             </div>
         </a>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
+            <img class = "item-image" title = "Timer" src="assets/resources/img/timer-icon-black.svg">
             <p class = "item-text">item</p>
         </div>
         <div class = "menu-item" id = "background-config-feature">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" title="Background Configuration" alt = "Background Configuration" src="assets/resources/img/background-configuration-icon-black.svg">
+            <p class = "item-text">Background</p>
         </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
@@ -252,75 +252,96 @@
 </nav>
 
 <div class = "content">
-    <div class = "content-item" id = "foo">
-        <div class = "foo-title">
+    <div class = "content-item" id = "sound-config">
+        <div class = "background-config-title">
+            <div>
+                <span>Sound Configuration</span>
+            </div>
+        </div>
+        <div class = "background-config-line"></div>
+        <div class = "background-config-content">
+            <div class = "background-config-add">
+                <img class = "background-config-add-button" src = "assets/resources/img/more-button-white.svg">
+            </div>
+            <div class = "background-config-line"></div>
+        </div>
+    </div>
+
+
+    <div class = "content-item" id = "background-config">
+        <div class = "background-config-title">
             <div>
                 <span>Background Configuration</span>
             </div>
         </div>
-        <div class = "foo-line"></div>
-        <div class = "foo-content">
-            <div class = "foo-add">
-                <img class = "foo-add-button" src = "#">
+        <div class = "background-config-line"></div>
+        
+        <div class = "background-config-content">
+            <div class = "background-config-add">
+                <img class = "background-config-add-button" src = "assets/resources/img/more-button-white.svg">
             </div>
-            <div class = "foo-line"></div>
-            <div class = "foo-choice">
+            <div class = "background-config-line"></div>
+            <div class = "background-config-add-content" style="display: none;">
+                <div class = "background-config-type-box">
+                    <input class = "auth-text-field background-config-field background-config-name-field" placeholder="Type background name">
+                    <input class = "auth-text-field background-config-field background-config-text-field" placeholder="Paste your image/youtube's video link here">
+                    <button class = "auth-button background-config-add-link-button">Add</button>
+                </div>
+            </div>
+            <div class = "background-config-choice">
                 <ul>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background.jpg">
-                        <p>Background 1</p>
+                    <li class = "background-config-item" value="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg">
+                        <p>Moutaint and lake</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background1.png">
-                        <p>Background 2</p>
+                    <li class = "background-config-item" value="https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp">
+                        <p>Moon and Sun</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background2.jpg">
-                        <p>Background 3</p>
+                    <li class = "background-config-item" value="https://pbs.twimg.com/media/Fxto7UTXgAEtKVC.jpg:large">
+                        <p>The sky night</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background3.jpg">
-                        <p>Background 4</p>
+                    <li class = "background-config-item" value="https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg">
+                        <p>Danger person</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background4.jpg">
-                        <p>Background 5</p>
+                    <li class = "background-config-item" value="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+                        <p>Old car</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background5.jpg">
-                        <p>Background 6</p>
+                    <li class = "background-config-item" value="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+                        <p>The bridge</p>
                     </li>
-                    <li class = "foo-item" value="assets/resources/img/defaultBackground/default-background6.jpg">
-                        <p>Background 7</p>
+                    <li class = "background-config-item" value="https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+                        <p>Leaves</p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/LvNEPB5x7T8">
-                        <p>Background video</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/UZ9uyQI3pF0">
+                        <p>Flowers</p>
                     </li>
-                    <li class = "foo-item video" value="assets/resources/img/defaultBackground/video1.mp4">
-                        <p>Background video 1</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/SVDooWT60Ho">
+                        <p>Study with BTS</p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
-                        <p>Background video 2</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/2XK0zoPWdi4">
+                        <p>Study in coffee shop</p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/kMCbva2SvMU">
-                        <p>Background video 3</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/0nTO4zSEpOs">
+                        <p>Night Walk in Tokyo Shibuya</p>
                     </li>
-                    <!-- <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
-                        <p>Background video 4</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/F8MN0o6RS9o">
+                        <p>Snowfall in Times Square, NYC</p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
-                        <p>Background video 5</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/AY5qcIq5u2g">
+                        <p>FLYING OVER JAPAN</p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
-                        <p>Background video 6</p>
+                    <li class = "background-config-item video" value="https://www.youtube.com/embed/M9cJMXmQ_ZU">
+                        <p>DOWNTOWN LOS ANGELES City View day </p>
                     </li>
-                    <li class = "foo-item video" value="https://www.youtube.com/embed/-o3CLhfOVpI">
-                        <p>Background video 7</p>
-                    </li> -->
 
                 </ul>
             </div>
-            <div class = "foo-line"></div>
-            <div class = "foo-button-container">
-                <div class = "foo-button-item" id = "foo-apply-button">
+            <div class = "background-config-line"></div>
+            <div class = "background-config-button-container">
+                <div class = "background-config-button-item" id = "background-config-apply-button">
                     <span>Apply</span>
                 </div>
-                <div class = "foo-button-item" id = "foo-cancel-button">
-                    <span>Cancel</span>
+                <div class = "background-config-button-item" id = "background-config-cancel-button">
+                    <span>Cancel</span> 
                 </div>
             </div>
         </div>
@@ -352,8 +373,8 @@
 </div>
 
 
-<footer>
-</footer>
+<background-configter>
+</background-configter>
 </body>
 
 </html>

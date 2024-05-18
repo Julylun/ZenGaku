@@ -1,4 +1,5 @@
 package com.july.zengaku_full.UserAcountServlet;
+import com.zengaku.mvc.model.PrintColor;
 import org.apache.commons.codec.binary.Base64;
 
 import com.google.gson.Gson;
@@ -90,16 +91,15 @@ public class LoginServlet extends HttpServlet {
 
                         httpSession.setAttribute("loginStatus", true);
                         httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
-                        System.out.println("[LOGIN-SESSION]: " + httpSession.getAttribute("loginStatus"));
-
                         out.print("{\"token\":\"" + jwtToken + "\"}");
                         out.flush();
-                        System.out.println("Login Successfully!");
+                        System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin Successfully!" + PrintColor.RESET);
+
                         return;
                     }
                 }
             }
-            System.out.println("2");
+            System.out.println(PrintColor.RED + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin failed!" + PrintColor.RESET);
             httpSession.setAttribute("loginStatus", false);
             httpSession.setAttribute("registerVerification", RegisterCode.LOGIN_FAILED);
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);

@@ -10,7 +10,7 @@ body {
     background-color: black;
     /* height: 100%; */
     margin: 0;
-    background-image: url("../resources/img/defaultBackground/default-background.jpg");
+    background-image: url("https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg");
     background-attachment: fixed;
     background-position: 0px;
     background-size: cover;

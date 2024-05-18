@@ -2,9 +2,7 @@ package com.july.zengaku_full.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.controller.SecureFactory;
-import com.zengaku.mvc.model.AuthToken;
-import com.zengaku.mvc.model.RegisterCode;
-import com.zengaku.mvc.model.User;
+import com.zengaku.mvc.model.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.json.stream.JsonParser;
@@ -68,22 +66,35 @@ import java.util.Scanner;
 public class ReloginServlet extends HttpServlet {
     private final String SI_CO_RET_KI = "HOANGLUANHONGHAINGUYENVYDUYENLANHHOANGLUANHONGHAINGUYENVYDUYENLANH";
 
+    /**
+     * Read json file from client then use get userId to find
+     * Json Web Token and use this to check that is it expired
+     * if this token is not expired, set loginStatus in session
+     * to true and return client a json file containing approve value.
+     * Reverse, set loginStatus to false and send a rejection to client.
+     *
+     * @author Hoang Luan
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             JsonReader jsonReader = Json.createReader(req.getInputStream());
-
             JsonObject jsonObject = jsonReader.readObject();
 
             String accessToken = jsonObject.getString("authToken");
             System.out.println(accessToken);
             String[] splitToken = accessToken.split("\\.");
-            String headerEncoding = splitToken[0];
+//            String headerEncoding = splitToken[0];
             Base64 base64 = new Base64();
-            String header = new String(base64.decode(headerEncoding.getBytes(StandardCharsets.UTF_8)));
+//            String header = new String(base64.decode(headerEncoding.getBytes(StandardCharsets.UTF_8)));
             String body = new String(base64.decode(splitToken[1].getBytes(StandardCharsets.UTF_8)));
             JSONObject readJson = new JSONObject(body);
             Long userId = Long.valueOf(readJson.getInt("sub"));
+
             Session session = HibernateUtils.getSessionFactory().openSession();
             Query query = session.createQuery("From AuthToken AS auth WHERE auth.user.id = :id ");
             query.setParameter("id", userId);
@@ -94,15 +105,22 @@ public class ReloginServlet extends HttpServlet {
                 System.out.println("B-:" + authToken.isExpired());
                 if(authToken.getAccessToken().equals(accessToken) && !authToken.isExpired()){
                     HttpSession httpSession = req.getSession();
-                    System.out.println("[RELOGIN]: " + httpSession.getAttribute("loginStatus"));
                     httpSession.setAttribute("loginStatus", true);
                     httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
+
+                    System.out.println(PrintColor.GREEN + "[ReloginServlet]>"
+                            + req.getRemoteAddr() + ": Token is available, the server is sending a approve to the client."
+                            + PrintColor.RESET);
+
+
                     out.println("{\"isApprove\":\""+ "true" + "\"}");
                     out.flush();
                     return;
                 }
             }
-            out.println("{\"isApprove\":\"\"}");
+            System.out.println(PrintColor.YELLOW + "[ReloginServlet]>"
+                    + req.getRemoteAddr() + ": Token is expired or unavailable, the server is sending a deny to the client.");
+            out.println("{\"isApprove\":\"\"}" + PrintColor.RESET);
             out.flush();
 
         }
