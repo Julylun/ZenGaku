@@ -170,8 +170,8 @@
             <p class = "item-text">Background</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" id = "sound-board-feature" title = "Sound board" src="assets/resources/img/sound-board-icon-black.svg">
+            <p class = "item-text">Sound board</p>
         </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
@@ -252,35 +252,28 @@
 </nav>
 
 <div class = "content">
-    <div class = "content-item" id = "sound-config">
-        <div class = "background-config-title">
-            <div>
-                <span>Sound Configuration</span>
-            </div>
-        </div>
-        <div class = "background-config-line"></div>
-        <div class = "background-config-content">
-            <div class = "background-config-add">
-                <img class = "background-config-add-button" src = "assets/resources/img/more-button-white.svg">
-            </div>
-            <div class = "background-config-line"></div>
-        </div>
-    </div>
-
-
-    <div class = "content-item" id = "background-config">
-        <div class = "background-config-title">
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- Background configuration -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <div class = "content-item background-config-container" id = "background-config">
+        <div class = "content-item-title background-config-title">
             <div>
                 <span>Background Configuration</span>
             </div>
         </div>
-        <div class = "background-config-line"></div>
+        <div class = "config-line"></div>
         
-        <div class = "background-config-content">
-            <div class = "background-config-add">
-                <img class = "background-config-add-button" src = "assets/resources/img/more-button-white.svg">
+        <div class = "content-container">
+            <div class = "config-add-button-container">
+                <img class = "config-add-button background-config-add-button"
+                 id = "bgcf-bt" src = "assets/resources/img/more-button-white.svg">
             </div>
-            <div class = "background-config-line"></div>
+            <div class = "config-line"></div>
             <div class = "background-config-add-content" style="display: none;">
                 <div class = "background-config-type-box">
                     <input class = "auth-text-field background-config-field background-config-name-field" placeholder="Type background name">
@@ -288,7 +281,7 @@
                     <button class = "auth-button background-config-add-link-button">Add</button>
                 </div>
             </div>
-            <div class = "background-config-choice">
+            <div class = "choice-container background-choice">
                 <ul>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg">
                         <p>Moutaint and lake</p>
@@ -335,17 +328,178 @@
 
                 </ul>
             </div>
-            <div class = "background-config-line"></div>
-            <div class = "background-config-button-container">
-                <div class = "background-config-button-item" id = "background-config-apply-button">
+            <div class = "config-line"></div>
+            <div class = "content-button-container background-config-button-container">
+                <div class = "content-button-item" id = "background-config-apply-button">
                     <span>Apply</span>
                 </div>
-                <div class = "background-config-button-item" id = "background-config-cancel-button">
+                <div class = "content-button-item" id = "background-config-cancel-button">
                     <span>Cancel</span> 
                 </div>
             </div>
         </div>
     </div>
+
+    
+
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- --Sound configuration--- -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <!-- ------------------------ -->
+    <div class = "content-item sound-config-container" id = "sound-config">
+        <div class = "content-item-title background-config-title">
+            <div>
+                <span>Sound Configuration</span>
+            </div>
+        </div>
+        <div class = "config-line"></div>
+        <div class = "content-container">
+            <div class = "config-add-button-container">
+                <img class = "config-add-button" src = "assets/resources/img/more-button-white.svg">
+            </div>
+            <div class = "config-line"></div>
+            <div class = "choice-container">
+                <ul>
+                    <li class = "sound-config-item" value ="assets/resources/audio/ChillWind.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Chill wind</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/ColdWind.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Cold wind</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/OceanWave.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Ocean wave</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/OceanWave2.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Ocean wave 2</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/OfficeSound.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Office sound</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/3DOfficeSound.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Pretty Real Office sound</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/KeyboardType.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Keyboard type</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/Campfire.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Campfire</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    <li class = "sound-config-item" value ="assets/resources/audio/OfficeSound.mp3">
+                        <div class ="sound-config-item-top">
+                            <img src="#">
+                            <p>Item name 2</p>
+                            <label class = "custom-check-box-container">
+                                <input type="checkbox" class = "sound-item-check-box">
+                            </label>
+                        </div>
+                        <div class = "sound-config-item-bottom">
+                            <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+                            <p>50%</p>
+                        </div>
+                    </li>
+                    
+                
+
+                </ul>
+            </div>
+            <div class = "config-line"></div>
+            <div class = "content-button-container">
+                <div class = "content-button-item" id = "sound-config-apply-button">
+                    <span>Apply</span>
+                </div>
+                <div class = "content-button-item" id = "sound-config-cancel-button">
+                    <span>Cancel</span> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
 </div>
 
 <!-- <div id="menu" style="display: none;">
