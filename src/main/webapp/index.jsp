@@ -284,46 +284,46 @@
             <div class = "choice-container background-choice">
                 <ul>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg">
-                        <p>Moutaint and lake</p>
+                        <p>🗻 Moutaint and lake</p>
                     </li>
                     <li class = "background-config-item" value="https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp">
-                        <p>Moon and Sun</p>
+                        <p>🌗 Moon and Sun</p>
                     </li>
                     <li class = "background-config-item" value="https://pbs.twimg.com/media/Fxto7UTXgAEtKVC.jpg:large">
-                        <p>The sky night</p>
+                        <p>🌃 The sky night</p>
                     </li>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg">
-                        <p>Danger person</p>
+                        <p>🤵 Danger person</p>
                     </li>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-                        <p>Old car</p>
+                        <p>🚓 Old car</p>
                     </li>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-                        <p>The bridge</p>
+                        <p>🌉 The bridge</p>
                     </li>
                     <li class = "background-config-item" value="https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-                        <p>Leaves</p>
+                        <p>🌿 Leaves</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/UZ9uyQI3pF0">
-                        <p>Flowers</p>
+                        <p>🌻 Flowers</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/SVDooWT60Ho">
-                        <p>Study with BTS</p>
+                        <p>🧑‍🤝‍🧑 Study with BTS</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/2XK0zoPWdi4">
-                        <p>Study in coffee shop</p>
+                        <p>☕ Study in coffee shop</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/0nTO4zSEpOs">
-                        <p>Night Walk in Tokyo Shibuya</p>
+                        <p>🚶‍♀️ Night Walk in Tokyo Shibuya</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/F8MN0o6RS9o">
-                        <p>Snowfall in Times Square, NYC</p>
+                        <p>🚶‍♀️ Snowfall in Times Square, NYC</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/AY5qcIq5u2g">
-                        <p>FLYING OVER JAPAN</p>
+                        <p>🚶‍♀️ FLYING OVER JAPAN</p>
                     </li>
                     <li class = "background-config-item video" value="https://www.youtube.com/embed/M9cJMXmQ_ZU">
-                        <p>DOWNTOWN LOS ANGELES City View day </p>
+                        <p>🪟 DOWNTOWN LOS ANGELES City View day </p>
                     </li>
 
                 </ul>
@@ -357,16 +357,23 @@
             </div>
         </div>
         <div class = "config-line"></div>
-        <div class = "content-container">
+       
+        <div class = "content-container" id = "sound-content-container">
             <div class = "config-add-button-container">
-                <img class = "config-add-button" src = "assets/resources/img/more-button-white.svg">
+                <img class = "config-add-button" id = "sound-add-button" src = "assets/resources/img/more-button-white.svg">
             </div>
             <div class = "config-line"></div>
-            <div class = "choice-container">
+            <div class = "sound-add-container" id = "sound-add-container" style="display: none">
+                <input class = "auth-text-field sound-add-input" id = "audio-name-sound-input" placeholder="Type Audio name">
+                <input class = "auth-text-field sound-add-input" id = "icon-link-sound-input" placeholder="Paste your icon link (suggest white svg icon)">
+                <input class = "auth-text-field sound-add-input" id = "audio-link-sound-input" placeholder="Paste your audio link">
+                <button class = "auth-button" id = "sound-add-container-button">Add</button>
+            </div>
+            <div class = "choice-container" id = "sound-config-item-container">
                 <ul>
                     <li class = "sound-config-item" value ="assets/resources/audio/ChillWind.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/wind.svg">
                             <p>Chill wind</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -379,7 +386,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/ColdWind.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/wind.svg">
                             <p>Cold wind</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -392,7 +399,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/OceanWave.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/oceanwave.svg">
                             <p>Ocean wave</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -405,7 +412,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/OceanWave2.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/oceanwave.svg">
                             <p>Ocean wave 2</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -418,7 +425,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/OfficeSound.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/office.svg">
                             <p>Office sound</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -431,7 +438,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/3DOfficeSound.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/office.svg">
                             <p>Pretty Real Office sound</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -444,7 +451,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/KeyboardType.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/keyboard.svg">
                             <p>Keyboard type</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -457,7 +464,7 @@
                     </li>
                     <li class = "sound-config-item" value ="assets/resources/audio/Campfire.mp3">
                         <div class ="sound-config-item-top">
-                            <img src="#">
+                            <img src="assets/resources/img/defaultAudioImg/campfire.svg">
                             <p>Campfire</p>
                             <label class = "custom-check-box-container">
                                 <input type="checkbox" class = "sound-item-check-box">
@@ -517,7 +524,7 @@
             clipboard-write; encrypted-media;
             gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
-            title="Cherry Blossom Café 🌸 Café Ambience + 1 Hour Magical Solo Piano No Ads 🎹 Studying Music | Work Aid 🎧"
+            title="🌸🎹🎧"
 
             src=""></iframe>
 

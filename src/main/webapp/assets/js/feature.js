@@ -186,6 +186,76 @@ document.getElementsByClassName('background-config-add-link-button').item(0).add
 //-------------------------------------------------------------------------------------------
 
 //SOUNDBOARD CONFIGURATION FEATURE----------------------------------------------------------
+
+function addElementToSoundBoard(audioName, iconLink,audioLink){
+
+  // <li class = "sound-config-item" value ="assets/resources/audio/ChillWind.mp3">
+  //                       <div class ="sound-config-item-top">
+  //                           <img src="assets/resources/img/defaultAudioImg/wind.svg">
+  //                           <p>Chill wind</p>
+  //                           <label class = "custom-check-box-container">
+  //                               <input type="checkbox" class = "sound-item-check-box">
+  //                           </label>
+  //                       </div>
+  //                       <div class = "sound-config-item-bottom">
+  //                           <input class = "sound-item-slider" disabled ="1" type="range" min="0" max="100" value="50">
+  //                           <p>50%</p>
+  //                       </div>
+  //                   </li>
+
+  let parentNode = document.getElementById('sound-config-item-container').getElementsByTagName('ul').item(0);
+
+  let inputNode = document.createElement('input');
+  inputNode.classList.add('sound-item-slider');
+  inputNode.disabled = 1;
+  inputNode.type = "range";
+  inputNode.min = "0";
+  inputNode.max = "100";
+  inputNode.value = "50";
+
+  addChangeEventToSoundItem(inputNode);
+
+  let pNode = document.createElement('p');
+  pNode.innerHTML = "50%";
+
+  let secondDivNode = document.createElement('div');
+  secondDivNode.classList.add('sound-config-item-bottom');
+  secondDivNode.appendChild(inputNode);
+  secondDivNode.appendChild(pNode);
+
+  let imgNode = document.createElement('img');
+  imgNode.src = iconLink;
+
+  pNode = document.createElement('p');
+  pNode.innerHTML = audioName;
+
+  inputNode = document.createElement('input');
+  inputNode.type = "checkbox";
+  inputNode.classList.add('sound-item-check-box');
+
+  addClickEventToSoundItem(inputNode);
+
+  let labelNode = document.createElement('label');
+  labelNode.classList.add('custom-check-box-container');
+  labelNode.appendChild(inputNode);
+  
+  let firstDivNode = document.createElement('div');
+  firstDivNode.classList.add('sound-config-item-top');
+  firstDivNode.appendChild(imgNode);
+  firstDivNode.appendChild(pNode);
+  firstDivNode.appendChild(labelNode);
+
+  let node = document.createElement('li');
+  node.classList.add('sound-config-item');
+  node.value = audioLink;
+  node.appendChild(firstDivNode);
+  node.appendChild(secondDivNode);
+
+  parentNode.appendChild(node);
+
+
+};
+
 function addAudioToList(soundConfigItem){
   let audioName = soundConfigItem.parentElement.parentElement.getElementsByTagName('p').item(0).innerHTML;
   audioArr.push(new AudioModel(soundConfigItem.parentElement.parentElement.parentElement.getAttribute('value'),audioName));
@@ -219,7 +289,9 @@ function getAudioModelFromArray(name){
  
 //all of SoundConfigItems are add event listener used to detect user clicking on checkbox
 //then add audio to array and play it.
-for(let soundConfigItem of document.getElementsByClassName('sound-item-check-box')){
+
+
+function addClickEventToSoundItem(soundConfigItem){
   soundConfigItem.addEventListener('click',function(){
     if(soundConfigItem.checked){
       addAudioToList(soundConfigItem);
@@ -231,24 +303,51 @@ for(let soundConfigItem of document.getElementsByClassName('sound-item-check-box
   })
 }
 
+function addChangeEventToSoundItem(soundItemSlider){
+  soundItemSlider.addEventListener('mousedown',function(){
+    if(!soundItemSlider.disabled){
+      function a(){
+        let value = parseInt(soundItemSlider.value);
+        soundItemSlider.parentElement.getElementsByTagName('p').item(0).innerHTML = value + "%";
+        tmpAudioModel.setVolume(value);
+      }
+      let tmpAudioModel = getAudioModelFromArray(soundItemSlider.parentElement.parentElement.getElementsByTagName('div').item(0).getElementsByTagName('p').item(0).innerHTML);
+      console.log(tmpAudioModel);
+      document.addEventListener('mousemove',a)
+      document.addEventListener('mouseup',function(){
+        document.removeEventListener('mousemove',a);
+        document.removeEventListener('mouseup',null);
+      })
+    }}
+  )
+}
+
+document.getElementById('sound-add-button').addEventListener('click',function(){
+  document.getElementById('sound-config-item-container').style.display = "none";
+  document.getElementById('sound-add-container').style.display = "flex";
+})
+document.getElementById('sound-add-container-button').addEventListener('click',function(){
+  addElementToSoundBoard(
+    document.getElementById('audio-name-sound-input').value,
+    document.getElementById('icon-link-sound-input').value,
+    document.getElementById('audio-link-sound-input').value
+  )
+  document.getElementById('audio-name-sound-input').value = "";
+  document.getElementById('icon-link-sound-input').value = "";
+  document.getElementById('audio-link-sound-input').value = "";
+  document.getElementById('sound-config-item-container').style.display = "block";
+  document.getElementById('sound-add-container').style.display = "none";
+})
+
+
+
+for(let soundConfigItem of document.getElementsByClassName('sound-item-check-box')){
+  addClickEventToSoundItem(soundConfigItem);
+}
+
 for(let soundItemSlider of document.getElementsByClassName('sound-item-slider')){
-   soundItemSlider.addEventListener('mousedown',function(){
-      if(!soundItemSlider.disabled){
-        function a(){
-          let value = parseInt(soundItemSlider.value);
-          soundItemSlider.parentElement.getElementsByTagName('p').item(0).innerHTML = value + "%";
-          tmpAudioModel.setVolume(value);
-        }
-        let tmpAudioModel = getAudioModelFromArray(soundItemSlider.parentElement.parentElement.getElementsByTagName('div').item(0).getElementsByTagName('p').item(0).innerHTML);
-        console.log(tmpAudioModel);
-        document.addEventListener('mousemove',a)
-        document.addEventListener('mouseup',function(){
-          document.removeEventListener('mousemove',a);
-          document.removeEventListener('mouseup',null);
-        })
-      }}
-    )
-  }
+  addChangeEventToSoundItem(soundItemSlider);   
+}
  
 
 document.getElementById('sound-board-feature').addEventListener('click',function(){

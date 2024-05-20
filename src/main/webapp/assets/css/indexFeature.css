@@ -559,6 +559,44 @@
 }
 
 
+.sound-add-container {
+    /* padding-top: min(3vw,15px); */
+    position: relative;
+    width: 100%;
+    height: calc((90vw - max(min(9vw,50px),25px) - min(5vw,23px))*13/15);
+    max-height: 294px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sound-add-container input {
+    height: 8vw;
+    max-height: 41px;
+    min-height: 31px;
+    margin-bottom: min(3vw,25px);
+    width: 90%;
+    font-size: min(2vw,13px);
+}
+
+.sound-add-container input:focus {
+    font-size: min(2.5vw,15px);
+}
+
+
+.sound-add-container button {
+    width: 20%;
+    height: 5vw;
+    max-height: 32.5px;
+    
+    font-size: min(2.5vw,15px);
+}
+
+
+
 
 
 
