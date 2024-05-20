@@ -7,21 +7,6 @@ const STATUS_CHANGED_PASSWORD = 400;
 const STATUS_FORGET_EMAIL_SENT = 300;
 const STATUS_LOGIN_FAILED = -101;
 
-const socket = new WebSocket("ws://localhost:8080/requestData");
-
-socket.onopen = function(event) {
-    console.log("Kết nối đã được thiết lập.");
-
-    // Gửi yêu cầu tới backend
-    socket.send("Yêu cầu dữ liệu từ server");
-};
-
-// Xử lý sự kiện khi nhận được dữ liệu từ server
-socket.onmessage = function(event) {
-    console.log("Nhận dữ liệu từ server: " + event.data);
-};
-
-
 
 //Define------
 ///////////////////
@@ -52,14 +37,12 @@ const bgContent = document.getElementById("opened-bg-content");
 
 //Servlet
 let verificationLevel = document.getElementById("vf-lv").value;
-let loginStatus = document.getElementById("lg-vl").value;
+let loginStatus = sessionStorage.getItem('loginStatus');
+if(loginStatus == null) loginStatus = "false";
 
 
 
 //function
-function changeBackgroundPicture(srcPath){
-    document.body.style.backgroundImage = "url('" + srcPath +"')";
-}
 
 function hideAllAuthMenu(){
     for(let authMenu of authMenuList){
@@ -74,9 +57,82 @@ function displayLoginMenu(){
     registerMenu.style.display = "none";
 }
 
+function safeReload(){
+    window.location.reload();
+}
+
 
 //Listener
+    if(localStorage.getItem('authToken') && (loginStatus == "false")){
+        const data = {
+            authToken: localStorage.getItem("authToken")
+        }
+        fetch('http://localhost:8080/ZenGaku_Full_war/relogin',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                throw new Error('Unauthorized');
+            })
+            .then((data) => {
+                if(data.isApprove){
+                    sessionStorage.setItem('loginStatus',true);
+                    safeReload();
+                } else {
+                    sessionStorage.setItem('loginStatus',false);
+                    console.log("authToken is expired")
+                }
 
+            })
+            .catch(error =>{
+                sessionStorage.setItem('loginStatus',false);
+                console.error('Error: ', error);
+            })
+    }
+    else {
+        console.log('No token found, login will be continue...');
+    }
+
+loginMenu.addEventListener('submit', function (event){
+   event.preventDefault();
+   let tmpUsername = document.getElementById("login-username-input");
+   let tmpPassword = document.getElementById("login-password-input");
+   const formData = new FormData(event.target);
+
+   const data = {
+       userName: formData.get('userName'),
+       userPassword: formData.get('userPassword')
+   };
+
+   fetch('http://localhost:8080/ZenGaku_Full_war/login',{
+       method: 'POST',
+       headers: {
+           // 'Content-Type': 'application/x-www-form-urlencoded'
+           'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(data)
+    })
+       .then(response => response.json())
+       .then(data =>{
+           if(data.token){
+               localStorage.setItem('authToken', data.token);
+               sessionStorage.setItem('loginStatus',true);
+               safeReload();
+           } else {
+               sessionStorage.setItem('loginStatus',false);
+               safeReload();
+           }
+       })
+       .catch(error => {
+           console.log('Error occurs when login: ', error);
+       })
+});
 
 
 function getForgetAccept(){
@@ -93,6 +149,10 @@ window.addEventListener("forgetPasswordAccepted",function(){
 haveAccountButton.addEventListener("mousedown",function handleMouseDown(){
     haveAccountButton.addEventListener("mouseup",displayLoginMenu);
 });
+
+document.getElementById('background-config-feature').addEventListener('click',function(){
+    document.getElementById('background-config').style.display = "block";
+})
 
 //Display forget nmenu and close all auth menu
 forgetAccountButton.addEventListener("mousedown",function(){

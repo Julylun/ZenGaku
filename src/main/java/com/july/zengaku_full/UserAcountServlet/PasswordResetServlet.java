@@ -3,6 +3,7 @@ package com.july.zengaku_full.UserAcountServlet;
 import com.zengaku.mvc.controller.EmailFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.PasswordResetToken;
+import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
 import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
@@ -54,7 +55,8 @@ public class PasswordResetServlet extends HttpServlet {
 
             session.setAttribute("registerVerification", RegisterCode.FORGET_STATUS_SENT_EMAIL);
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
-            System.out.println("Sent to email");
+            System.out.println(PrintColor.GREEN + "[PasswordResetServlet]> "
+                    + req.getRemoteAddr() + ":\tSent to email to" + userEmail);
             out.println("sent to email");
 
         }

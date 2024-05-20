@@ -15,11 +15,17 @@ public class HibernateUtils {
     }
 
     private static SessionFactory buildSessionFactory() {
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder() //
-                .configure() // Load hibernate.cfg.xml from resource folder by default
-                .build();
-        Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-        return metadata.getSessionFactoryBuilder().build();
+        try{
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder() //
+                    .configure() // Load hibernate.cfg.xml from resource folder by default
+                    .build();
+            Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
+            return metadata.getSessionFactoryBuilder().build();
+        } catch (Exception e){
+            System.err.println("Initial SessionFactory creation failed. - " + e);
+            throw new ExceptionInInitializerError(e);
+        }
+
     }
 
     public static SessionFactory getSessionFactory() {
