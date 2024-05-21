@@ -1,10 +1,31 @@
+//Constant
+const TIMER_POMODORO_MODE = 0;
+const TIMER_SHORTBREAK_MODE = 1;
+const TIMER_LONGBREAK_MODE = 2;
+
+//Background variable
 let contentContainer = document.getElementsByClassName('content').item(0);
 let contentManager = new Array();
 let background = "";
 let isVideo = false;
-let audioArr = new Array();
 
-let url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+//Audio variable
+let audioArr = new Array();
+const url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+
+//Timer variable
+let timerMode = TIMER_SHORTBREAK_MODE;
+class Time {
+  constructor(hour, minute, second){
+    this.hour = hour;
+    this.minute = minute;
+    this.second = second;
+  }
+};
+
+let pomodoroTime = new Time(0,0,10);
+let shortBreakTime = new Time(0,15,0);
+let longBreakTime = new Time(0,40,0);
 
 class AudioModel {
   constructor(audioPath,name){
@@ -364,7 +385,149 @@ document.getElementById('sound-config-cancel-button').addEventListener('click',f
 //END SOUND CONFIGURATION FEATURE----------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 
+//TIMER CONFIGURATION FEATURE----------------------------------------------------------
+function getCircularPosition(angleDegrees, radius, centerX, centerY) {
+  let angleRadians = angleDegrees * (Math.PI / 180);
 
+  let x = centerX + radius * Math.cos(angleRadians);
+  let y = centerY - radius * Math.sin(angleRadians);
+
+  return { x: x, y: y };
+}
+
+function getDistance(x1, y1, x2, y2){
+  return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+}
+function totalSecond(hour, min, sec){
+  min+= hour*60;
+  sec+=min*60;
+  return sec;
+}
+
+let countIdInterval;
+function counter(hour, min, sec){
+  let counterHour = hour;
+  let counterMin = min;
+  let counterSec = sec;
+  let counterText = document.getElementById('timer-count-text');
+  let timerContainer = document.getElementById('timer-container');
+  let timerCircle = document.getElementById('timer-circle');
+  console.log(timerCircle.offsetTop + " " + timerCircle.offsetLeft); 
+
+  counterText.innerHTML = "";
+  function setText(h,m,s){
+    counterText.innerHTML = "";
+    if(h != 0)
+    counterText.innerHTML = h + ":";
+    counterText.innerHTML += m + ":" + s;
+
+    
+    
+    // let circlePos =
+    // getCircularPosition((totalSecond(hour,min,sec) - totalSecond(h,m,s))/totalSecond(hour,min,sec)*360
+    // ,getDistance(
+    //   timerCircle.offsetLeft + timerCircle.offsetWidth/2,
+    //   timerCircle.offsetTop + timerCircle.offsetHeight/2,
+    //   timerContainer.offsetLeft + timerContainer.offsetWidth/2,
+    //   timerContainer.offsetTop + timerContainer.offsetHeight/2
+    // ),timerContainer.offsetLeft + timerContainer.offsetWidth/2, timerContainer.offsetTop + timerContainer.offsetHeight/2);
+
+    // timerCircle.style.left = circlePos.x + "px";
+    // timerCircle.style.top = circlePos.y + "px";
+    // console.log(circlePos);
+  }
+
+  setText(hour,min,sec);
+  countIdInterval = setInterval(function(){
+    counterSec -= 1;
+    if(counterSec == -1){
+      counterMin -= 1;
+      counterSec = 60;
+    }
+    if(counterMin == -1){
+      counterHour -= 1;
+      counterMin = 60;
+    }
+    if(counterHour == 0 && counterMin == 0 && counterSec == -1){
+      clearInterval(countIdInterval);
+    }
+    setText(counterHour,counterMin,counterSec);
+  }, 1000)
+}
+
+document.getElementById('timer-start-button').addEventListener('click',function(){
+  let choiceContainer = document.getElementById('timer-choice-container');
+  var animationTime = 0;
+  var intervalId = setInterval(function(){
+    animationTime+= 20;
+    choiceContainer.style.fontSize = "calc(4vw - " + (animationTime/20*0.16) +"vw)";
+    if(animationTime > 500){
+      clearInterval(intervalId);
+      animationTime = 0;
+      document.getElementById('timer-logo').style.height = "8.2vw";
+      document.getElementById('timer-logo').style.width = "8.2vw";
+      document.getElementById('timer-logo').style.left = "calc((85vw - 8.2vw) / 2)";
+      document.getElementById('timer-logo').style.top = "calc(85vw* 13 / 100)"
+      id = setInterval(function(){
+        animationTime+=20;
+        if(animationTime > 300){
+          clearInterval(id);
+          document.getElementById('timer-count-container').style.display = "flex";
+          let time;
+          switch(timerMode){
+            case TIMER_POMODORO_MODE:{
+              time = pomodoroTime;
+              break;
+            }
+            case TIMER_SHORTBREAK_MODE: {
+              time = shortBreakTime;
+              break;
+            }
+            case TIMER_LONGBREAK_MODE: {
+              time = longBreakTime;
+              break;
+            }
+          }
+          counter(time.hour,time.minute,time.second);
+        }
+        choiceContainer.style.height = "calc(85vw - "+ (animationTime/20*2.3) +"vw)"
+      
+      }, 20)
+    } 
+  },20)
+});
+
+
+for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+  timerChoiceItem.addEventListener('click',function(){  
+    console.log(timerChoiceItem.getAttribute('value'));
+    switch (timerChoiceItem.getAttribute('value') ){
+      case "0":{
+        timerMode = TIMER_POMODORO_MODE;
+        break;
+      }
+      case "1":{
+        timerMode = TIMER_SHORTBREAK_MODE;
+        break;
+      }
+      case "2":{
+        timerMode = TIMER_LONGBREAK_MODE;
+        
+        break;
+      }
+    }
+    for(let _timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+      _timerChoiceItem.classList.remove('timer-choice-selected');
+    }
+    timerChoiceItem.classList.add('timer-choice-selected');
+  }
+  )
+}
+
+
+
+//END TIMER CONFIGURATION FEATURE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 
 
 
