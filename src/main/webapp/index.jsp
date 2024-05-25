@@ -505,7 +505,9 @@
 
     <div class = "auto-moving" id = "timer-container">
         <div id = "timer-background"></div>
-        
+        <div id = "timer-move-area">
+            <img id = "timer-move-area-img" src="assets/resources/img/moving-icon-white.svg">
+        </div>
         <div id = "timer-ring"><div id = "timer-circle"></div></div>
         <img class = "timer-logo" id = "timer-logo" src="assets/resources/img/tree-icon.png">
         <div id = "timer-choice-container">

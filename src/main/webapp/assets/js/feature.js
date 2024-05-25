@@ -736,7 +736,7 @@ timerButtonAddEvent();
 //ADD MOVEMENT--------------------------------------------------------------------------------------
 addMovement(document.getElementsByClassName('background-config-title').item(0),document.getElementById('background-config'));
 addMovement(document.getElementsByClassName('background-config-title').item(1), document.getElementById('sound-config'));
-addMovement(document.getElementById('timer-container'),document.getElementById('timer-container'))
+addMovement(document.getElementById('timer-move-area'),document.getElementById('timer-container'))
 
 //ADD LISTENER-------------------------------------------------------------------------------------- 
 window.addEventListener('resize',function(){

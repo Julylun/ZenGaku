@@ -618,8 +618,56 @@
 ──────────────────────────────────────────────────────────
 */
 
-#timer-container {
+#timer-move-area{
+    position: absolute;
+    width: calc(85vw/4);
+    height: calc(85vw/4);
+    max-height: 85px;
+    max-width: 85px;
+    z-index: 3;
+    display: flex;
+    justify-content: left;
+    padding-left: min(3vw,12px);
+    padding-top: min(3vw,12px);
+}
 
+#timer-move-area img {
+    width: 8vw;
+    height: 8vw;
+    max-width: 32px;
+    max-height: 32px;
+    transition: all .5s;
+    animation: hideMovingAreaAnimation .5s forwards;
+}
+
+#timer-move-area:hover #timer-move-area-img {
+    display: block;
+    animation: movingAreaAnimation .5s forwards;
+}
+
+@keyframes movingAreaAnimation {
+    0% {
+        width: 0vw;
+        height: 0vw;
+    }
+    100%{
+        width: 8vw;
+        height: 8vw;
+    }
+}
+
+@keyframes hideMovingAreaAnimation {
+    0% {
+        width: 8vw;
+        height: 8vw;
+    }
+    100%{
+        width: 0vw;
+        height: 0vw;
+    }
+}
+
+#timer-container {
     position: absolute;
     width: 85vw;
     height: 85vw;
