@@ -448,6 +448,7 @@ body {
 .item-image {
     width: calc(100vw / 12);
     height: calc(100vw / 12);
+    transition: all .5s;
 }
 
 .item-text {

@@ -260,7 +260,7 @@
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
-    <div class = "content-item background-config-container" id = "background-config">
+    <div class = "content-item background-config-container auto-moving" id = "background-config">
         <div class = "content-item-title background-config-title">
             <div>
                 <span>Background Configuration</span>
@@ -340,8 +340,6 @@
         </div>
     </div>
 
-    
-
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
@@ -350,7 +348,7 @@
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
-    <div class = "content-item sound-config-container" id = "sound-config">
+    <div class = "content-item sound-config-container auto-moving" id = "sound-config">
         <div class = "content-item-title background-config-title">
             <div>
                 <span>Sound Configuration</span>
@@ -502,6 +500,24 @@
                     <span>Cancel</span> 
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class = "auto-moving" id = "timer-container">
+        <div id = "timer-background"></div>
+        
+        <div id = "timer-ring"><div id = "timer-circle"></div></div>
+        <img id = "timer-logo" src="assets/resources/img/tree-icon.png">
+        <div id = "timer-choice-container">
+            <p class = "timer-choice-item" id = "timer-choice-pomodoro" value = "0">Pomodoro</p>
+            <p class = "timer-choice-item timer-choice-selected" id = "timer-choice-shortbreak" value = "1">Short break</p>
+            <p class = "timer-choice-item" id = "timer-choice-longbreak" value = "2">Long break</p>
+        </div>
+        <div id = "timer-count-container">
+            <p id = "timer-count-text">60:60:60</p>
+        </div>
+        <div id = "timer-start-button">
+            <p>Start</p>
         </div>
     </div>
 

@@ -1,10 +1,31 @@
+//Constant
+const TIMER_POMODORO_MODE = 0;
+const TIMER_SHORTBREAK_MODE = 1;
+const TIMER_LONGBREAK_MODE = 2;
+
+//Background variable
 let contentContainer = document.getElementsByClassName('content').item(0);
 let contentManager = new Array();
 let background = "";
 let isVideo = false;
-let audioArr = new Array();
 
-let url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+//Audio variable
+let audioArr = new Array();
+const url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+
+//Timer variable
+let timerMode = TIMER_SHORTBREAK_MODE;
+class Time {
+  constructor(hour, minute, second){
+    this.hour = hour;
+    this.minute = minute;
+    this.second = second;
+  }
+};
+
+let pomodoroTime = new Time(0,0,10);
+let shortBreakTime = new Time(0,15,0);
+let longBreakTime = new Time(0,40,0);
 
 class AudioModel {
   constructor(audioPath,name){
@@ -364,31 +385,157 @@ document.getElementById('sound-config-cancel-button').addEventListener('click',f
 //END SOUND CONFIGURATION FEATURE----------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 
+//TIMER CONFIGURATION FEATURE----------------------------------------------------------
+function getCircularPosition(angleDegrees, radius, centerX, centerY) {
+  let angleRadians = angleDegrees * (Math.PI / 180);
 
+  let x = centerX + radius * Math.cos(angleRadians);
+  let y = centerY - radius * Math.sin(angleRadians);
+
+  return { x: x, y: y };
+}
+
+function getDistance(x1, y1, x2, y2){
+  return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+}
+function totalSecond(hour, min, sec){
+  min+= hour*60;
+  sec+=min*60;
+  return sec;
+}
+
+let countIdInterval;
+function counter(hour, min, sec){
+  let timerCircle = document.getElementById('timer-ring');
+  timerCircle.style.animation = "circle "+ ((hour*60)+min)*60+sec  +"s linear";
+  let counterHour = hour;
+  let counterMin = min;
+  let counterSec = sec;
+  let counterText = document.getElementById('timer-count-text');
+  let timerContainer = document.getElementById('timer-container');
+  
+  console.log(timerCircle.offsetTop + " " + timerCircle.offsetLeft); 
+
+  counterText.innerHTML = "";
+  function setText(h,m,s){
+    counterText.innerHTML = "";
+    if(h != 0)
+    counterText.innerHTML = h + ":";
+    counterText.innerHTML += m + ":" + s;
+  }
+
+  setText(hour,min,sec);
+  countIdInterval = setInterval(function(){
+    counterSec -= 1;
+    if(counterSec == -1){
+      counterMin -= 1;
+      counterSec = 60;
+    }
+    if(counterMin == -1){
+      counterHour -= 1;
+      counterMin = 60;
+    }
+    if(counterHour == 0 && counterMin == 0 && counterSec == -1){
+      clearInterval(countIdInterval);
+    }
+    setText(counterHour,counterMin,counterSec);
+  }, 1000)
+}
+
+document.getElementById('timer-start-button').addEventListener('click',function(){
+  let choiceContainer = document.getElementById('timer-choice-container');
+  var animationTime = 0;
+  document.getElementById('timer-logo').id = 'timer-logo-actived';
+  var intervalId = setInterval(function(){
+    animationTime+= 20;
+    choiceContainer.style.fontSize = "min(calc(4vw - " + (animationTime/20*0.16) +"vw),20px)";
+    if(animationTime > 500){
+      clearInterval(intervalId);
+      animationTime = 0;
+      id = setInterval(function(){
+        animationTime+=20;
+        if(animationTime > 300){
+          clearInterval(id);
+          document.getElementById('timer-count-container').style.display = "flex";
+          let time;
+          switch(timerMode){
+            case TIMER_POMODORO_MODE:{
+              time = pomodoroTime;
+              break;
+            }
+            case TIMER_SHORTBREAK_MODE: {
+              time = shortBreakTime;
+              break;
+            }
+            case TIMER_LONGBREAK_MODE: {
+              time = longBreakTime;
+              break;
+            }
+          }
+          counter(time.hour,time.minute,time.second);
+        }
+        choiceContainer.style.height = "min(calc(85vw - "+ (animationTime/20*2.3) +"vw),192.797)";
+        choiceContainer.style.maxHeight = "calc(340px - "+ animationTime*0.460009375+"px)"; //total: 192.797px
+      }, 20)
+    } 
+  },20)
+});
+
+
+for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+  timerChoiceItem.addEventListener('click',function(){  
+    console.log(timerChoiceItem.getAttribute('value'));
+    switch (timerChoiceItem.getAttribute('value') ){
+      case "0":{
+        timerMode = TIMER_POMODORO_MODE;
+        break;
+      }
+      case "1":{
+        timerMode = TIMER_SHORTBREAK_MODE;
+        break;
+      }
+      case "2":{
+        timerMode = TIMER_LONGBREAK_MODE;
+        
+        break;
+      }
+    }
+    for(let _timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+      _timerChoiceItem.classList.remove('timer-choice-selected');
+    }
+    timerChoiceItem.classList.add('timer-choice-selected');
+  }
+  )
+}
+
+
+
+//END TIMER CONFIGURATION FEATURE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 
 
 
 //ADD MOVEMENT--------------------------------------------------------------------------------------
-
 addMovement(document.getElementsByClassName('background-config-title').item(0),document.getElementById('background-config'));
 addMovement(document.getElementsByClassName('background-config-title').item(1), document.getElementById('sound-config'));
+addMovement(document.getElementById('timer-container'),document.getElementById('timer-container'))
 
 //ADD LISTENER-------------------------------------------------------------------------------------- 
 window.addEventListener('resize',function(){
-  for(let contentItem of document.getElementsByClassName('content-item')){
+  for(let autoMovingItem of document.getElementsByClassName('auto-moving')){
     
-    if((contentItem.offsetLeft + contentItem.offsetWidth) > window.innerWidth){
-      contentItem.style.left = (window.innerWidth - contentItem.offsetWidth)+ "px";
+    if((autoMovingItem.offsetLeft + autoMovingItem.offsetWidth) > window.innerWidth){
+      autoMovingItem.style.left = (window.innerWidth - autoMovingItem.offsetWidth)+ "px";
     }
-    else if(contentItem.offsetLeft < 0){
-      contentItem.style.left = (contentItem.offsetLeft + contentItem.offsetWidth) + "px";
+    else if(autoMovingItem.offsetLeft < 0){
+      autoMovingItem.style.left = (autoMovingItem.offsetLeft + autoMovingItem.offsetWidth) + "px";
     }
 
-    if(contentItem.offsetTop + contentItem.offsetHeight > window.innerHeight){
-      contentItem.style.top = (window.innerHeight - contentItem.offsetHeight) + "px";
+    if(autoMovingItem.offsetTop + autoMovingItem.offsetHeight > window.innerHeight){
+      autoMovingItem.style.top = (window.innerHeight - autoMovingItem.offsetHeight) + "px";
     }
-    else if (contentItem.offsetTop < 0){
-      contentItem.style.top = (contentItem.offsetTop + contentItem.offsetHeight) + "px";
+    else if (autoMovingItem.offsetTop < 0){
+      autoMovingItem.style.top = (autoMovingItem.offsetTop + autoMovingItem.offsetHeight) + "px";
     }
   }
 })
