@@ -507,8 +507,9 @@
         <div id = "timer-background"></div>
         
         <div id = "timer-ring"><div id = "timer-circle"></div></div>
-        <img id = "timer-logo" src="assets/resources/img/tree-icon.png">
+        <img class = "timer-logo" id = "timer-logo" src="assets/resources/img/tree-icon.png">
         <div id = "timer-choice-container">
+            <p id = "break-label" value = "-1" style="display: none;">BREAK</p>
             <p class = "timer-choice-item" id = "timer-choice-pomodoro" value = "0">Pomodoro</p>
             <p class = "timer-choice-item timer-choice-selected" id = "timer-choice-shortbreak" value = "1">Short break</p>
             <p class = "timer-choice-item" id = "timer-choice-longbreak" value = "2">Long break</p>
@@ -516,8 +517,23 @@
         <div id = "timer-count-container">
             <p id = "timer-count-text">60:60:60</p>
         </div>
-        <div id = "timer-start-button">
+        <div id = "timer-end-container" style="display: none;">
+            <p id = "timer-end-label" style="display: none;">END</p>
+        </div>
+        <div class = "timer-button" id = "timer-start-button">
             <p>Start</p>
+        </div>
+        <div class = "timer-button" id = "timer-pause-button" style="display: none;">
+            <p>Pause</p>
+        </div>
+        <div class = "timer-button" id = "timer-skip-button" style="display: none;">
+            <p>Skip</p>
+        </div>
+        <div class = "timer-button" id = "timer-stop-button" style="display: none;">
+            <p>Stop</p>
+        </div>
+        <div class = "timer-button" id = "timer-continue-button" style="display: none;">
+            <p>Continue</p>
         </div>
     </div>
 

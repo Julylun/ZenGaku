@@ -654,7 +654,7 @@
     max-height: 36px;
 
     border-radius: 100%;
-    left: min(calc((85vw* 90 / 100 - 9vw)/2),152px);
+    left: min(calc((85vw* 90 / 100 - 9vw)/2),135px);
     /* top: max(-1.5vw,-6px); */
     top: max(-6vw,-24px);
     background-color: rgb(255, 255, 255);
@@ -699,6 +699,22 @@
     transition: .5s ease-in-out;
 }
 
+#timer-logo-ended {
+    position: absolute;
+    height: 40vw;
+    width: 40vw;
+    max-width: 160px;
+    max-height: 160px;
+    left: min(calc((85vw - 40vw) / 2),90px);
+    top: min(calc(85vw* 16 / 100),54.4px);
+    z-index: 2;
+    transition: 1s ease-in-out;
+}
+
+#timer-count-text{
+    transition: .2s ease-in-out;
+}
+
 #timer-choice-container {
     position: absolute;
     display: flex;
@@ -715,6 +731,24 @@
     height: 85vw;
     max-width: 340px;
     max-height: 340px;
+}
+#timer-end-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    z-index: 2;
+    text-align: center;
+    font-family: Inter;
+    font-weight: bold;
+    font-size: min(15vw,60px);
+    width: 85vw;  
+    height: 30vw;
+    top: min(50vw,200px);
+    max-width: 340px;
+    max-height: 120px;
 }
 
 #timer-choice-container p{
@@ -737,7 +771,12 @@
     /* margin-bottom: 2vw; */
 }
 
-#timer-start-button {
+#break-label{
+    color: white;
+    font-size: min(5vw,20px);
+}
+
+.timer-button {
     position: absolute;
     z-index: 2;
     width: 18vw;
@@ -760,7 +799,18 @@
     transition: all 1s;
 }
 
-#timer-start-button:hover {
+#timer-continue-button {
+    /* left: min(calc((85vw - 18vw) / 2 - 9vw - 0.5px),133.744px); */
+    left: min(calc((85vw - 18vw) / 2 - 11vw - 0.5px),89.5px);
+}
+#timer-stop-button {
+    /* left: min(calc((85vw - 18vw) / 2 + 9vw - 0.5px),133.744px); */
+    /* left: calc((85vw - 18vw) / 2 + 11vw - 0.5px); */
+    left: min(calc((85vw - 18vw) / 2 + 11vw - 0.5px),177.5px);
+    /* left: min(calc((85vw - 18vw) / 2 + 8vw - 0.5px),169.5px); */
+}
+
+.timer-button:hover {
     cursor: pointer;
     animation: glowAnimation ease-in-out 10s .0s infinite;
     width: 20vw;
@@ -831,7 +881,7 @@
     }
 }
 
-#timer-start-button p {
+.timer-button p {
     margin: 0;
 }
 
