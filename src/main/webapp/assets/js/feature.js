@@ -406,12 +406,14 @@ function totalSecond(hour, min, sec){
 
 let countIdInterval;
 function counter(hour, min, sec){
+  let timerCircle = document.getElementById('timer-ring');
+  timerCircle.style.animation = "circle "+ ((hour*60)+min)*60+sec  +"s linear";
   let counterHour = hour;
   let counterMin = min;
   let counterSec = sec;
   let counterText = document.getElementById('timer-count-text');
   let timerContainer = document.getElementById('timer-container');
-  let timerCircle = document.getElementById('timer-circle');
+  
   console.log(timerCircle.offsetTop + " " + timerCircle.offsetLeft); 
 
   counterText.innerHTML = "";
@@ -420,21 +422,6 @@ function counter(hour, min, sec){
     if(h != 0)
     counterText.innerHTML = h + ":";
     counterText.innerHTML += m + ":" + s;
-
-    
-    
-    // let circlePos =
-    // getCircularPosition((totalSecond(hour,min,sec) - totalSecond(h,m,s))/totalSecond(hour,min,sec)*360
-    // ,getDistance(
-    //   timerCircle.offsetLeft + timerCircle.offsetWidth/2,
-    //   timerCircle.offsetTop + timerCircle.offsetHeight/2,
-    //   timerContainer.offsetLeft + timerContainer.offsetWidth/2,
-    //   timerContainer.offsetTop + timerContainer.offsetHeight/2
-    // ),timerContainer.offsetLeft + timerContainer.offsetWidth/2, timerContainer.offsetTop + timerContainer.offsetHeight/2);
-
-    // timerCircle.style.left = circlePos.x + "px";
-    // timerCircle.style.top = circlePos.y + "px";
-    // console.log(circlePos);
   }
 
   setText(hour,min,sec);
@@ -458,16 +445,13 @@ function counter(hour, min, sec){
 document.getElementById('timer-start-button').addEventListener('click',function(){
   let choiceContainer = document.getElementById('timer-choice-container');
   var animationTime = 0;
+  document.getElementById('timer-logo').id = 'timer-logo-actived';
   var intervalId = setInterval(function(){
     animationTime+= 20;
-    choiceContainer.style.fontSize = "calc(4vw - " + (animationTime/20*0.16) +"vw)";
+    choiceContainer.style.fontSize = "min(calc(4vw - " + (animationTime/20*0.16) +"vw),20px)";
     if(animationTime > 500){
       clearInterval(intervalId);
       animationTime = 0;
-      document.getElementById('timer-logo').style.height = "8.2vw";
-      document.getElementById('timer-logo').style.width = "8.2vw";
-      document.getElementById('timer-logo').style.left = "calc((85vw - 8.2vw) / 2)";
-      document.getElementById('timer-logo').style.top = "calc(85vw* 13 / 100)"
       id = setInterval(function(){
         animationTime+=20;
         if(animationTime > 300){
@@ -490,8 +474,8 @@ document.getElementById('timer-start-button').addEventListener('click',function(
           }
           counter(time.hour,time.minute,time.second);
         }
-        choiceContainer.style.height = "calc(85vw - "+ (animationTime/20*2.3) +"vw)"
-      
+        choiceContainer.style.height = "min(calc(85vw - "+ (animationTime/20*2.3) +"vw),192.797)";
+        choiceContainer.style.maxHeight = "calc(340px - "+ animationTime*0.460009375+"px)"; //total: 192.797px
       }, 20)
     } 
   },20)
@@ -532,26 +516,26 @@ for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item'))
 
 
 //ADD MOVEMENT--------------------------------------------------------------------------------------
-
 addMovement(document.getElementsByClassName('background-config-title').item(0),document.getElementById('background-config'));
 addMovement(document.getElementsByClassName('background-config-title').item(1), document.getElementById('sound-config'));
+addMovement(document.getElementById('timer-container'),document.getElementById('timer-container'))
 
 //ADD LISTENER-------------------------------------------------------------------------------------- 
 window.addEventListener('resize',function(){
-  for(let contentItem of document.getElementsByClassName('content-item')){
+  for(let autoMovingItem of document.getElementsByClassName('auto-moving')){
     
-    if((contentItem.offsetLeft + contentItem.offsetWidth) > window.innerWidth){
-      contentItem.style.left = (window.innerWidth - contentItem.offsetWidth)+ "px";
+    if((autoMovingItem.offsetLeft + autoMovingItem.offsetWidth) > window.innerWidth){
+      autoMovingItem.style.left = (window.innerWidth - autoMovingItem.offsetWidth)+ "px";
     }
-    else if(contentItem.offsetLeft < 0){
-      contentItem.style.left = (contentItem.offsetLeft + contentItem.offsetWidth) + "px";
+    else if(autoMovingItem.offsetLeft < 0){
+      autoMovingItem.style.left = (autoMovingItem.offsetLeft + autoMovingItem.offsetWidth) + "px";
     }
 
-    if(contentItem.offsetTop + contentItem.offsetHeight > window.innerHeight){
-      contentItem.style.top = (window.innerHeight - contentItem.offsetHeight) + "px";
+    if(autoMovingItem.offsetTop + autoMovingItem.offsetHeight > window.innerHeight){
+      autoMovingItem.style.top = (window.innerHeight - autoMovingItem.offsetHeight) + "px";
     }
-    else if (contentItem.offsetTop < 0){
-      contentItem.style.top = (contentItem.offsetTop + contentItem.offsetHeight) + "px";
+    else if (autoMovingItem.offsetTop < 0){
+      autoMovingItem.style.top = (autoMovingItem.offsetTop + autoMovingItem.offsetHeight) + "px";
     }
   }
 })

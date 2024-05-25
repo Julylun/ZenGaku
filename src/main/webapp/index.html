@@ -173,9 +173,9 @@
             <img class = "item-image" id = "sound-board-feature" title = "Sound board" src="assets/resources/img/sound-board-icon-black.svg">
             <p class = "item-text">Sound board</p>
         </div>
-        <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+        <div class = "menu-item" id="quote-config-feature">
+            <img class = "item-image" title="Quote" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">Quote</p>
         </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
@@ -260,7 +260,7 @@
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
-    <div class = "content-item background-config-container" id = "background-config">
+    <div class = "content-item background-config-container auto-moving" id = "background-config">
         <div class = "content-item-title background-config-title">
             <div>
                 <span>Background Configuration</span>
@@ -348,7 +348,7 @@
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
-    <div class = "content-item sound-config-container" id = "sound-config">
+    <div class = "content-item sound-config-container auto-moving" id = "sound-config">
         <div class = "content-item-title background-config-title">
             <div>
                 <span>Sound Configuration</span>
@@ -503,10 +503,10 @@
         </div>
     </div>
 
-    <div id = "timer-container">
+    <div class = "auto-moving" id = "timer-container">
         <div id = "timer-background"></div>
-        <div id = "timer-circle"></div>
-        <div id = "timer-ring"></div>
+        
+        <div id = "timer-ring"><div id = "timer-circle"></div></div>
         <img id = "timer-logo" src="assets/resources/img/tree-icon.png">
         <div id = "timer-choice-container">
             <p class = "timer-choice-item" id = "timer-choice-pomodoro" value = "0">Pomodoro</p>
@@ -563,14 +563,16 @@
     <!-- ------------------------ -->
     <!-- ------------------------ -->
     <!-- ------------------------ -->
-
-<div class="quote-box">
-    <h2>Quote of the day</h2>
-    <blockquote id="quote">Loading</blockquote>
-    <span id="author">Loading...</span>
-    <div>
-        <button>New Quote</button>
-        <button>Share</button>
+<div class="all-quote-box">
+    <div class="quote-box">
+        <button class="close-btn">&times;</button>
+        <h2>Quote of the Day</h2>
+        <blockquote id="quote">Loading</blockquote>
+        <span id="author">Loading...</span>
+        <div class="buttons">
+            <button onclick="getQuote(api_url)" id="new-quote">New Quote</button>
+            <button id="share-quote">Share</button>
+        </div>
     </div>
 </div>
 
