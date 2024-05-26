@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="assets/css/indexFeature.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="#" />
+    <link rel="icon"
+          type="image/svg"
+          href="assets/resources/img/zengaku_logo.svg">
 </head>
 
 <body>

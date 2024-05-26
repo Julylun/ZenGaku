@@ -12,6 +12,10 @@ let isVideo = false;
 //Audio variable
 let audioArr = new Array();
 const url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+let endAudioClock = new Audio("assets/resources/audio/endTimerSound.mp3");
+let breakSound = new Audio("assets/resources/audio/breakSound.mp3")
+endAudioClock.loop = false;
+
 
 //Timer variable
 let timerMode = TIMER_SHORTBREAK_MODE;
@@ -25,7 +29,7 @@ class Time {
   }
 };
 
-let pomodoroTime = new Time(0,0,10,1,0);
+let pomodoroTime = new Time(0,0,10,1,1);
 let shortBreakTime = new Time(0,15,0,0,0);
 let longBreakTime = new Time(0,40,0,0,0);
 
@@ -507,6 +511,7 @@ function stopCounter(){
   let animationTimeout = 0;
   document.getElementById('timer-stop-button').style.display = 'none';
   document.getElementById('timer-continue-button').style.display = 'none';
+  document.getElementById('timer-pause-button').style.display = 'none';
   let id = setInterval(function(){
     counterText.style.fontSize = "min("+ (14-animationTimeout*10)/14 +"vw,56px)"
     nameLabel.style.fontSize = "min("+ (5-animationTimeout*10)/5 + "vw,20px)";
@@ -525,6 +530,7 @@ function stopCounter(){
         document.getElementById('timer-end-container').style.display = "flex";
         let tmpRule = false;
         animationTimeout = 0;
+        endAudioClock.play();
         id = setInterval(function(){
           if(tmpRule){
             document.getElementById('timer-end-label').style.display = "flex";
@@ -611,7 +617,12 @@ function counter(hour, min, sec, breakTime, repeatNumber){
         console.log("Timer: time out!")
         clearInterval(countIdInterval);
         if(repeatNumber > 0){
+          breakSound.play();
           breakCounter(hour, min, sec, breakTime, repeatNumber);
+          return;
+        } else {
+          // console .log("AAA")
+          clickOnStop();
           return;
         }
       }
