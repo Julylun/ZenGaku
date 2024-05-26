@@ -103,42 +103,42 @@ function addMovementForDesktopDevices(pressedElement,movementElement){
   });
 }
 
-function addMovementForTouchedDevices(pressedElement,movementElement){
-  function mouseMove(event){
-    const { touches, changedTouches } = event.originalEvent ?? event;
-    const touch = touches[0] ?? changedTouches[0];
-    newPosX = cursorX - touch.pageX;
-    newPosY = cursorY - touch.pageY;  
+  function addMovementForTouchedDevices(pressedElement,movementElement){
+    function mouseMove(event){
+      const { touches, changedTouches } = event.originalEvent ?? event;
+      const touch = touches[0] ?? changedTouches[0];
+      newPosX = cursorX - touch.pageX;
+      newPosY = cursorY - touch.pageY;  
 
-    cursorX = touch.clientX;
-    cursorY = touch.clientY;
+      cursorX = touch.clientX;
+      cursorY = touch.clientY;
 
-    movementElement.style.top = (movementElement.offsetTop - newPosY) + "px";
-    movementElement.style.left = (movementElement.offsetLeft - newPosX) + "px";
-    if(movementElement.offsetTop < 0){
-      movementElement.style.top = "0px";
+      movementElement.style.top = (movementElement.offsetTop - newPosY) + "px";
+      movementElement.style.left = (movementElement.offsetLeft - newPosX) + "px";
+      if(movementElement.offsetTop < 0){
+        movementElement.style.top = "0px";
+      }
     }
-  }
-  pressedElement.addEventListener("touchstart", function(e){
-    e.preventDefault();
-    const { touches, changedTouches } = event.originalEvent ?? event;
-    const touch = touches[0] ?? changedTouches[0];
-    
-    cursorX = touch.clientX;
-    cursorY = touch.clientY;
-    console.log(cursorX + ":" + cursorY);
-    
-    document.addEventListener("touchmove",mouseMove);
-    document.addEventListener("touchend", function(){
-        document.removeEventListener("touchmove", mouseMove)
+    pressedElement.addEventListener("touchstart", function(e){
+      e.preventDefault();
+      const { touches, changedTouches } = event.originalEvent ?? event;
+      const touch = touches[0] ?? changedTouches[0];
+      
+      cursorX = touch.clientX;
+      cursorY = touch.clientY;
+      console.log(cursorX + ":" + cursorY);
+      
+      document.addEventListener("touchmove",mouseMove);
+      document.addEventListener("touchend", function(){
+          document.removeEventListener("touchmove", mouseMove)
+      });
     });
-  });
-}
+  }
 
-function addMovement(pressedElement,movementElement){
-    addMovementForTouchedDevices(pressedElement,movementElement)
-    addMovementForDesktopDevices(pressedElement,movementElement);
-}
+  function addMovement(pressedElement,movementElement){
+      addMovementForTouchedDevices(pressedElement,movementElement)
+      addMovementForDesktopDevices(pressedElement,movementElement);
+  }
 
 //END FUNCTION------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
@@ -246,6 +246,18 @@ document.getElementsByClassName('background-config-add-link-button').item(0).add
   e.preventDefault();
   addElementToBackgroundConfig();
 })
+
+
+var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('background-video', {
+        events: {
+          'onReady': function(){
+            player.unMuted();
+          }
+        }
+    });
+  }
 //END BACKGROUND CONFIGURATION FEATURE----------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 
@@ -429,6 +441,14 @@ document.getElementById('sound-config-cancel-button').addEventListener('click',f
 //-------------------------------------------------------------------------------------------
 
 //TIMER CONFIGURATION FEATURE----------------------------------------------------------
+
+let isTimerAppear = false;
+document.getElementById('timer-feature').addEventListener('click',function(){
+  if(isTimerAppear) document.getElementById('timer-container').style.display = "none";
+  else document.getElementById('timer-container').style.display = "block";
+  isTimerAppear = !isTimerAppear;
+})
+
 function getCircularPosition(angleDegrees, radius, centerX, centerY) {
   let angleRadians = angleDegrees * (Math.PI / 180);
 
@@ -732,11 +752,45 @@ timerButtonAddEvent();
 //-------------------------------------------------------------------------------------------
 
 
+//QUOTES --------------------------------
+//quote
+document.getElementById('quotes-feature').addEventListener('click',function(){
+  document.getElementsByClassName('all-quote-box').item(0).style.display = "block";
+  document.getElementsByClassName('quote-box').item(0).style.display = "block";
+})
+document.addEventListener('DOMContentLoaded', function() {
+  const quote = document.getElementById("quote");
+  const author = document.getElementById("author");
+  const closeBtn = document.querySelector('.close-btn');
+  const quoteBox = document.querySelector('.quote-box');
+  const api_url = "https://api.quotable.io/random";
+
+  async function getQuote(url) {
+      const response = await fetch(url);
+      var data = await response.json();
+
+      quote.innerHTML = data.content;
+      author.innerHTML = data.author;
+  }
+
+  document.getElementById("new-quote").addEventListener("click", function() {
+      getQuote(api_url);
+  });
+
+  closeBtn.addEventListener('click', function() {
+      quoteBox.style.display = 'none';
+  });
+
+  getQuote(api_url);
+});
+
+
 
 //ADD MOVEMENT--------------------------------------------------------------------------------------
 addMovement(document.getElementsByClassName('background-config-title').item(0),document.getElementById('background-config'));
 addMovement(document.getElementsByClassName('background-config-title').item(1), document.getElementById('sound-config'));
 addMovement(document.getElementById('timer-move-area'),document.getElementById('timer-container'))
+addMovement(document.getElementsByClassName('quote-box').item(0),document.getElementsByClassName('all-quote-box').item(0));
 
 //ADD LISTENER-------------------------------------------------------------------------------------- 
 window.addEventListener('resize',function(){
