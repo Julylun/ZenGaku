@@ -12,20 +12,26 @@ let isVideo = false;
 //Audio variable
 let audioArr = new Array();
 const url = "?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp"
+let endAudioClock = new Audio("assets/resources/audio/endTimerSound.mp3");
+let breakSound = new Audio("assets/resources/audio/breakSound.mp3")
+endAudioClock.loop = false;
+
 
 //Timer variable
 let timerMode = TIMER_SHORTBREAK_MODE;
 class Time {
-  constructor(hour, minute, second){
+  constructor(hour, minute, second, breakTime, repeatNumber){
     this.hour = hour;
     this.minute = minute;
     this.second = second;
+    this.breakTime = breakTime;
+    this.repeatNumber = repeatNumber;
   }
 };
 
-let pomodoroTime = new Time(0,0,10);
-let shortBreakTime = new Time(0,15,0);
-let longBreakTime = new Time(0,40,0);
+let pomodoroTime = new Time(0,0,10,1,1);
+let shortBreakTime = new Time(0,15,0,0,0);
+let longBreakTime = new Time(0,40,0,0,0);
 
 class AudioModel {
   constructor(audioPath,name){
@@ -57,6 +63,11 @@ function changeBackgroundPicture(srcPath){
 
 
 //FUNCTION------------------------------------------------------------------------------
+function isMobileAndTablet() {
+  let check = false;
+  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+  return check;
+};
 function makeid(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -69,33 +80,69 @@ function makeid(length) {
     return result;
 }
 
-function addMovement(pressedElement,movementElement){
+function addMovementForDesktopDevices(pressedElement,movementElement){
   function mouseMove(event){
-        newPosX = cursorX - event.clientX;
-        newPosY = cursorY - event.clientY;
+    newPosX = cursorX - event.clientX;
+    newPosY = cursorY - event.clientY;
 
-        cursorX = event.clientX;
-        cursorY = event.clientY;
+    cursorX = event.clientX;
+    cursorY = event.clientY;
 
-        movementElement.style.top = (movementElement.offsetTop - newPosY) + "px";
-        movementElement.style.left = (movementElement.offsetLeft - newPosX) + "px";
-        if(movementElement.offsetTop < 0){
-          movementElement.style.top = "0px";
-        }
-        
+    movementElement.style.top = (movementElement.offsetTop - newPosY) + "px";
+    movementElement.style.left = (movementElement.offsetLeft - newPosX) + "px";
+    if(movementElement.offsetTop < 0){
+      movementElement.style.top = "0px";
+    }
   }
   pressedElement.addEventListener("mousedown", function(e){
-      e.preventDefault();
-      
-      cursorX = e.clientX;
-      cursorY = e.clientY;
-      
-      document.addEventListener("mousemove",mouseMove);
-      document.addEventListener("mouseup", function(){
-          document.removeEventListener("mousemove", mouseMove)
-      });
+    e.preventDefault();
+    
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    
+    document.addEventListener("mousemove",mouseMove);
+    document.addEventListener("mouseup", function(){
+        document.removeEventListener("mousemove", mouseMove)
+    });
   });
 }
+
+  function addMovementForTouchedDevices(pressedElement,movementElement){
+    function mouseMove(event){
+      const { touches, changedTouches } = event.originalEvent ?? event;
+      const touch = touches[0] ?? changedTouches[0];
+      newPosX = cursorX - touch.pageX;
+      newPosY = cursorY - touch.pageY;  
+
+      cursorX = touch.clientX;
+      cursorY = touch.clientY;
+
+      movementElement.style.top = (movementElement.offsetTop - newPosY) + "px";
+      movementElement.style.left = (movementElement.offsetLeft - newPosX) + "px";
+      if(movementElement.offsetTop < 0){
+        movementElement.style.top = "0px";
+      }
+    }
+    pressedElement.addEventListener("touchstart", function(e){
+      e.preventDefault();
+      const { touches, changedTouches } = event.originalEvent ?? event;
+      const touch = touches[0] ?? changedTouches[0];
+      
+      cursorX = touch.clientX;
+      cursorY = touch.clientY;
+      console.log(cursorX + ":" + cursorY);
+      
+      document.addEventListener("touchmove",mouseMove);
+      document.addEventListener("touchend", function(){
+          document.removeEventListener("touchmove", mouseMove)
+      });
+    });
+  }
+
+  function addMovement(pressedElement,movementElement){
+      addMovementForTouchedDevices(pressedElement,movementElement)
+      addMovementForDesktopDevices(pressedElement,movementElement);
+  }
 
 //END FUNCTION------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
@@ -203,6 +250,18 @@ document.getElementsByClassName('background-config-add-link-button').item(0).add
   e.preventDefault();
   addElementToBackgroundConfig();
 })
+
+
+var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('background-video', {
+        events: {
+          'onReady': function(){
+            player.unMuted();
+          }
+        }
+    });
+  }
 //END BACKGROUND CONFIGURATION FEATURE----------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 
@@ -386,6 +445,14 @@ document.getElementById('sound-config-cancel-button').addEventListener('click',f
 //-------------------------------------------------------------------------------------------
 
 //TIMER CONFIGURATION FEATURE----------------------------------------------------------
+
+let isTimerAppear = false;
+document.getElementById('timer-feature').addEventListener('click',function(){
+  if(isTimerAppear) document.getElementById('timer-container').style.display = "none";
+  else document.getElementById('timer-container').style.display = "block";
+  isTimerAppear = !isTimerAppear;
+})
+
 function getCircularPosition(angleDegrees, radius, centerX, centerY) {
   let angleRadians = angleDegrees * (Math.PI / 180);
 
@@ -405,108 +472,290 @@ function totalSecond(hour, min, sec){
 }
 
 let countIdInterval;
-function counter(hour, min, sec){
-  let timerCircle = document.getElementById('timer-ring');
-  timerCircle.style.animation = "circle "+ ((hour*60)+min)*60+sec  +"s linear";
-  let counterHour = hour;
-  let counterMin = min;
-  let counterSec = sec;
-  let counterText = document.getElementById('timer-count-text');
-  let timerContainer = document.getElementById('timer-container');
-  
-  console.log(timerCircle.offsetTop + " " + timerCircle.offsetLeft); 
-
-  counterText.innerHTML = "";
-  function setText(h,m,s){
-    counterText.innerHTML = "";
-    if(h != 0)
-    counterText.innerHTML = h + ":";
-    counterText.innerHTML += m + ":" + s;
+function setCounterText(h,m,s, counterElement){
+  counterElement.innerHTML = "";
+  if(h != 0)
+    counterElement.innerHTML = h + ":";
+  if(m < 10){
+    counterElement.innerHTML += '0' + m + ":";
+  } else {
+    counterElement.innerHTML += m + ":";
   }
+  if(s < 10){
+    counterElement.innerHTML += '0' + s + "";
+  } else {
+    counterElement.innerHTML += s;
+  }
+}
+function resetCounterStyle(){
+  let timerCircle = document.getElementById('timer-ring');
+  document.getElementsByClassName('timer-logo').item(0).id = "timer-logo";
+  document.getElementById('timer-end-label').style.display = "none";
+  document.getElementById('timer-choice-container').style.fontSize = null;
+  document.getElementById('timer-choice-container').style.maxHeight = null;
+  document.getElementsByClassName('timer-choice-selected').item(0).style.fontSize = null;
+  document.getElementsByClassName('timer-choice-selected').item(0).style.display = null;
+  document.getElementById('timer-start-button').style.display = 'flex';
+  document.getElementById('timer-count-container').style.display = 'none';
+  document.getElementById('timer-count-text').style.fontSize = null;
+  timerCircle.style.animation = "none";
+  timerCircle.style.transform = "rotate(0)";
+  timerCircle.offsetHeight;
+  timerCircle.style.animation = null;
 
-  setText(hour,min,sec);
+  timerButtonAddEvent();
+}
+function stopCounter(){
+  let counterText = document.getElementById('timer-count-text');
+  let nameLabel = document.getElementsByClassName('timer-choice-selected').item(0);
+  let animationTimeout = 0;
+  document.getElementById('timer-stop-button').style.display = 'none';
+  document.getElementById('timer-continue-button').style.display = 'none';
+  document.getElementById('timer-pause-button').style.display = 'none';
+  let id = setInterval(function(){
+    counterText.style.fontSize = "min("+ (14-animationTimeout*10)/14 +"vw,56px)"
+    nameLabel.style.fontSize = "min("+ (5-animationTimeout*10)/5 + "vw,20px)";
+    animationTimeout += 10;
+    if((14-animationTimeout*10)/14 < 0 && (5-animationTimeout*10)/5 < 0){
+      clearInterval(id);
+      id = setInterval(function(){
+        counterText.style.display = "none"
+        nameLabel.style.display = "none";
+        clearInterval(id);
+        if(document.getElementById('timer-logo-actived') == null){
+          document.getElementById('timer-logo').id = 'timer-logo-ended';
+        } else {
+          document.getElementById('timer-logo-actived').id = 'timer-logo-ended';
+        }
+        document.getElementById('timer-end-container').style.display = "flex";
+        let tmpRule = false;
+        animationTimeout = 0;
+        endAudioClock.play();
+        id = setInterval(function(){
+          if(tmpRule){
+            document.getElementById('timer-end-label').style.display = "flex";
+          } else{
+            document.getElementById('timer-end-label').style.display = "none";
+          }
+          tmpRule = !tmpRule;
+          animationTimeout+= 800;
+          if(animationTimeout >= 4800){
+            clearInterval(id);
+            resetCounterStyle();
+            return;
+          }
+        },800)
+      },400)
+    }
+  },200);
+
+}
+function counter(hour, min, sec, breakTime, repeatNumber){
+  let isPaused;
+  let counterHour;
+  let counterMin;
+  let counterSec;
+  let timerCircle = document.getElementById('timer-ring');
+  let counterText = document.getElementById('timer-count-text');
+  function getSecond(h,m,s){
+    return ((h*60)+m)*60+s;
+  }
+  function clickOnPause(){
+    timerCircle.style.animationPlayState = "paused";
+    // console.log((getSecond(counterHour,counterMin,counterSec) + " " +getSecond(hour,min,sec) + " " +  ( 360 - 360 * getSecond(counterHour,counterMin,counterSec)/getSecond(hour,min,sec))));
+    isPaused = true;
+    document.getElementById('timer-pause-button').style.display = "none";
+    document.getElementById('timer-continue-button').style.display = "flex";
+    document.getElementById('timer-stop-button').style.display = "flex";
+    setCounterText(counterHour,counterMin,counterSec,counterText);
+  }
+  function clickOnContinue(){
+    isPaused = false;
+    document.getElementById('timer-pause-button').style.display = "flex";
+    document.getElementById('timer-continue-button').style.display = "none";
+    document.getElementById('timer-stop-button').style.display = "none";
+    timerCircle.style.animationPlayState = "running";
+  }
+  function clickOnStop(){
+    clearInterval(countIdInterval);
+    stopCounter();
+  }
+  function counterInit(){
+    isPaused = false;
+    counterHour = hour;
+    counterMin = min;
+    counterSec = sec;
+    timerCircle.style.animation = "none";
+    timerCircle.style.transform = "rotate(0)";
+    timerCircle.offsetHeight;
+    timerCircle.style.animation = null;
+    timerCircle.style.animation = "circle "+ ((hour*60)+min)*60+sec  +"s linear";
+    document.getElementById('break-label').style.display = 'none';
+    document.getElementsByClassName('timer-choice-selected').item(0).style.display = "block";
+    document.getElementById('timer-skip-button').style.display = "none";
+    document.getElementById('timer-pause-button').style.display = "flex";
+    document.getElementById('timer-pause-button').addEventListener('click',clickOnPause);
+    document.getElementById('timer-continue-button').addEventListener('click',clickOnContinue);
+    document.getElementById('timer-stop-button').addEventListener('click',clickOnStop);
+    counterText.style.display = "flex";
+  }
+  counterInit();
+  
+  setCounterText(hour,min,sec,counterText);
   countIdInterval = setInterval(function(){
-    counterSec -= 1;
-    if(counterSec == -1){
-      counterMin -= 1;
-      counterSec = 60;
+    if(!isPaused){
+      counterSec -= 1;
+      if(counterSec == -1){
+        counterMin -= 1;
+        counterSec = 59;
+      }
+      if(counterMin == -1){
+        counterHour -= 1;
+        counterMin = 59;
+      }
+      if(counterHour < 0){
+        console.log("Timer: time out!")
+        clearInterval(countIdInterval);
+        if(repeatNumber > 0){
+          breakSound.play();
+          breakCounter(hour, min, sec, breakTime, repeatNumber);
+          return;
+        } else {
+          // console .log("AAA")
+          clickOnStop();
+          return;
+        }
+      }
+      setCounterText(counterHour,counterMin,counterSec,counterText);
     }
-    if(counterMin == -1){
-      counterHour -= 1;
-      counterMin = 60;
-    }
-    if(counterHour == 0 && counterMin == 0 && counterSec == -1){
-      clearInterval(countIdInterval);
-    }
-    setText(counterHour,counterMin,counterSec);
+  }, 1000)
+}
+function breakCounter(hour, min, sec, breakTime, repeatNumber) {
+  let isSkiped;
+  let counterHour;
+  let counterMin;
+  let counterSec;
+  let timerCircle = document.getElementById('timer-ring');
+  let counterText = document.getElementById('timer-count-text');
+  function clickOnSkip(){
+    isSkiped = true;
+    timerCircle.style.transform = "rotate(0)";
+    timerCircle.offsetHeight;
+    timerCircle.style.animation = "null";
+    timerCircle.style.animation = "circle "+ 1  +"s linear";
+  }
+  function counterInit(){
+    isSkiped = false;
+    counterHour = 0;
+    counterMin = 0;
+    counterSec = breakTime+5;
+    timerCircle.style.animation = "none";
+    timerCircle.style.transform = "rotate(0)";
+    timerCircle.offsetHeight;
+    timerCircle.style.animation = "null";
+    timerCircle.style.animation = "circle "+ ((counterHour*60)+counterMin)*60+counterSec  +"s linear";
+    document.getElementById('break-label').style.display = 'block';
+    document.getElementsByClassName('timer-choice-selected').item(0).style.display = "none";
+
+    document.getElementById('timer-skip-button').style.display = "flex";
+    document.getElementById('timer-pause-button').style.display = "none";
+    document.getElementById('timer-skip-button').addEventListener('click',clickOnSkip);
+    console.log("Repeat: " + repeatNumber);
+  }
+  counterInit();
+
+  setCounterText(counterHour,counterMin,counterSec, counterText);
+  countIdInterval = setInterval(function(){
+      counterSec -= 1;
+      if(counterSec == -1){
+        counterMin -= 1;
+        counterSec = 59;
+      }
+      if(counterMin == -1){
+        counterHour -= 1;
+        counterMin = 59;
+      }
+      if(counterHour < 0 || isSkiped){
+        console.log("Timer: break time out!")
+        clearInterval(countIdInterval);
+        document.getElementById('timer-skip-button').removeEventListener('click',clickOnSkip);
+        counter(hour, min, sec, breakTime, repeatNumber-1);
+        return;
+      }
+      setCounterText(counterHour,counterMin,counterSec, counterText);
   }, 1000)
 }
 
-document.getElementById('timer-start-button').addEventListener('click',function(){
-  let choiceContainer = document.getElementById('timer-choice-container');
-  var animationTime = 0;
-  document.getElementById('timer-logo').id = 'timer-logo-actived';
-  var intervalId = setInterval(function(){
-    animationTime+= 20;
-    choiceContainer.style.fontSize = "min(calc(4vw - " + (animationTime/20*0.16) +"vw),20px)";
-    if(animationTime > 500){
-      clearInterval(intervalId);
-      animationTime = 0;
-      id = setInterval(function(){
-        animationTime+=20;
-        if(animationTime > 300){
-          clearInterval(id);
-          document.getElementById('timer-count-container').style.display = "flex";
-          let time;
-          switch(timerMode){
-            case TIMER_POMODORO_MODE:{
-              time = pomodoroTime;
-              break;
+
+  document.getElementById('timer-start-button').addEventListener('click',function(){
+    let choiceContainer = document.getElementById('timer-choice-container');
+    var animationTime = 0;
+    document.getElementById('timer-pause-button').style.display = "flex";
+    document.getElementById('timer-start-button').style.display = "none";
+    document.getElementById('timer-logo').id = 'timer-logo-actived';
+    var intervalId = setInterval(function(){
+      animationTime+= 20;
+      choiceContainer.style.fontSize = "min(calc(4vw - " + (animationTime/20*0.16) +"vw),20px)";
+      if(animationTime > 500){
+        clearInterval(intervalId);
+        animationTime = 0;
+        id = setInterval(function(){
+          animationTime+=20;
+          if(animationTime > 300){
+            clearInterval(id);
+            document.getElementById('timer-count-container').style.display = "flex";
+            let time;
+            switch(timerMode){
+              case TIMER_POMODORO_MODE:{
+                time = pomodoroTime;
+                break;
+              }
+              case TIMER_SHORTBREAK_MODE: {
+                time = shortBreakTime;
+                break;
+              }
+              case TIMER_LONGBREAK_MODE: {
+                time = longBreakTime;
+                break;
+              }
             }
-            case TIMER_SHORTBREAK_MODE: {
-              time = shortBreakTime;
-              break;
-            }
-            case TIMER_LONGBREAK_MODE: {
-              time = longBreakTime;
-              break;
-            }
+            counter(time.hour,time.minute,time.second, time.breakTime, time.repeatNumber);
           }
-          counter(time.hour,time.minute,time.second);
+          choiceContainer.style.height = "min(calc(85vw - "+ (animationTime/20*2.3) +"vw),192.797)";
+          choiceContainer.style.maxHeight = "calc(340px - "+ animationTime*0.460009375+"px)"; //total: 192.797px
+        }, 20)
+      } 
+    },20)
+  });
+
+function timerButtonAddEvent(){
+  for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+    timerChoiceItem.addEventListener('click',function(){  
+      console.log(timerChoiceItem.getAttribute('value'));
+      switch (timerChoiceItem.getAttribute('value') ){
+        case "0":{
+          timerMode = TIMER_POMODORO_MODE;
+          break;
         }
-        choiceContainer.style.height = "min(calc(85vw - "+ (animationTime/20*2.3) +"vw),192.797)";
-        choiceContainer.style.maxHeight = "calc(340px - "+ animationTime*0.460009375+"px)"; //total: 192.797px
-      }, 20)
-    } 
-  },20)
-});
-
-
-for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
-  timerChoiceItem.addEventListener('click',function(){  
-    console.log(timerChoiceItem.getAttribute('value'));
-    switch (timerChoiceItem.getAttribute('value') ){
-      case "0":{
-        timerMode = TIMER_POMODORO_MODE;
-        break;
+        case "1":{
+          timerMode = TIMER_SHORTBREAK_MODE;
+          break;
+        }
+        case "2":{
+          timerMode = TIMER_LONGBREAK_MODE;
+          
+          break;
+        }
       }
-      case "1":{
-        timerMode = TIMER_SHORTBREAK_MODE;
-        break;
+      for(let _timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
+        _timerChoiceItem.classList.remove('timer-choice-selected');
       }
-      case "2":{
-        timerMode = TIMER_LONGBREAK_MODE;
-        
-        break;
-      }
+      timerChoiceItem.classList.add('timer-choice-selected');
     }
-    for(let _timerChoiceItem of document.getElementsByClassName('timer-choice-item')){
-      _timerChoiceItem.classList.remove('timer-choice-selected');
-    }
-    timerChoiceItem.classList.add('timer-choice-selected');
+    )
   }
-  )
 }
+timerButtonAddEvent();
 
 
 
@@ -514,11 +763,45 @@ for(let timerChoiceItem of document.getElementsByClassName('timer-choice-item'))
 //-------------------------------------------------------------------------------------------
 
 
+//QUOTES --------------------------------
+//quote
+document.getElementById('quotes-feature').addEventListener('click',function(){
+  document.getElementsByClassName('all-quote-box').item(0).style.display = "block";
+  document.getElementsByClassName('quote-box').item(0).style.display = "block";
+})
+document.addEventListener('DOMContentLoaded', function() {
+  const quote = document.getElementById("quote");
+  const author = document.getElementById("author");
+  const closeBtn = document.querySelector('.close-btn');
+  const quoteBox = document.querySelector('.quote-box');
+  const api_url = "https://api.quotable.io/random";
+
+  async function getQuote(url) {
+      const response = await fetch(url);
+      var data = await response.json();
+
+      quote.innerHTML = data.content;
+      author.innerHTML = data.author;
+  }
+
+  document.getElementById("new-quote").addEventListener("click", function() {
+      getQuote(api_url);
+  });
+
+  closeBtn.addEventListener('click', function() {
+      quoteBox.style.display = 'none';
+  });
+
+  getQuote(api_url);
+});
+
+
 
 //ADD MOVEMENT--------------------------------------------------------------------------------------
 addMovement(document.getElementsByClassName('background-config-title').item(0),document.getElementById('background-config'));
 addMovement(document.getElementsByClassName('background-config-title').item(1), document.getElementById('sound-config'));
-addMovement(document.getElementById('timer-container'),document.getElementById('timer-container'))
+addMovement(document.getElementById('timer-move-area'),document.getElementById('timer-container'))
+addMovement(document.getElementsByClassName('quote-box').item(0),document.getElementsByClassName('all-quote-box').item(0));
 
 //ADD LISTENER-------------------------------------------------------------------------------------- 
 window.addEventListener('resize',function(){

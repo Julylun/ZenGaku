@@ -22,8 +22,10 @@ if (loginStatus == null) {
     loginStatus = false;
 }
 
-if(loginStatus === false) {
-    window.location.href = "/ErrorPages/Error401.jsp";
-}
+// if(loginStatus === false) {
+//     window.location.href = "/ErrorPages/Error401.jsp";
+// }
+
+
 
 

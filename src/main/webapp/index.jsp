@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="assets/css/indexFeature.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="#" />
+    <link rel="icon"
+          type="image/svg"
+          href="assets/resources/img/zengaku_logo.svg">
 </head>
 
 <body>
@@ -21,7 +23,68 @@
     <span>ZENGAKU</span>
 </div>
 
-
+<div id = "notify-panel" style="display: none;">
+    <div class = "notify-account-display">
+        <div class = "notify-avatar-container">
+            <img src = "assets/resources/img/meomeo.jpg">
+        </div>
+        <div class = "notify-text-container">
+            <div class = "notify-text-on-top">
+                <p>Hello</p>
+            </div>
+            <div class = "notify-text-day-xa-hoi">
+                <p class = "notify-account-name">Hoang Luan</p>
+                <p class = "notify-account-point">169 tree points</p>
+            </div>
+        </div>
+    </div>
+    <div class = "notify-line-container">
+        <div class = "notify-bold-line"></div>
+    </div>
+    <div class = "notify-content-display">
+        <div class = "notify-content-item">
+            <div class = "notify-content-item-icon-layer">
+                <img src = "assets/resources/img/notify-notification-icon.svg">
+            </div>
+            <div class = "notify-content-item-text-container">
+                <p class = "notify-title">Mèo con đang buồn đấy!</p>
+                <p class = "notify-message">Mùa nuôi mèo đến rồi, cậu chủ thì vẫn ngồi lì ở ra đó.</p>
+            </div>
+            <div class = "notify-line-container">
+                <div class = "notify-light-line"></div>
+            </div>
+        </div>
+        <div class = "notify-content-item">
+            <div class = "notify-content-item-icon-layer">
+                <img src = "assets/resources/img/notify-notification-icon.svg">
+            </div>
+            <div class = "notify-content-item-text-container">
+                <p class = "notify-title">Đã Lâu lắm rồi cậu chủ không trở lại.</p>
+                <p class = "notify-message"> Có nằm mơ cũng không tin được mình bị cậu chủ đối xử như vậy.</p>
+            </div>
+            <div class = "notify-line-container">
+                <div class = "notify-light-line"></div>
+            </div>
+        </div>
+        <div class = "notify-content-item">
+            <div class = "notify-content-item-icon-layer">
+                <img src = "assets/resources/img/notify-notification-icon.svg">
+            </div>
+            <div class = "notify-content-item-text-container">
+                <p class = "notify-title">Cậu chủ, lại chơi với mèo đi.</p>
+                <p class = "notify-message">Cậu chủ thật là không có lương tâm gì cả, đã bao ngày xa cách như vậy.</p>
+            </div>
+            <div class = "notify-line-container">
+                <div class = "notify-light-line"></div>
+            </div>
+        </div>
+    </div>
+    <div class = "notify-bottom-panel">
+        <div class = "notify-button-container">
+            <img class = "notify-exit-button" src = "assets/resources/img/notify-logout.svg">
+        </div>
+    </div>
+</div>
 <div class = "auth-menu" id = "forget-menu" style = "display: none;">
     <div class="close-button">
         <div class="close-line-container">
@@ -162,8 +225,8 @@
             </div>
         </a>
         <div class = "menu-item">
-            <img class = "item-image" title = "Timer" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" id = "timer-feature" title = "Timer" src="assets/resources/img/timer-icon-black.svg">
+            <p class = "item-text">Counter</p>
         </div>
         <div class = "menu-item" id = "background-config-feature">
             <img class = "item-image" title="Background Configuration" alt = "Background Configuration" src="assets/resources/img/background-configuration-icon-black.svg">
@@ -173,49 +236,49 @@
             <img class = "item-image" id = "sound-board-feature" title = "Sound board" src="assets/resources/img/sound-board-icon-black.svg">
             <p class = "item-text">Sound board</p>
         </div>
-        <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+        <div class = "menu-item" id = "quotes-feature" title = "Daily quotes">
+            <img class = "item-image" src="assets/resources/img/quotes-icon.svg">
+            <p class = "item-text">Daily quotes</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/timer-icon-black.svg">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="#">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="#">
-            <p class = "item-text">item</p>
+            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
+            <p class = "item-text">Coming soon</p>
         </div>
     </div>
 </div>
@@ -503,12 +566,15 @@
         </div>
     </div>
 
-    <div class = "auto-moving" id = "timer-container">
+    <div class = "auto-moving" id = "timer-container" style="display: none;">
         <div id = "timer-background"></div>
-        
+        <div id = "timer-move-area">
+            <img id = "timer-move-area-img" src="assets/resources/img/moving-icon-white.svg">
+        </div>
         <div id = "timer-ring"><div id = "timer-circle"></div></div>
-        <img id = "timer-logo" src="assets/resources/img/tree-icon.png">
+        <img class = "timer-logo" id = "timer-logo" src="assets/resources/img/tree-icon.png">
         <div id = "timer-choice-container">
+            <p id = "break-label" value = "-1" style="display: none;">BREAK</p>
             <p class = "timer-choice-item" id = "timer-choice-pomodoro" value = "0">Pomodoro</p>
             <p class = "timer-choice-item timer-choice-selected" id = "timer-choice-shortbreak" value = "1">Short break</p>
             <p class = "timer-choice-item" id = "timer-choice-longbreak" value = "2">Long break</p>
@@ -516,22 +582,43 @@
         <div id = "timer-count-container">
             <p id = "timer-count-text">60:60:60</p>
         </div>
-        <div id = "timer-start-button">
+        <div id = "timer-end-container" style="display: none;">
+            <p id = "timer-end-label" style="display: none;">END</p>
+        </div>
+        <div class = "timer-button" id = "timer-start-button">
             <p>Start</p>
+        </div>
+        <div class = "timer-button" id = "timer-pause-button" style="display: none;">
+            <p>Pause</p>
+        </div>
+        <div class = "timer-button" id = "timer-skip-button" style="display: none;">
+            <p>Skip</p>
+        </div>
+        <div class = "timer-button" id = "timer-stop-button" style="display: none;">
+            <p>Stop</p>
+        </div>
+        <div class = "timer-button" id = "timer-continue-button" style="display: none;">
+            <p>Continue</p>
         </div>
     </div>
 
-
+    <div class="all-quote-box auto-moving" style="display: none;">
+        <div class="quote-box">
+            <button class="close-btn">&times;</button>
+            <h2>Quote of the Day</h2>
+            <blockquote id="quote">Loading</blockquote>
+            <span id="author">Loading...</span>
+            <div class="buttons">
+                <button onclick="getQuote(api_url)" id="new-quote">New Quote</button>
+                <button id="share-quote">Share</button>
+            </div>
+        </div>
+    </div>
     
 </div>
 
 <!-- <div id="menu" style="display: none;">
 </div> -->
-
-<input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
-<input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
-<script src="assets/js/index.js"></script>
-<script src="assets/js/feature.js"></script>
 
 <div class = "video-container">
     <iframe id = "background-video" frameborder="0"
@@ -548,6 +635,14 @@
         <source src = "" type = "video/mp4">
     </video>
 </div>
+
+<input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
+<input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/feature.js"></script>
+
+
 
 
 <background-configter>
