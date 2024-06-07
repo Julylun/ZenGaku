@@ -94,6 +94,11 @@ public class LoginServlet extends HttpServlet {
                         out.print("{\"token\":\"" + jwtToken + "\"}");
                         out.flush();
                         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin Successfully!" + PrintColor.RESET);
+                        System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " +
+                                "(-*-) Ip Address: " + req.getRemoteAddr() + " - Local Address: " + req.getLocalAddr() + "\n" + PrintColor.GREEN +
+                                "(-*-) User Id: " + user.getId() + "\n" +
+                                "(-*-)User name: " + userName + "\n" +
+                                "(-*-) User full name: " + user.getUserFirstName() + " " + user.getUserLastName() + PrintColor.RESET);
 
                         return;
                     }

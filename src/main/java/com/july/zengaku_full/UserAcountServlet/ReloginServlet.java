@@ -84,44 +84,38 @@ public class ReloginServlet extends HttpServlet {
         try {
             JsonReader jsonReader = Json.createReader(req.getInputStream());
             JsonObject jsonObject = jsonReader.readObject();
-
             String accessToken = jsonObject.getString("authToken");
-            System.out.println(accessToken);
-            String[] splitToken = accessToken.split("\\.");
-//            String headerEncoding = splitToken[0];
-            Base64 base64 = new Base64();
-//            String header = new String(base64.decode(headerEncoding.getBytes(StandardCharsets.UTF_8)));
-            String body = new String(base64.decode(splitToken[1].getBytes(StandardCharsets.UTF_8)));
-            JSONObject readJson = new JSONObject(body);
-            Long userId = Long.valueOf(readJson.getInt("sub"));
 
-            Session session = HibernateUtils.getSessionFactory().openSession();
-            Query query = session.createQuery("From AuthToken AS auth WHERE auth.user.id = :id ");
-            query.setParameter("id", userId);
-            List<AuthToken> authTokenList = query.list();
+//          Parse token into many parts, take userId from them and find all authToken of that userId then
+//            Check is accessToken expired
+            System.out.println("Access token: " + accessToken);
+
+            //new code
             PrintWriter out = resp.getWriter();
-            System.out.println(authTokenList);
-            for(AuthToken authToken : authTokenList){
-                System.out.println("B-:" + authToken.isExpired());
-                if(authToken.getAccessToken().equals(accessToken) && !authToken.isExpired()){
-                    HttpSession httpSession = req.getSession();
-                    httpSession.setAttribute("loginStatus", true);
-                    httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
+            if(AuthToken.isExpired(accessToken)){
+                HttpSession httpSession = req.getSession();
+                httpSession.setAttribute("loginStatus", true);
+                httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
 
-                    System.out.println(PrintColor.GREEN + "[ReloginServlet]>"
-                            + req.getRemoteAddr() + ": Token is available, the server is sending a approve to the client."
-                            + PrintColor.RESET);
+                //Debug - delete in final version
+                System.out.println(PrintColor.GREEN + "[ReloginServlet]>"
+                        + req.getRemoteAddr() + ": Token is available, the server is sending a approve to the client."
+                        + PrintColor.RESET);
+                //---
 
 
-                    out.println("{\"isApprove\":\""+ "true" + "\"}");
-                    out.flush();
-                    return;
-                }
+                out.println("{\"isApprove\":\""+ "true" + "\"}");
+                out.flush();
+                return;
+            } else {
+                //Debug - delete in final version
+                System.out.println(PrintColor.YELLOW + "[ReloginServlet]>"
+                        + req.getRemoteAddr() + ": Token is expired or unavailable, the server is sending a deny to the client.");
+                //---
+
+                out.println("{\"isApprove\":\"\"}" + PrintColor.RESET);
+                out.flush();
             }
-            System.out.println(PrintColor.YELLOW + "[ReloginServlet]>"
-                    + req.getRemoteAddr() + ": Token is expired or unavailable, the server is sending a deny to the client.");
-            out.println("{\"isApprove\":\"\"}" + PrintColor.RESET);
-            out.flush();
 
         }
         catch (Exception e){

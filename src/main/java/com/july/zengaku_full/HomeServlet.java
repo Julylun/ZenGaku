@@ -18,7 +18,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession userSession =  req.getSession();
         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "--HomeServlet--\n" + "A device connected");
-        System.out.println("IP Address:\t" + req.getRemoteAddr() +"\nRemoteHost:\t" + req.getRemoteHost()
+        System.out.println("IP Address:\t" + req.getRemoteAddr() +"\nLocal Address:\t" + req.getLocalAddr()
                 + "\n---------------" + PrintColor.RESET);
 
         userSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
@@ -26,7 +26,7 @@ public class HomeServlet extends HttpServlet {
         System.out.println(PrintColor.GREEN + "[HomeServlet]>" +
                 req.getRemoteAddr() + ":\tSet Register status session -> false\n"+
         "\t set Login status session -> false\n" +
-                "Forward " + req.getRemoteAddr() + "to index.jsp" +PrintColor.RESET);
+                "Forward " + req.getRemoteAddr() + " to index.jsp" +PrintColor.RESET);
 
         req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
     }

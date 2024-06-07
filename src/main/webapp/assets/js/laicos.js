@@ -1,3 +1,5 @@
+import * as laicosFunction from './laicosFuntion.js'
+
 document.getElementById('tree-button').addEventListener('mousedown',function(){
     document.getElementById('notify-panel').style.display = 'block';
     document.addEventListener('click',function(event){
@@ -11,3 +13,18 @@ document.getElementById('tree-button').addEventListener('mousedown',function(){
         }
     })
 })
+
+
+document.getElementById('nav-add-post').addEventListener('click',function(){
+    console.log(':D')
+    laicosFunction.setUploadPostPaneEnable();
+})
+
+
+
+
+
+
+
+// laicosFunction.addPostDebugging();
+// alias.setUploadPostPaneEnable();

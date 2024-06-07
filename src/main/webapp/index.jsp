@@ -18,202 +18,142 @@
 <header>
 
 </header>
+<%--<p>HELLO</p>--%>
 <div class = "loading-layer">
     <img src="assets/resources/img/loading.gif">
     <span>ZENGAKU</span>
 </div>
 
-<div id = "notify-panel" style="display: none;">
-    <div class = "notify-account-display">
-        <div class = "notify-avatar-container">
-            <img src = "assets/resources/img/meomeo.jpg">
-        </div>
-        <div class = "notify-text-container">
-            <div class = "notify-text-on-top">
-                <p>Hello</p>
-            </div>
-            <div class = "notify-text-day-xa-hoi">
-                <p class = "notify-account-name">Hoang Luan</p>
-                <p class = "notify-account-point">169 tree points</p>
-            </div>
-        </div>
-    </div>
-    <div class = "notify-line-container">
-        <div class = "notify-bold-line"></div>
-    </div>
-    <div class = "notify-content-display">
-        <div class = "notify-content-item">
-            <div class = "notify-content-item-icon-layer">
-                <img src = "assets/resources/img/notify-notification-icon.svg">
-            </div>
-            <div class = "notify-content-item-text-container">
-                <p class = "notify-title">Mèo con đang buồn đấy!</p>
-                <p class = "notify-message">Mùa nuôi mèo đến rồi, cậu chủ thì vẫn ngồi lì ở ra đó.</p>
-            </div>
-            <div class = "notify-line-container">
-                <div class = "notify-light-line"></div>
-            </div>
-        </div>
-        <div class = "notify-content-item">
-            <div class = "notify-content-item-icon-layer">
-                <img src = "assets/resources/img/notify-notification-icon.svg">
-            </div>
-            <div class = "notify-content-item-text-container">
-                <p class = "notify-title">Đã Lâu lắm rồi cậu chủ không trở lại.</p>
-                <p class = "notify-message"> Có nằm mơ cũng không tin được mình bị cậu chủ đối xử như vậy.</p>
-            </div>
-            <div class = "notify-line-container">
-                <div class = "notify-light-line"></div>
-            </div>
-        </div>
-        <div class = "notify-content-item">
-            <div class = "notify-content-item-icon-layer">
-                <img src = "assets/resources/img/notify-notification-icon.svg">
-            </div>
-            <div class = "notify-content-item-text-container">
-                <p class = "notify-title">Cậu chủ, lại chơi với mèo đi.</p>
-                <p class = "notify-message">Cậu chủ thật là không có lương tâm gì cả, đã bao ngày xa cách như vậy.</p>
-            </div>
-            <div class = "notify-line-container">
-                <div class = "notify-light-line"></div>
-            </div>
-        </div>
-    </div>
-    <div class = "notify-bottom-panel">
-        <div class = "notify-button-container">
-            <img class = "notify-exit-button" src = "assets/resources/img/notify-logout.svg">
-        </div>
-    </div>
-</div>
-<div class = "auth-menu" id = "forget-menu" style = "display: none;">
-    <div class="close-button">
-        <div class="close-line-container">
-            <div class="close-line close-left-line"></div>
-            <div class="close-line close-right-line"></div>
-        </div>
-    </div>
-    <div id="forget-password-name" class="auth-logo-name">
-        <p>Forget Password</p>
-    </div>
-    <!-- Quên mật khẩu: Nhập Mail-->
-    <form method = "post" action="recover" class = "auth-input" id = "recovery-email-auth"
-          style="display: flex;">
-        <input class="auth-text-field" id="recovery-email-input" name="userRecoveryEmail" type="email"
-               placeholder="Type your recovery email address">
-        <button class="auth-button" id="Confirm">Confirm</button>
-    </form>
-    <div class="register-paragraph" id = "recovery-notify-text" style="display: none;">
-        <p>We sent a reset password link to ${sessionScope.userRecoveryEmail}</p>
-        <br>
-    </div>
-    <div class="register-paragraph" id = "changed-password-notify-text" style="display: none;">
-        <p>You changed your password successfully!</p>
-        <br>
-    </div>
-</div>
+<div id = "notify-panel" style="display: none;"></div>
 
-<div class="auth-menu" id="register-menu" style="display: none;">
-    <div class="close-button">
-        <div class="close-line-container">
-            <div class="close-line close-left-line"></div>
-            <div class="close-line close-right-line"></div>
+<div id = "auth-container">
+    <div class = "auth-menu" id = "forget-menu" style = "display: none;">
+        <div class="close-button">
+            <div class="close-line-container">
+                <div class="close-line close-left-line"></div>
+                <div class="close-line close-right-line"></div>
+            </div>
         </div>
-    </div>
-    <div id="step">
-        <div class = "step-box step-box-processing" id="step_1">
-            <div class="step-circle "></div>
-            <p>Account</p>
+        <div id="forget-password-name" class="auth-logo-name">
+            <p>Forget Password</p>
         </div>
-        <div  class = "step-box" id="step_2">
-            <div class="step-circle "></div>
-            <p>Verification</p>
-        </div>
-        <div  class = "step-box" id="step_3">
-            <div class="step-circle "></div>
-            <p>Information</p>
-        </div>
-    </div>
-    <div id="register-login-name" class="auth-logo-name">
-        <p>Register</p>
-    </div>
-    <form method="post" action="register_account" class="auth-input" id="register-input"  style="display: flex;">
-        <input class="auth-text-field" id="register-username-input" name="userName" type="text"
-               placeholder="Username">
-        <input class="auth-text-field" id="register-password-input" name="userPassword" type="password"
-               placeholder="Type your strong password">
-        <input class="auth-text-field" id="repeat-register-password-input" name="repeatUserPassword" type="password"
-               placeholder="Repeat your strong password">
-        <input class="auth-text-field" id="register-email-input" name="userEmail" type="email"
-               placeholder="Type your email address">
-        <button class="auth-button" id="_register-button">Register</button>
-        <div class="other-button">
-            <p id="have-account-button">Hey, I have an account.</p>
-        </div>
-    </form>
-
-    <form method="post" action="register_verification" class="auth-input" id="register-verification"
-          style="display: none;">
-        <div class="register-paragraph">
-            <p>We sent an email containing code to ${sessionScope.userEmail}</p>
+        <!-- Quên mật khẩu: Nhập Mail-->
+        <form method = "post" action="recover" class = "auth-input" id = "recovery-email-auth"
+              style="display: flex;">
+            <input class="auth-text-field" id="recovery-email-input" name="userRecoveryEmail" type="email"
+                   placeholder="Type your recovery email address">
+            <button class="auth-button" id="Confirm">Confirm</button>
+        </form>
+        <div class="register-paragraph" id = "recovery-notify-text" style="display: none;">
+            <p>We sent a reset password link to ${sessionScope.userRecoveryEmail}</p>
             <br>
         </div>
-        <input class="auth-text-field" id="verification-code" name="verificationCode"
-               onKeyPress="if(this.value.length==6) return false;" placeholder="Code - 6 digits" required>
-        <button class="auth-button" id="_verify-button">Verify</button>
-    </form>
-
-     <form method="post" action="information_creation" class="auth-input" id="information-creation"
-          style="display: none;">
-        <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
-               placeholder="Type your last name">
-        <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
-               placeholder="Type your first name">
-        <input class="auth-text-field" id="birthday-input" name="userBirthday" type="date"
-               placeholder="Repeat your strong password">
-        <button class="auth-button" id="create-account">Create</button>
-    </form>
-
-    <form method="post" action="return-normal-page" class="auth-input" id="created-successfully-form"
-          style="display: none;">
-        <div class="register-paragraph" id = "created-notify-text">
-            <p>You created ZenGaku account successfully! Please return login page to login.</p>
+        <div class="register-paragraph" id = "changed-password-notify-text" style="display: none;">
+            <p>You changed your password successfully!</p>
             <br>
         </div>
-        <button class="auth-button" id="return-normal-page-button">Return</button>
-    </form>
-
-</div>
-
-
-<div id="login-menu" class="auth-menu" style="display: none;">
-    <div class="close-button">
-        <div class="close-line-container">
-            <div class="close-line close-left-line"></div>
-            <div class="close-line close-right-line"></div>
-        </div>
     </div>
-<!-- <%--    <div id = "login-image">--%>
-<%--        <img src="#">--%>
-<%--    </div>--%> -->
-    <div id="login-logo-name" class="auth-logo-name">
-        <p>Login</p>
-    </div>
-    <form method="post" action="login" id="login-input" class="auth-input">
-        <div class = "failed-notify-element" style="display: none">
-            <p>Login failed. Check your username or password again.</p>
+
+    <div class="auth-menu" id="register-menu" style="display: none;">
+        <div class="close-button">
+            <div class="close-line-container">
+                <div class="close-line close-left-line"></div>
+                <div class="close-line close-right-line"></div>
+            </div>
         </div>
-        <input class="auth-text-field" id="login-username-input" name="userName" type="text" placeholder="Username">
-        <input class="auth-text-field" id="login-password-input" name="userPassword" type="password"
-               placeholder="Password">
-        <div id="login-button-container">
-            <button class="auth-button" id="_login-button">Login</button>
+        <div id="step">
+            <div class = "step-box step-box-processing" id="step_1">
+                <div class="step-circle "></div>
+                <p>Account</p>
+            </div>
+            <div  class = "step-box" id="step_2">
+                <div class="step-circle "></div>
+                <p>Verification</p>
+            </div>
+            <div  class = "step-box" id="step_3">
+                <div class="step-circle "></div>
+                <p>Information</p>
+            </div>
+        </div>
+        <div id="register-login-name" class="auth-logo-name">
+            <p>Register</p>
+        </div>
+        <form class="auth-input" id="register-input" method="post" action="register_account" style="display: flex;">
+            <input class="auth-text-field" id="register-username-input" name="userName" type="text"
+                   placeholder="Username">
+            <input class="auth-text-field" id="register-password-input" name="userPassword" type="password"
+                   placeholder="Type your strong password">
+            <input class="auth-text-field" id="repeat-register-password-input" name="repeatUserPassword" type="password"
+                   placeholder="Repeat your strong password">
+            <input class="auth-text-field" id="register-email-input" name="userEmail" type="email"
+                   placeholder="Type your email address">
+            <button class="auth-button" id="_register-button">Register</button>
             <div class="other-button">
-                <p id="register-button">I don't have account.</p>
-                <p id="forget-button">I forgot my password.</p>
+                <p id="have-account-button">Hey, I have an account.</p>
+            </div>
+        </form>
+
+        <form method="post" action="register_verification" class="auth-input" id="register-verification"
+              style="display: none;">
+            <div class="register-paragraph">
+                <p>We sent an email containing code to ${sessionScope.userEmail}</p>
+                <br>
+            </div>
+            <input class="auth-text-field" id="verification-code" name="verificationCode"
+                   onKeyPress="if(this.value.length==6) return false;" placeholder="Code - 6 digits" required>
+            <button class="auth-button" id="_verify-button">Verify</button>
+        </form>
+
+         <form method="post" action="information_creation" class="auth-input" id="information-creation"
+              style="display: none;">
+            <input class="auth-text-field" id="last-name-input" name="userLastName" type="text"
+                   placeholder="Type your last name">
+            <input class="auth-text-field" id="first-name-input" name="userFirstName" type="text"
+                   placeholder="Type your first name">
+            <input class="auth-text-field" id="birthday-input" name="userBirthday" type="date">
+            <button class="auth-button" id="create-account">Create</button>
+        </form>
+
+        <form method="post" action="return-normal-page" class="auth-input" id="created-successfully-form"
+              style="display: none;">
+            <div class="register-paragraph" id = "created-notify-text">
+                <p>You created ZenGaku account successfully! Please return login page to login.</p>
+                <br>
+            </div>
+            <button class="auth-button" id="return-normal-page-button">Return</button>
+        </form>
+
+    </div>
+
+
+    <div id="login-menu" class="auth-menu" style="display: none;">
+        <div class="close-button">
+            <div class="close-line-container">
+                <div class="close-line close-left-line"></div>
+                <div class="close-line close-right-line"></div>
             </div>
         </div>
-    </form>
+        <div id="login-logo-name" class="auth-logo-name">
+            <p>Login</p>
+        </div>
+        <form method="post" action="login" id="login-input" class="auth-input">
+            <div class = "failed-notify-element" style="display: none">
+                <p>Login failed. Check your username or password again.</p>
+            </div>
+            <input class="auth-text-field" id="login-username-input" name="userName" type="text" placeholder="Username">
+            <input class="auth-text-field" id="login-password-input" name="userPassword" type="password"
+                   placeholder="Password">
+            <div id="login-button-container">
+                <button class="auth-button" id="_login-button">Login</button>
+                <div class="other-button">
+                    <p id="register-button">I don't have account.</p>
+                    <p id="forget-button">I forgot my password.</p>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+
 
 
 <div id="opened-bg-content" style="display: none;">
@@ -330,7 +270,7 @@
             </div>
         </div>
         <div class = "config-line"></div>
-        
+
         <div class = "content-container">
             <div class = "config-add-button-container">
                 <img class = "config-add-button background-config-add-button"
@@ -397,7 +337,7 @@
                     <span>Apply</span>
                 </div>
                 <div class = "content-button-item" id = "background-config-cancel-button">
-                    <span>Cancel</span> 
+                    <span>Cancel</span>
                 </div>
             </div>
         </div>
@@ -418,7 +358,7 @@
             </div>
         </div>
         <div class = "config-line"></div>
-       
+
         <div class = "content-container" id = "sound-content-container">
             <div class = "config-add-button-container">
                 <img class = "config-add-button" id = "sound-add-button" src = "assets/resources/img/more-button-white.svg">
@@ -549,8 +489,8 @@
                             <p>50%</p>
                         </div>
                     </li>
-                    
-                
+
+
 
                 </ul>
             </div>
@@ -560,7 +500,7 @@
                     <span>Apply</span>
                 </div>
                 <div class = "content-button-item" id = "sound-config-cancel-button">
-                    <span>Cancel</span> 
+                    <span>Cancel</span>
                 </div>
             </div>
         </div>
@@ -614,7 +554,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <!-- <div id="menu" style="display: none;">
@@ -639,7 +579,8 @@
 <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
 <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="assets/js/index.js"></script>
+<script type="module" src="assets/js/indexInitFunction.js"></script>
+<script type = "module" src="assets/js/index.js"></script>
 <script src="assets/js/feature.js"></script>
 
 

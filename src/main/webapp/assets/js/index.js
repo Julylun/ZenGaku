@@ -1,3 +1,8 @@
+// import "./indexInitFunction.js";
+//Init
+
+// addNotificationPanel('assets/resources/img/meomeo.jpg');
+
 //Register code
 const STATUS_NON_STATUS_REGISTERED = 0;
 const STATUS_REGISTERED = 1;
@@ -110,7 +115,7 @@ loginMenu.addEventListener('submit', function (event){
        userPassword: formData.get('userPassword')
    };
 
-   fetch('http://localhost:8080/ZenGaku_Full_war/login',{
+   fetch('/ZenGaku_Full_war/login',{
        method: 'POST',
        headers: {
            // 'Content-Type': 'application/x-www-form-urlencoded'

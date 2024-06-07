@@ -1,5 +1,8 @@
 package com.zengaku.mvc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -39,12 +42,16 @@ public class User {
 	@Column(name = "userAvatar", nullable = false)
 	private String userAvatar;
 
+//	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<PasswordResetToken> tokenList;
 
+//	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Post> postsByUser;
 
+//	@JsonIgnore
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Comment> commentsByUser;
 
