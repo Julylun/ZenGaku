@@ -1,4 +1,4 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.PrintColor;
@@ -13,12 +13,9 @@ import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Locale;
-import java.util.logging.SimpleFormatter;
 
 @WebServlet(name = "information_creation", value = "/information_creation")
 public class InformationCreation extends HttpServlet {

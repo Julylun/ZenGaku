@@ -1,4 +1,4 @@
-package com.july.zengaku_full;
+package com.july.zengakuServlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

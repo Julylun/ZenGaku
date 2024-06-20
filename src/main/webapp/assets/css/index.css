@@ -62,6 +62,9 @@
         max-width: 301px;
         max-height: 64.500px;
         height: 15vw;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
         /* background-color: #235e73; */
     }
 
@@ -186,6 +189,10 @@
         max-width: 19.66px;
         max-height: 19.66px;
         margin-right: min(3vw,12.9px);
+    }
+
+    .notify-button-container img:hover {
+        cursor: pointer;
     }
 
     .notify-bottom-panel img {
@@ -364,7 +371,16 @@
         text-align: center;
         font-size: 40px;
         font-family: Kavoon;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
         color: #ffffff;
+    }
+
+    .auth-logo-name p {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
     }
 
     #step {
@@ -781,12 +797,22 @@
 
     #nav-bar #logo-name p {
         margin: 0px 0px 0px 0px;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
     }
 
     #nav-bar #tree-button img{
         width: 25px;
         height: 25px;
         margin-right: 20px;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+
+    #nav-bar #tree-button img:hover{
+        cursor: pointer;
     }
 
     #nav-bar #login-button {
@@ -803,6 +829,9 @@
         cursor: pointer;
     }
     #nav-bar #login-button p{
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
         margin: 0 0 0 0 ;
     }
 

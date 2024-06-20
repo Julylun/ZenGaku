@@ -40,12 +40,12 @@ function createNotificationItem(title, contentText) {
     return parent;
 }
 
-function addNotificationPanel(imgPath) {
+function addNotificationPanel() {
     let notificationDivTag = document.getElementById("notify-panel");
 
     let accountDisplay = createElement('div', ['notify-account-display'], notificationDivTag);
     let avatarContainer = createElement('div', ['notify-avatar-container'], accountDisplay);
-    createElement('img', [], avatarContainer, { src: imgPath });
+    createElement('img', [], avatarContainer, { src: sessionStorage.userAvtHref });
 
     let textContainer = createElement('div', ['notify-text-container'], accountDisplay);
 
@@ -53,7 +53,7 @@ function addNotificationPanel(imgPath) {
     createElement('p', '', textOnTop, { innerHTML: "Hello" });
 
     let dayXaHoi = createElement('div', ['notify-text-day-xa-hoi'], textContainer);
-    createElement('p', ['notify-account-name'], dayXaHoi, { innerText: "NAME" });
+    createElement('p', ['notify-account-name'], dayXaHoi, { innerText: sessionStorage.userFirstName + " " + sessionStorage.userLastName });
     createElement('p', ['notify-account-point'], dayXaHoi, { innerText: "1234 tree points" });
 
     let boldLineContainer = createElement('div', ['notify-line-container'], notificationDivTag);
@@ -190,7 +190,7 @@ function setRegisterStep(stepIndex){
 }
 
 
-addNotificationPanel("");
+// addNotificationPanel();
 // addForgetMenu("")
 // addRegisterMenu();
 // addRegisterStepOne();   

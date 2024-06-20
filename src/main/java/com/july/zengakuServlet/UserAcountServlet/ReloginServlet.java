@@ -1,65 +1,22 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
-import com.zengaku.mvc.controller.HibernateUtils;
-import com.zengaku.mvc.controller.SecureFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.zengaku.mvc.model.*;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import jakarta.json.stream.JsonParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.apache.commons.codec.binary.Base64;
-import org.hibernate.Session;
+import jakarta.servlet.http.*;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
-
-import com.google.gson.Gson;
-import com.zengaku.mvc.controller.EmailFactory;
-import com.zengaku.mvc.controller.SecureFactory;
-import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.AuthToken;
 import com.zengaku.mvc.model.RegisterCode;
 import com.zengaku.mvc.model.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.glassfish.jaxb.runtime.v2.runtime.unmarshaller.Base64Data;
-import org.glassfish.jaxb.runtime.v2.runtime.unmarshaller.StructureLoader;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.json.JSONObject;
-
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.swing.*;
-        import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 
 
 @WebServlet(name = "relogin", value = "/relogin")
@@ -94,6 +51,7 @@ public class ReloginServlet extends HttpServlet {
             PrintWriter out = resp.getWriter();
             if(AuthToken.isExpired(accessToken)){
                 HttpSession httpSession = req.getSession();
+                httpSession.setAttribute("isSkipHome", true);
                 httpSession.setAttribute("loginStatus", true);
                 httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
 
@@ -104,7 +62,24 @@ public class ReloginServlet extends HttpServlet {
                 //---
 
 
-                out.println("{\"isApprove\":\""+ "true" + "\"}");
+                User user = AuthToken.getUserByAccessToken(accessToken);
+
+                String json;
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.registerModule(new JavaTimeModule());
+                ObjectNode rootNode = mapper.createObjectNode();
+                rootNode.put("isApprove","true");
+                rootNode.put("userId",user.getId());
+                rootNode.put("firstName",user.getUserFirstName());
+                rootNode.put("lastName",user.getUserLastName());
+                rootNode.put("avtHref", user.getUserAvatar());
+                System.out.println("TEST RELOGIN: userid = " + user.getId());
+//                rootNode.put("userid",user.getId());
+
+//                out.println("{\"isApprove\":\""+ "true" + "\"}");
+                json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+//                System.out.println(json);
+                out.print(json);
                 out.flush();
                 return;
             } else {
@@ -113,7 +88,9 @@ public class ReloginServlet extends HttpServlet {
                         + req.getRemoteAddr() + ": Token is expired or unavailable, the server is sending a deny to the client.");
                 //---
 
-                out.println("{\"isApprove\":\"\"}" + PrintColor.RESET);
+                req.getSession().setAttribute("loginStatus", false);
+                System.out.println("{\"isApprove\":\"false\"}" + PrintColor.RESET);
+                out.println("{\"isApprove\":\"false\"}");
                 out.flush();
             }
 

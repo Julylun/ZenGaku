@@ -10,9 +10,11 @@ import lombok.Data;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.datatype.jsr310.*;
+import org.hibernate.Session;
 
 @Data
 @Entity
@@ -32,6 +34,7 @@ public class Post {
 	private LocalDateTime uploadDate;
 	@Column(nullable = false)
 	private int treeHeartNumber;
+
 //	@JsonIgnore
 	@JsonManagedReference
 	@ManyToOne
@@ -41,6 +44,9 @@ public class Post {
 	@OneToMany(mappedBy = "postFather", cascade = CascadeType.ALL)
 //	@JsonIgnore
 	private List<Comment> commentsInPost;
+
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+	private List<TreeHeartUser> treeHeartUsers;
 
 	public Post() {
 
@@ -53,7 +59,15 @@ public class Post {
 		this.imageLink = imageLink;
 		this.uploadDate = LocalDateTime.now();
 		this.treeHeartNumber = 0;
+		this.treeHeartUsers = new ArrayList<>();
 
+	}
+
+	public static Post getPostByUUIDAndId(String uuid, Session session){
+		List<Post> postList = session.createQuery("From Post WHERE uuid = :uuid")
+				.setParameter("uuid", uuid)
+				.getResultList();
+		return (postList.isEmpty()) ? null : postList.get(0);
 	}
 
 }

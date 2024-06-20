@@ -1,5 +1,6 @@
-package com.july.zengaku_full;
+package com.july.zengakuServlet;
 
+import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
 import jakarta.servlet.ServletException;
@@ -8,24 +9,26 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.hibernate.Session;
 
-import java.awt.datatransfer.ClipboardOwner;
 import java.io.IOException;
 
 @WebServlet(name = "Home", value = (""))
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HibernateUtils.getSessionFactory().openSession();
         HttpSession userSession =  req.getSession();
+
         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "--HomeServlet--\n" + "A device connected");
         System.out.println("IP Address:\t" + req.getRemoteAddr() +"\nLocal Address:\t" + req.getLocalAddr()
                 + "\n---------------" + PrintColor.RESET);
-
+//
         userSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
-        userSession.setAttribute("loginStatus",false);
+//        userSession.setAttribute("loginStatus",false);
         System.out.println(PrintColor.GREEN + "[HomeServlet]>" +
                 req.getRemoteAddr() + ":\tSet Register status session -> false\n"+
-        "\t set Login status session -> false\n" +
+        "\t set Login status session -> doesn't set\n" +
                 "Forward " + req.getRemoteAddr() + " to index.jsp" +PrintColor.RESET);
 
         req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);

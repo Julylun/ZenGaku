@@ -1,4 +1,4 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HashFactory;
 import com.zengaku.mvc.controller.HibernateUtils;

@@ -7,11 +7,9 @@ export {
     loadPost,
     setUploadPostPaneEnable,
     createUploadPost,
-    addPostDebugging,
-
 }
-
-function createElement(tag, classNameS, parent, attributes = {}, id) {
+import * as FetchAPI from './features/SocialMedia/fetchAPI.js'
+const createElement = (tag, classNameS, parent, attributes = {}, id) => {
     let element = document.createElement(tag);
     // if (className) element.className = className;
     if(!classNameS.length == 0)
@@ -30,9 +28,10 @@ function createElement(tag, classNameS, parent, attributes = {}, id) {
 
 
 
+
 //------------------------------ NOTIFICATION PANE -------------------------------------------------------------------
 
-function createNotificationItem(title, contentText) {
+const createNotificationItem = (title, contentText) => {
     let parent = createElement('div', ['notify-content-item']);
 
     let child = createElement('div', ['notify-content-item-icon-layer'], parent);
@@ -48,12 +47,12 @@ function createNotificationItem(title, contentText) {
     return parent;
 }
 
-function addNotificationPanel(imgPath) {
+const addNotificationPanel = () => {
     let notificationDivTag = document.getElementById("notify-panel");
 
     let accountDisplay = createElement('div', ['notify-account-display'], notificationDivTag);
     let avatarContainer = createElement('div', ['notify-avatar-container'], accountDisplay);
-    createElement('img', [], avatarContainer, { src: imgPath });
+    createElement('img', [], avatarContainer, { src: sessionStorage.getItem('userAvtHref') });
 
     let textContainer = createElement('div', ['notify-text-container'], accountDisplay);
 
@@ -61,26 +60,33 @@ function addNotificationPanel(imgPath) {
     createElement('p', '', textOnTop, { innerHTML: "Hello" });
 
     let dayXaHoi = createElement('div', ['notify-text-day-xa-hoi'], textContainer);
-    createElement('p', ['notify-account-name'], dayXaHoi, { innerText: "NAME" });
+    createElement('p', ['notify-account-name'], dayXaHoi, { innerText: sessionStorage.getItem('userFirstName') + " " + sessionStorage.getItem('userLastName') });
     createElement('p', ['notify-account-point'], dayXaHoi, { innerText: "1234 tree points" });
 
     let boldLineContainer = createElement('div', ['notify-line-container'], notificationDivTag);
     createElement('div', ['notify-bold-line'], boldLineContainer);
 
     let contentDisplay = createElement('div', ['notify-content-display'], notificationDivTag);
-    contentDisplay.appendChild(createNotificationItem("Mèo con đang buồn đấy!", "Mùa nuôi mèo đến rồi, cậu chủ thì vẫn ngồi lì ở ra đó."));
-    contentDisplay.appendChild(createNotificationItem("Đã Lâu lắm rồi cậu chủ không trở lại.", "Có nằm mơ cũng không tin được mình bị cậu chủ đối xử như vậy."));
-    contentDisplay.appendChild(createNotificationItem("Cậu chủ, lại chơi với mèo đi.", "Cậu chủ thật là không có lương tâm gì cả, đã bao ngày xa cách như vậy."));
 
     let bottomPanel = createElement('div', ['notify-bottom-panel'], notificationDivTag);
     let buttonContainer = createElement('div', ['notify-button-container'], bottomPanel);
     createElement('img', ['notify-exit-button'], buttonContainer, { src: 'assets/resources/img/notify-logout.svg' });
+
+    //DEBUG
+    contentDisplay.appendChild(createNotificationItem("Mèo con đang buồn đấy!", "Mùa nuôi mèo đến rồi, cậu chủ thì vẫn ngồi lì ở ra đó."));
+    contentDisplay.appendChild(createNotificationItem("Đã Lâu lắm rồi cậu chủ không trở lại.", "Có nằm mơ cũng không tin được mình bị cậu chủ đối xử như vậy."));
+    contentDisplay.appendChild(createNotificationItem("Cậu chủ, lại chơi với mèo đi.", "Cậu chủ thật là không có lương tâm gì cả, đã bao ngày xa cách như vậy."));
+}
+
+
+function setNotificationPanelEnable(){
+
 }
 
 
 //------------------------------ POST -------------------------------------------------------------------
-
-function createPost(uuid, avatarHref, userName, postTime, postImageHref, treeNumber, caption, parent, isBefore){
+//Create a post html element which is used to display on newsfeed HTML element
+function createPost(uuid, avatarHref, userName, postTime, postImageHref, treeNumber, caption, parent, isLiked, isBefore){
     let post; 
     if(isBefore) {
         post = createElement('div',['post'],null,{},uuid);
@@ -109,25 +115,41 @@ function createPost(uuid, avatarHref, userName, postTime, postImageHref, treeNum
     createElement('p',['post-time'],timePrivacy,{innerText: postTime});
     createElement('img',['privacy-icon'],timePrivacy,{src: 'assets/resources/img/public-icon-black.svg'});
 
-
-    //Post content
     let postContent = createElement('div',['post-content'],post,{});
 
-    //--create post image
+    
     createElement('img',['_post-image'],
         createElement('div',['post-image'],postContent,{}),
-    {src: postImageHref})
+    {src: postImageHref});
 
-    //POSTCONTROLPANE - - > space between [[PostControlPaneBtn]        [viewContainer]]
+    
     let postControlPane = createElement('div',['post-control-pane'],postContent,{});
 
-    //--PostControlPaneButton
+    
     let postControlPaneButton = createElement('div',['post-control-pane-button'],postControlPane,{});
 
     let treeHeartButton = createElement('label',['tree-heart-button'],postControlPaneButton,{});
-    createElement('input',['tree-heart-checkbox'],treeHeartButton,{type: 'checkbox', name: 'like-button', value: uuid});
-    createElement('img',['tree-heart-image-unchecked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-unchecked-2.svg'});
-    createElement('img',['tree-heart-image-checked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-checked-2.svg'});
+    let checkbox = createElement('input',['tree-heart-checkbox'],treeHeartButton,{type: 'checkbox', name: 'like-button', value: (isLiked) ? "-1" : "1"});
+    if(isLiked){
+        checkbox.checked = true;
+    }
+    let unChecked = createElement('img',['tree-heart-image-unchecked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-unchecked-2.svg'});
+    let checked = createElement('img',['tree-heart-image-checked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-checked-2.svg'});
+    
+    console.log(isLiked);
+    
+
+    ['mousedown','ontouchcancel'].forEach((_event) => {
+        treeHeartButton.addEventListener(_event,() => {
+            console.log("LIKE");
+            FetchAPI.likePost(uuid,sessionStorage.userId);
+            treeNumber = ((typeof(treeNumber) == "string") ? parseInt(treeNumber) : treeNumber);
+            treeNum.innerText = (treeNumber += parseInt(checkbox.value)) + " trees";
+            checkbox.value = -parseInt(checkbox.value);
+
+        });
+    })
+    
 
     createElement('img',['comment-image'],
         createElement('div',['comment-button'],postControlPaneButton,{}),
@@ -139,18 +161,15 @@ function createPost(uuid, avatarHref, userName, postTime, postImageHref, treeNum
     {src: 'assets/resources/img/share-icon-white.svg'}
     );
 
-    //--viewContainer
-    createElement('p',['post-number-of-view'],
+    let treeNum = createElement('p',['post-number-of-view'],
         createElement('div',['view-container'],postControlPane,{}),
     {innerText: treeNumber + " trees"}
     );
 
-    //--Post caption
     let postCaption = createElement('div',['post-caption'],postContent,{});
     createElement('p',['user-name-caption'],postCaption,{innerText: userName});
     createElement('p',['user-caption'],postCaption,{innerText: caption});
 
-    
     createElement('div',['end-post-line'],
         createElement('div',['line-container'],post,{}),
     {});
@@ -159,7 +178,6 @@ function createPost(uuid, avatarHref, userName, postTime, postImageHref, treeNum
     return post;
 }
 
-
 function removeWrap(text){
     text = text.replace(/(\r\n|\n|\r)/gm, " ");
     if(text.length > 35){
@@ -167,6 +185,7 @@ function removeWrap(text){
     }
     return text;
 }
+
 function addPosts(postList){
     let newsfeed = document.getElementsByClassName('newsfeed').item(0);
     for(let post of postList){
@@ -177,14 +196,19 @@ function addPosts(postList){
             post.imageLink,
             post.treeHeartNumber,
             removeWrap(post.postText),
-            newsfeed
+            newsfeed,
+            post.isLiked
         )
     }
 }
 
 function loadPost(){
+    let formData = new FormData();
+    formData.append('type','getPost');
+    formData.append('userId',sessionStorage.userId);
     fetch('/ZenGaku_Full_war/api/post',{
-        method: 'GET'
+        method: 'POST',
+        body: formData
     }).then((response) => response.json()
     ).then((postList) => {
         addPosts(postList)
@@ -216,8 +240,6 @@ function createUploadPost(){
     createElement('p',[], uploadButtonContainer,
     {innerText: 'Cancel'},'upload-pane-cancel-button');
     
-    
-    
     createElement('div',['upload-post-line'],
         createElement('div',['upload-line-container'],uploadPane,{},'upload-line-top'),
     {})
@@ -247,7 +269,6 @@ function createUploadPost(){
     //replace text when user upload image
     document.getElementById('upload-button-input').addEventListener('change',function(){
         document.getElementById('upload-label').innerText = 'Replace image'
-        console.log(document.getElementById('upload-button-input').files[0]);
     })
 
     document.getElementById('upload-post-button').addEventListener('click',function(){
@@ -257,7 +278,6 @@ function createUploadPost(){
 
 
 function setUploadPostPaneEnable(){
-    // console.log(':)')
         let tmp = document.getElementById('upload-post');
         if(tmp){
             document.getElementById('upload-pane-cancel-button').remove('click',null)
@@ -270,15 +290,10 @@ function setUploadPostPaneEnable(){
 
 function uploadPostAction(){
     let formData = new FormData();
-    let caption = document.getElementById('upload-caption-input').value;
-    let image = document.getElementById('upload-button-input').files[0];
-    let accessToken = localStorage.getItem("authToken");
-    formData.append('caption', caption);
-    formData.append('image', image);
-    formData.append('accessToken',accessToken);
-    
-    console.log(document.getElementById('upload-caption-input').value +"\n" + 'image',document.getElementById('upload-button-input').files[0] + "n"
-    +"\n" + localStorage.getItem("authToken"));
+    formData.append('type', 'upPost');
+    formData.append('caption', document.getElementById('upload-caption-input').value);
+    formData.append('image', document.getElementById('upload-button-input').files[0]);
+    formData.append('accessToken',localStorage.getItem("authToken"));
 
     fetch('/ZenGaku_Full_war/api/post',{
         method: 'POST',
@@ -298,6 +313,7 @@ function uploadPostAction(){
                 data.treeNumber,
                 data.caption,
                 newsfeed,
+                false,
                 true
             )
             setUploadPostPaneEnable();
@@ -309,24 +325,14 @@ function uploadPostAction(){
 }
 
 
+//------------------------------ NOTIFICATION -------------------------------------------------------------------
+
+
+
 
 
 
 //------------------------------ DEBUG -------------------------------------------------------------------
-
-
-
-function addPostDebugging(){
-    let newsfeed = document.getElementsByClassName('newsfeed').item(0);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-    createPost('12345','aaa','aaaa',2023,'xfsfds',1234, 'Hahahaha',newsfeed);
-}
 
 
 loadPost();

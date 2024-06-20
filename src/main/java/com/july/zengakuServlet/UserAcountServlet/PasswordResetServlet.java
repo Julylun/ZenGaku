@@ -1,4 +1,4 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.EmailFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;

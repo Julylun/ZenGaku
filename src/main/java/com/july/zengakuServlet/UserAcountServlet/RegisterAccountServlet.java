@@ -1,4 +1,4 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.EmailFactory;
 import com.zengaku.mvc.controller.SecureFactory;

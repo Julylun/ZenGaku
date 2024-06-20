@@ -579,6 +579,9 @@
 <input type="hidden" id = "vf-lv" name = "verificationLevel" value="${sessionScope.registerVerification}"/>
 <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 <script src="https://www.youtube.com/iframe_api"></script>
+
+<!-- <script type="module" src="assets/js/components/HTMLDom.js"></script> -->
+<!-- <script type="module" src="assets/js/components/notificationPanel.js"></script> -->
 <script type="module" src="assets/js/indexInitFunction.js"></script>
 <script type = "module" src="assets/js/index.js"></script>
 <script src="assets/js/feature.js"></script>

@@ -10,7 +10,7 @@
         <property name="connection.password">12345</property>
 
         <!-- JDBC connection pool -->
-        <property name="connection.pool_size">4</property>
+        <property name="connection.pool_size">10</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property> <!-- Updated dialect -->
@@ -22,7 +22,7 @@
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.internal.NoCachingRegionFactory</property> <!-- Corrected cache provider class -->
 
         <!-- SQL logging -->
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
         
         <!-- Entity mapping -->
@@ -32,6 +32,8 @@
         <mapping class="com.zengaku.mvc.model.Comment"/>
         <mapping class="com.zengaku.mvc.model.AuthToken"/>
         <mapping class="com.zengaku.mvc.model.RefreshToken"/>
+        <mapping class="com.zengaku.mvc.model.Notification"/>
+        <mapping class="com.zengaku.mvc.model.TreeHeartUser"/>
 
 
 

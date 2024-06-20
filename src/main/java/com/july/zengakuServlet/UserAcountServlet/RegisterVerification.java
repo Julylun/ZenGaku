@@ -1,8 +1,7 @@
-package com.july.zengaku_full.UserAcountServlet;
+package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.RegisterCode;
-import com.zengaku.mvc.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

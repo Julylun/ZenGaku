@@ -1,39 +1,26 @@
-package com.july.zengaku_full.UserAcountServlet;
-import com.zengaku.mvc.model.PrintColor;
+package com.july.zengakuServlet.UserAcountServlet;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.zengaku.mvc.controller.TokenUtils;
+import com.zengaku.mvc.model.*;
+import jakarta.servlet.http.*;
 import org.apache.commons.codec.binary.Base64;
 
-import com.google.gson.Gson;
-import com.zengaku.mvc.controller.EmailFactory;
 import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.controller.HibernateUtils;
-import com.zengaku.mvc.model.AuthToken;
-import com.zengaku.mvc.model.RegisterCode;
-import com.zengaku.mvc.model.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.glassfish.jaxb.runtime.v2.runtime.unmarshaller.Base64Data;
-import org.glassfish.jaxb.runtime.v2.runtime.unmarshaller.StructureLoader;
 import org.hibernate.Session;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 @WebServlet(name = "login", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -77,22 +64,49 @@ public class LoginServlet extends HttpServlet {
             for (User user : userList) {
                 if (user.getUserName().equals(userName)) {
                     if (user.getUserPassword().equals(SecureFactory.encode(userPassword))) {
-                        String jwtToken = Jwts.builder()
-                                .setSubject(user.getId().toString())
-                                .setIssuedAt(new Date())
-                                .setExpiration(new Date(System.currentTimeMillis() + 3600000))
-                                .signWith(SignatureAlgorithm.HS256, SI_CO_RET_KI)
-                                .compact();
-                        AuthToken authToken = new AuthToken();
-                        authToken.setUser(user);
-                        authToken.setAccessToken(jwtToken);
+                        String json;
+                        ObjectMapper mapper = new ObjectMapper();
+                        mapper.registerModule(new JavaTimeModule());
+                        ObjectNode rootNode = mapper.createObjectNode();
+
+                        String accessToken = TokenUtils.createJWT(user,AuthToken.EXPIRED_TIME);
+                        AuthToken authToken = new AuthToken(user,accessToken);
+                        rootNode.put("accessJWT",accessToken);
+
                         databaseSession.save(authToken);
+
+                        String refreshTokenJWT;
+                        if(RefreshToken.isExpired(user)){
+                            refreshTokenJWT = TokenUtils.createJWT(user,RefreshToken.EXPIRED_TIME);
+                            RefreshToken refreshToken = new RefreshToken(user,refreshTokenJWT);
+                            databaseSession.save(refreshToken);
+
+                        } else {
+                            refreshTokenJWT = RefreshToken.getRefreshTokenByUser(user);
+                        }
+                        rootNode.put("refreshJWT",refreshTokenJWT);
+
+                        rootNode.put("userId",user.getId());
+                        rootNode.put("firstName",user.getUserFirstName());
+                        rootNode.put("lastName",user.getUserLastName());
+                        rootNode.put("avtHref", user.getUserAvatar());
+
                         databaseSession.close();
 
+                        httpSession.setAttribute("isSkipHome",true);
                         httpSession.setAttribute("loginStatus", true);
                         httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
-                        out.print("{\"token\":\"" + jwtToken + "\"}");
-                        out.flush();
+
+
+                        Cookie cookie = new Cookie("JSESSIONID", httpSession.getId());
+                        cookie.setPath("/"); // Đặt đường dẫn của cookie để áp dụng cho toàn bộ tên miền
+                        resp.addCookie(cookie);
+
+
+
+                        json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+                        System.out.println(json);
+                        out.print(json);
                         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin Successfully!" + PrintColor.RESET);
                         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " +
                                 "(-*-) Ip Address: " + req.getRemoteAddr() + " - Local Address: " + req.getLocalAddr() + "\n" + PrintColor.GREEN +
@@ -106,6 +120,7 @@ public class LoginServlet extends HttpServlet {
             }
             System.out.println(PrintColor.RED + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin failed!" + PrintColor.RESET);
             httpSession.setAttribute("loginStatus", false);
+            httpSession.setAttribute("isSkipHome",false);
             httpSession.setAttribute("registerVerification", RegisterCode.LOGIN_FAILED);
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         } catch (Exception e){

@@ -32,9 +32,16 @@ public class AuthToken {
 
     @Column(name = "expiryTime", nullable = false)
     private LocalDateTime expiryTime;
+    public static final long EXPIRED_TIME = 3600000; //ms ~ 1 hour
 
     public AuthToken(){
         expiryTime = LocalDateTime.now().plusHours(1);
+    }
+
+    public AuthToken(User user, String accessToken){
+        this();
+        this.user = user;
+        this.accessToken = accessToken;
     }
 
     public boolean isExpired(){

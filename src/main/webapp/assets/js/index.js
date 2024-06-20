@@ -1,3 +1,4 @@
+import * as NotificationComponents from './components/notificationPanel.js'
 // import "./indexInitFunction.js";
 //Init
 
@@ -68,11 +69,46 @@ function safeReload(){
 
 
 //Listener
+function getAccessToken() {
+    return new Promise((resolve, reject) => {
+        let formData = new FormData();
+        formData.append("refreshToken", localStorage.getItem('refreshToken'));
+
+        fetch('api/getAccessToken', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.AccessJWT) {
+                console.log("Refresh access token complete");
+                localStorage.setItem('authToken', data.AccessJWT);
+                resolve(true);
+            } else {
+                console.log("Refresh token is not available");
+                localStorage.removeItem('refreshToken');
+                resolve(false);
+            }
+        })
+        .catch(error => {
+            console.error("Occur error while getting AT - ", error);
+            reject(false);
+        });
+
+        console.log("là refresh dữ chưa");
+    });
+}
+
+
+
+//This funtion is having a bug which will generate four access tokens when the old access token is expired and the refresh token is avaiable
+function relogin(){
     if(localStorage.getItem('authToken') && (loginStatus == "false")){
         const data = {
             authToken: localStorage.getItem("authToken")
         }
-        fetch('http://localhost:8080/ZenGaku_Full_war/relogin',{
+        fetch('/ZenGaku_Full_war/relogin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -86,23 +122,49 @@ function safeReload(){
                 throw new Error('Unauthorized');
             })
             .then((data) => {
-                if(data.isApprove){
+                if(data.isApprove == "true"){
                     sessionStorage.setItem('loginStatus',true);
+                    sessionStorage.setItem('userId',data.userId);
+                    sessionStorage.setItem('userFirstName',data.firstName);
+                    sessionStorage.setItem('userLastName',data.lastName);
+                    sessionStorage.setItem('userAvtHref',data.avtHref);
                     safeReload();
-                } else {
+                    return true;
+                } else { // <--- the bug occurs here
                     sessionStorage.setItem('loginStatus',false);
-                    console.log("authToken is expired")
+                    getAccessToken()
+                    .then(isTrue => {
+                        if(isTrue){
+                            console.log("Test3");
+                            return relogin();
+                        }
+                        console.log("authToken is expired")
+                    return false;
+                    })
+                    // console.log(boolValue);
+                    // if(boolValue){ 
+                    //     console.log("Test3");
+                    //     return relogin();
+                    // } 
+                    // console.log("authToken is expired")
+                    // return false;
                 }
 
             })
             .catch(error =>{
                 sessionStorage.setItem('loginStatus',false);
                 console.error('Error: ', error);
+                return false;
             })
     }
     else {
-        console.log('No token found, login will be continue...');
+        console.log('No token found or it is still login');
+        return false;
     }
+}
+
+relogin();
+    
 
 loginMenu.addEventListener('submit', function (event){
    event.preventDefault();
@@ -125,13 +187,24 @@ loginMenu.addEventListener('submit', function (event){
     })
        .then(response => response.json())
        .then(data =>{
-           if(data.token){
-               localStorage.setItem('authToken', data.token);
-               sessionStorage.setItem('loginStatus',true);
-               safeReload();
-           } else {
-               sessionStorage.setItem('loginStatus',false);
-               safeReload();
+            console.log(data);
+            if(data.accessJWT){
+                localStorage.setItem('authToken', data.accessJWT);
+                console.log("AT: " + data.accessJWT)
+                localStorage.setItem("refreshToken", data.refreshJWT)
+                console.log("RT: " + data.refreshJWT)
+                
+                sessionStorage.setItem('loginStatus',true);
+                sessionStorage.setItem('loginStatus',true);
+                sessionStorage.setItem('userId',data.userId);
+                sessionStorage.setItem('userFirstName',data.firstName);
+                sessionStorage.setItem('userLastName',data.lastName);
+                sessionStorage.setItem('userAvtHref',data.avtHref);
+                
+                safeReload();
+            }else {
+                sessionStorage.setItem('loginStatus',false);
+                safeReload();
            }
        })
        .catch(error => {
@@ -325,7 +398,7 @@ else if(verificationLevel == STATUS_CREATED) {
 
 if(loginStatus == "true") {
     treeButton.style.display = "block";
-    loginButton.style.display = "none";
+    loginButton.style.display = "none"; 
     console.log("signed in");
 }
 
@@ -338,17 +411,23 @@ window.addEventListener('load',function(){
 
 //Notify panel
 let isNotificationPanelAppear = false;
-document.getElementById('tree-button').addEventListener('mousedown',function(){
+document.getElementById('tree-button').addEventListener('click',function(){
     document.getElementById('notify-panel').style.display = 'block';
+    NotificationComponents.addNotificationPanel();
     document.addEventListener('click',function(event){
         let tmp = document.getElementById('notify-panel');
+        
         if(tmp.offsetLeft < event.clientX && event.clientX <tmp.offsetLeft+tmp.offsetWidth
             && tmp.offsetTop < event.clientY && event.clientY < tmp.offsetHeight+tmp.offsetTop
         ){
         }
         else {
+            // document.getElementById('notify-panel').style.display = 'none';
+            document.getElementById('notify-panel').innerHTML = "";
             document.getElementById('notify-panel').style.display = 'none';
         }
     })
 })
+
+
 

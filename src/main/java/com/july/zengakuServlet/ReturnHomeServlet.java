@@ -1,4 +1,4 @@
-package com.july.zengaku_full;
+package com.july.zengakuServlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.glassfish.jaxb.core.util.Which;
 
 import java.io.IOException;
 import java.util.Enumeration;

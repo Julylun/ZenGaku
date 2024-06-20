@@ -17,7 +17,8 @@ public class PostDTO {
     private String authorFirstName;
     private String authorLastName;
     private String authorAvatarLink;
-    public PostDTO(Post post){
+    private Boolean isLiked;
+    public PostDTO(Post post, Boolean isLiked){
         id = post.getId();
         uuid = post.getUuid();
         postText = post.getPostText();
@@ -28,5 +29,6 @@ public class PostDTO {
         authorFirstName = post.getAuthor().getUserFirstName();
         authorLastName = post.getAuthor().getUserLastName();
         authorAvatarLink = post.getAuthor().getUserAvatar();
+        this.isLiked = isLiked;
     }
 }
