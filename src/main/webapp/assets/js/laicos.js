@@ -2,6 +2,7 @@ import * as NotificationComponents from './components/notificationPanel.js'
 import * as PostCreation from './components/socialMedia/postCreation.js'
 import * as Post from './components/socialMedia/post.js'
 
+
 function getInfo(accessToken){
     let data = new FormData();
     data.append("accessToken",accessToken)
@@ -44,6 +45,8 @@ document.getElementById('nav-add-post').addEventListener('click',function(){
 })
 
 Post.loadPost();
+
+
 
 
 

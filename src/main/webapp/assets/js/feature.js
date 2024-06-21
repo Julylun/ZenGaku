@@ -85,6 +85,7 @@ function addMovementForDesktopDevices(pressedElement,movementElement){
     newPosX = cursorX - event.clientX;
     newPosY = cursorY - event.clientY;
 
+    console.log(newPosX + " " + newPosY)
     cursorX = event.clientX;
     cursorY = event.clientY;
 

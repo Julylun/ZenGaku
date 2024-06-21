@@ -40,9 +40,15 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
     let postContent = HTMLDom.createElement('div',['post-content'],post,{});
 
     
-    HTMLDom.createElement('img',['_post-image'],
+    let postImg = HTMLDom.createElement('img',['_post-image'],
         HTMLDom.createElement('div',['post-image'],postContent,{}),
     {src: postImageHref});
+    //Click on image
+    ['mouseup','ontouchcancel'].forEach((_event) => {
+        postImg.addEventListener(_event,() => {
+            displayFullImage(postImageHref);
+        })    
+    })
 
     
     let postControlPane = HTMLDom.createElement('div',['post-control-pane'],postContent,{});
@@ -61,10 +67,10 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
     console.log(isLiked);
     
 
-    //Click on image
+   
 
     //Like
-    ['mousedown','ontouchcancel'].forEach((_event) => {
+    ['mouseup','ontouchcancel'].forEach((_event) => {
         treeHeartButton.addEventListener(_event,() => {
             FetchAPI.likePost(uuid,sessionStorage.userId);
             treeNumber = ((typeof(treeNumber) == "string") ? parseInt(treeNumber) : treeNumber);
@@ -140,4 +146,21 @@ const loadPost = () => {
     .catch((error) => {
             console.log(error);
     }); 
+}
+
+const displayFullImage = (imgHref) => {
+    let fullImage = HTMLDom.createElement("img",[],
+        HTMLDom.createElement("div",[],document.body,{},"full-image"),
+    {src: imgHref})
+
+        fullImage.addEventListener('mouseup', () => {
+            hideFullImage();
+        });
+        fullImage.addEventListener('ontouchcancel', () => {
+            hideFullImage();
+        });
+}
+
+const hideFullImage = () => {
+    document.getElementById("full-image").remove();
 }

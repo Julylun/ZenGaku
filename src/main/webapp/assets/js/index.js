@@ -1,4 +1,5 @@
 import * as NotificationComponents from './components/notificationPanel.js'
+import * as WidgetDisplay from './features/ZenGakuWidget/WidgetDisplay.js'
 // import "./indexInitFunction.js";
 //Init
 
@@ -422,6 +423,21 @@ document.getElementById('tree-button').addEventListener('click',function(){
         }
     })
 })
+
+
+
+
+
+
+
+
+
+
+//TEST
+WidgetDisplay.widgetListenerInit();
+
+
+
 
 
 

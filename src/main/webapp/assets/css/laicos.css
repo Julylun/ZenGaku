@@ -36,6 +36,49 @@ body {
     align-items: center;
     overflow-x: hidden;
 }
+
+#uploading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.781);
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+#full-image {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.781);
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    
+}
+
+#full-image img {
+    height: 100vh;
+    width: 100vw;
+    object-fit: contain;
+}
+
+#full-image img:hover {
+    cursor: pointer;
+}
+
+#uploading img {
+    width: 20vw;
+    height: 20vw;
+}
+
 #nav-bar {
     min-width: 250px;
     width: 100vw;
@@ -671,6 +714,10 @@ min-width: 250px;
     max-height: 220px;
     max-width: 600px;
     object-fit: cover;
+}
+
+.post-image img:hover {
+    cursor: pointer;
 }
 
 .post-control-pane {

@@ -1,4 +1,4 @@
-import * as Auth from '../../features/SocialMedia/auth.js'
+import * as Auth from './auth.js'
 
 Auth.autoSetLoginStatus();
-Auth.checkAuth();
+// Auth.checkAuth();

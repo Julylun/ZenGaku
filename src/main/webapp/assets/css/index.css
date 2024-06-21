@@ -1305,3 +1305,240 @@
         font-weight: medium;
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TEST */
+
+
+
+
+
+
+     #to-do-list{
+        position: absolute;
+        background: rgba(0, 0, 0, 0.719);
+        /* border-radius: 8px; */
+        border-radius:  min(4vw,30px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        width: 90%;
+        max-width: 450px;
+        min-width: 360px;
+        backdrop-filter: blur(10px);
+        /* margin: 70px auto; */
+      }
+      
+      h1 {
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        margin-top: 0;
+      }
+      
+      .todo-input-container {
+        margin-bottom: 0px; 
+      }
+      
+      #next-challenge {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #666;
+        text-align: center;
+      }
+      
+      .task-list-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+        margin-top: 5px;
+      }
+      
+      #task-status {
+        color: #f8f8f8;
+        margin: 0;
+        font-family: Inter;
+        font-size: 14px;
+        text-align: center;
+      }
+      
+      #add-task {
+        padding: 8px 16px;
+        background-color: #ace1ff;
+        color: rgb(49, 49, 49);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+      
+      #add-task:hover {
+        background-color: #f3da94;
+      }
+      
+      .filter-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+      
+      .filter-container button {
+        margin: 0 10px;
+        padding: 8px 16px;
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+      
+      .filter-container button:hover {
+        background-color: #da920b;
+      }
+      
+      #task-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        max-height: min(50vh, 400px);
+        overflow: scroll;
+      }
+
+      #task-list::-webkit-scrollbar{
+        width: 0px;
+    }
+    /* ::-webkit-scrollbar{
+        width: 0px;
+    } */
+      
+      #task-list li {
+        width: 100%;
+        padding: 2px 0; 
+        border-bottom: 1px solid #ddd;
+        
+        /* border-radius: 20px; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s;
+      }
+      
+      #task-list li:hover {
+        /* background-color: #f9f9f9; */
+      }
+
+      #task-list li textarea {
+        vertical-align: middle;
+        border-radius: 10px;
+        resize: none;
+        font-family: Inter;
+        font-size: 19px;
+        color: #f9f9f9;
+        background-color: #ffffff00;
+        transition: all .3s ease-in-out;
+        
+      }
+
+      #task-list li textarea::-webkit-scrollbar{
+        width: 0px;
+    }
+
+    #task-list li textarea:focus{
+        background-color: #fff;
+        color: black;
+    }
+      
+      .task-info {
+        flex: 1;
+      }
+      
+      .task-title {
+        display: flex;
+        align-items: center;
+      }
+      
+      .task-title textarea {
+        flex: 1;
+        border: none;
+        /* border-bottom: 1px solid #ffffff; */
+        padding-top: 18px;
+        font-size: 16px;
+        outline: none;
+        resize: vertical;
+        transition: border-bottom 0.3s;
+      }
+      
+      .task-title textarea:focus {
+        /* border-bottom: 2px solid #af4c4f; */
+      }
+      
+      .task-details {
+        display: flex;
+        align-items: center;
+        margin-top: 2px;
+        font-family: Inter;
+        font-size: 12px;
+        color: #999;
+      }
+      
+      .task-details input[type="text"],
+      .task-details input[type="date"] {
+        flex: 1;
+        margin-right: 10px;
+        padding: 6px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+      }
+      
+      .strikethrough {
+        text-decoration: line-through;
+        color: #999;
+      }
+      
+      

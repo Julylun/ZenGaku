@@ -1,5 +1,6 @@
 import * as HTMLDom from '../HTMLDom.js'
 import * as Post from './post.js'
+import * as Load from './load.js'
 export {
     createUploadPost,
     setUploadPostPaneEnable,
@@ -77,6 +78,7 @@ function setUploadPostPaneEnable(){
 }
 
 function uploadPostAction(){
+    Load.displayUploadingAnimation();
     let formData = new FormData();
     formData.append('type', 'upPost');
     formData.append('caption', document.getElementById('upload-caption-input').value);
@@ -105,9 +107,11 @@ function uploadPostAction(){
                 true
             )
             setUploadPostPaneEnable();
+            Load.hideUploadingAnimation();
         }
     })
     .catch((error) => {
+        Load.hideUploadingAnimation();
         console.error('Error while post...',error);
     })
 }
