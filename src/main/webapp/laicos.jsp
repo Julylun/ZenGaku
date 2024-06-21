@@ -6,7 +6,7 @@
         <link rel = "stylesheet" href="assets/css/laicos.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <script src="assets/js/auth.js"></script>
+        <script type = "module" src="assets/js/features/SocialMedia/default.js"></script>
 
     </head>
     <body>
@@ -105,9 +105,6 @@
         <!-- Default configuration -->
         <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 
-        <script type="module" src="assets/js/components/HTMLDom.js"></script>
-        <script type = "module" src = "assets/js/components/notificationPanel.js"></script>
-        <script type = "module" src = "assets/js/laicosFuntion.js"></script>
         <script type="module" src = "assets/js/laicos.js"></script>
         
     </body>

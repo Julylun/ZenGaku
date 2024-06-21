@@ -142,12 +142,6 @@ function relogin(){
                     return false;
                     })
                     // console.log(boolValue);
-                    // if(boolValue){ 
-                    //     console.log("Test3");
-                    //     return relogin();
-                    // } 
-                    // console.log("authToken is expired")
-                    // return false;
                 }
 
             })

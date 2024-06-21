@@ -1,3 +1,8 @@
+export {
+    autoSetLoginStatus,
+    checkAuth
+}
+let loginStatus;
 //  /\      /\                FIVIL - LAZY CATS
 // {  `---'   }
 // {  O'  0'  }
@@ -17,13 +22,17 @@
 
 //Declare -- Define variable and constant------------------------------
 //Session Value
-let loginStatus = sessionStorage.getItem('loginStatus');
-if (loginStatus == null) {
-    loginStatus = false;
+const autoSetLoginStatus = () => {
+    loginStatus = sessionStorage.getItem('loginStatus');
+    if (loginStatus == null) {
+        loginStatus = false;
+    }
 }
 
-if(loginStatus === false) {
-    window.location.href = "/ErrorPages/Error401.jsp";
+const checkAuth = () => {
+    if(loginStatus === false) {
+        window.location.href = "/ErrorPages/Error401.jsp";
+    }
 }
 
 // fetch('/ZenGaku_Full_war/api/post',{

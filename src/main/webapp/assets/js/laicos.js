@@ -1,5 +1,6 @@
-import * as laicosFunction from './laicosFuntion.js'
 import * as NotificationComponents from './components/notificationPanel.js'
+import * as PostCreation from './components/socialMedia/postCreation.js'
+import * as Post from './components/socialMedia/post.js'
 
 function getInfo(accessToken){
     let data = new FormData();
@@ -39,8 +40,10 @@ document.getElementById('tree-button').addEventListener('mousedown',function(){
 
 document.getElementById('nav-add-post').addEventListener('click',function(){
     console.log(':D')
-    laicosFunction.setUploadPostPaneEnable();
+    PostCreation.setUploadPostPaneEnable();
 })
+
+Post.loadPost();
 
 
 
