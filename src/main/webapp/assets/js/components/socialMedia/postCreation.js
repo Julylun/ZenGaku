@@ -98,7 +98,7 @@ function uploadPostAction(){
                 data.uuid,
                 data.authorAvatarLink,
                 data.authorFirstName + " " + data.authorLastName,
-                2023,
+                2024,
                 data.imageLink,
                 data.treeNumber,
                 data.caption,

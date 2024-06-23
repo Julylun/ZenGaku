@@ -29,7 +29,7 @@
 
         <!-- Newsfeed -->
         <div class = "newsfeed">
-            <div class = "post">
+            <!-- <div class = "post">
                 <div class = "post-user-information">
                     <div class = "post-avatar">
                         <img class = "avatar-image" src = "assets/resources/img/HoangLuan_Avt_demo.png">
@@ -74,7 +74,7 @@
                 <div class = "line-container">
                     <div class = "end-post-line"></div>
                 </div>
-            </div>
+            </div> -->
 
             </div>
 

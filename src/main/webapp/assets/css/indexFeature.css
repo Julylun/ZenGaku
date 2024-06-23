@@ -1075,9 +1075,227 @@
 
 
 
+/*========== CALCULATOR ===============*/
+#calculator {
+    background-color: rgba(0, 0, 0, 0.658);
+    position: absolute;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.438);
+    overflow: hidden;
+    width: 320px; 
+    max-width: 400px; 
+    /* margin: 20px auto;  */
+
+    /* @media (max-width: 360px) {
+        width: 0.83vw; 
+        margin: 0.83vw; 
+    } */
+}
+
+.calculator-display {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.53);
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.calculator-display input {
+    width: 100%;
+    border: none; 
+    background: none;
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    padding: 0; 
+    outline: none;
+}
+
+#historyToggle {
+    background-color: rgba(0, 0, 0, 0.468);
+    border: none; 
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-right: 10px;
+}
+
+#historyToggle:hover {
+    background-color: rgba(0, 0, 0, 0.505); 
+}
+
+.calculator-history {
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgba(20, 17, 17, 0.395);
+    color: #aaa;
+    font-size: 0.8rem;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: none;
+}
+
+.calculator-button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.calculator-button-container .calculator-button-item {
+    background-color: rgba(18, 16, 16, 0.443); 
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none; 
+}
+
+.calculator-button-container .calculator-button-item:hover {
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.calculator-button-container .calculator-button-item:active {
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.calculator-button-container .calculator-operator {
+    background-color: rgba(39, 35, 42, 0.8); 
+}
+
+.alculator-button-container .calculator-operator:hover {
+    background-color: rgba(12, 9, 14, 0.543); 
+}
+
+.alculator-button-container .calculator-operator:active {
+    background-color:  rgba(12, 9, 14, 0.612);
+}
 
 
 
+
+/*============== ZENGAKU ASSISTANT ============*/ 
+#zengaku-assistant {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.637);
+    backdrop-filter: blur(10px);
+    width: 320px;
+    height: 500px;
+    border-radius: 20px;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+}
+
+#zengaku-assistant-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+#zengaku-assistant-header p {
+    color: #fff;
+    font-family: Inter;
+    font-weight: bold;
+}
+
+#zengaku-assistant-content {
+    /* background-color: #0ff; */
+    height: 380px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#zengaku-assistant-content ul {
+    list-style-type: none;
+    /* background-color:#f0f; */
+    width: 320px;
+    height: 380px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+#zengaku-assistant-content ul::-webkit-scrollbar {
+    width: 0px;
+}
+
+#zengaku-assistant-content ul li {
+    margin: 0px 5px 0px 5px;
+    font-family: Inter;
+}
+
+.zengaku-name {
+    color: white;
+}
+
+.zengaku-name p {
+    margin: 10px 5px 0px 8px;
+}
+
+#zengaku-assistant-content ul .asssistant-reply {
+    align-self: flex-start;
+}
+
+.user-reply {
+    align-self: flex-end;
+}
+
+#zengaku-assistant-content ul li .zengaku-assistant-content-messsage {
+    width: auto;
+    max-width: 180px;
+    height: auto;
+    background-color: #fff;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    
+}
+
+#zengaku-assistant-content ul li .zengaku-assistant-content-messsage p{
+    margin: 0;
+    word-wrap: break-word;
+    font-size: 15px;
+    color: #000
+}
+
+
+
+
+#zengaku-assistant-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    
+}
+
+#zengaku-assistant-footer textarea {
+    width: 75%;
+    height: calc(70% - 15px);
+    padding-top: 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+}
+
+#zengaku-assistant-footer button {
+    width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    background-color: #84eefa;
+    border: none;
+}
 
 
 

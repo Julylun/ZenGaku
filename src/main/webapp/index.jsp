@@ -23,22 +23,36 @@
     <span>ZENGAKU</span>
 </div>
 
-<!-- <div id = "to-do-list">
-    <h1 id = "task-temp-move-point">My checklist</h1>
-    <div class="todo-input-container">
-        <p id="next-challenge">What is your next challenge?</p>
-    </div>
-    <ul id="task-list"></ul>
-    <div class="task-list-container">
-        <p id="task-status">No tasks</p>
-        <button id="add-task">+ Add task</button>
-    </div>
-    <div class="filter-container">
-        <button id = "task-all-button">All</button>
-        <button id = "task-completed-button">Completed</button>
-        <button id = "task-incomplete-button" >Incomplete</button>
-    </div>
-</div> -->
+    <!-- <div id = 'zengaku-assistant' class = 'auto-moving'>
+        <div id = 'zengaku-assistant-header'>
+            <p>ZenGaku Asssistant</p>
+        </div>
+        <div class = "config-line"></div>
+        <div id = 'zengaku-assistant-content'>
+            <ul id = 'zengaku-assistant-message-container'>
+                <li class = 'asssistant-reply'>
+                    <div class = 'zengaku-assistant-name zengaku-name'>
+                        <p>ZenGaku Asssistant</p>
+                    </div>
+                    <div class = 'zengaku-assistant-content-messsage'>
+                        <p>MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage</p>
+                    </div>
+                </li>
+                <li class = 'user-reply'>
+                    <div class = 'zengaku-assistant-user-name zengaku-name'>
+                        <p>User</p>
+                    </div>
+                    <div class = 'zengaku-assistant-content-messsage'>
+                        <p>Message</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id = 'zengaku-assistant-footer'>
+            <textarea id = 'zengaku-assistant-input' placeholder="Type your message"></textarea>
+            <button id = 'zengaku-assistant-send-button'>Send</button>
+        </div>
+    </div> -->
 
 
 <div id = "notify-panel" style="display: none;"></div>
@@ -202,12 +216,12 @@
             <p class = "item-text">Todo list</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
-            <p class = "item-text">Coming soon</p>
+            <img class = "item-image" id = "calculator-feature" src="assets/resources/img/widget/calculator_logo.svg" title="Calculator">
+            <p class = "item-text">Calculator</p>
         </div>
         <div class = "menu-item">
-            <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
-            <p class = "item-text">Coming soon</p>
+            <img class = "item-image" id = "zengaku-assistant-feature" src="assets/resources/img/widget/zengaku_assistant_logo.svg" title="ZenGaku Asssistant">
+            <p class = "item-text">ZenGaku Asssistant</p>
         </div>
         <div class = "menu-item">
             <img class = "item-image" src="assets/resources/img/commingSoon.svg" title="Comming soon...">
