@@ -1,0 +1,55 @@
+.background-config-item {
+    width: 100%;
+    margin: 3px 0 3px 0;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+    transition: ease-in-out .2s;
+}
+
+.background-config-item:hover{
+    width: 100%;
+    margin: 3px 0 3px 0;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.400);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+
+
+.background-config-item-selected {
+    background-color: rgba(255, 255, 255, 0.675);
+}
+
+.background-config-add-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-self: center; */
+    height: calc((90vw - 50px - 25px)*13/15);
+    max-height: 294px;
+}
+
+.background-config-type-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.background-config-field {
+    width: 60vw;
+    height: 10vw;
+    border-radius: 3vw;
+    max-height: 50px;
+    max-width: 350px;
+    min-width: 155px;
+
+}
+
+.background-config-add-link-button {
+    /* background-color: aqua; */
+    height: 40px;
+    width: 80px;
+}

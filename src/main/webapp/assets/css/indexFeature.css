@@ -299,33 +299,12 @@
 
 }
 
-.choice-container .background-config-item {
-    width: 100%;
-    margin: 3px 0 3px 0;
-    border-top: 0.5px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
-    transition: ease-in-out .2s;
-}
-
-.choice-container .background-config-item:hover{
-    width: 100%;
-    margin: 3px 0 3px 0;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.400);
-    border-top: 0.5px solid rgba(255, 255, 255, 0.5);
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
-}
-
 .choice-container-selected li {
     width: 100%;
     margin: 3px 0 3px 0;
     background-color: rgba(255, 255, 255, 0.7);
     border-top: 0.5px solid rgba(255, 255, 255, 0.5);
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
-}
-
-.background-config-item-selected {
-    background-color: rgba(255, 255, 255, 0.675);
 }
 
 .choice-container ul li p {
@@ -356,14 +335,44 @@
     cursor: pointer;
 }
 
-
-
 .content-button-item:hover {
     background: rgba(255, 255, 255, 0.293);
 }
 
 .content-button-item:active{
     background: rgba(255, 255, 255, 0.478);
+}
+
+
+
+
+
+
+
+/* Background configuration */
+
+
+.background-config-item {
+    width: 100%;
+    margin: 3px 0 3px 0;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+    transition: ease-in-out .2s;
+}
+
+.background-config-item:hover{
+    width: 100%;
+    margin: 3px 0 3px 0;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.400);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+
+
+.background-config-item-selected {
+    background-color: rgba(255, 255, 255, 0.675);
 }
 
 .background-config-add-content {

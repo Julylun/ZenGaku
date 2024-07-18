@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Inter;
+    src: url('../../resources/font/Inter/Inter-ExtraBold.otf');
+    font-weight: bold;
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
+
+@font-face {
+    font-family: Inter;
+    src: url('../../resources/font/Inter/Inter-Medium.otf');
+    font-weight: medium;
+
+    /* src: url('../resources/font/Inter/Inter-BlackItalic.otf'); */
+}
+
+@font-face {
+    font-family: Kavoon;
+    src: url('../../resources/font/Kavoon/Kavoon-Regular.ttf');
+    font-weight: medium;
+}

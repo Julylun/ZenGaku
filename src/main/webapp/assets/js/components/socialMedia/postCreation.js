@@ -85,7 +85,8 @@ function uploadPostAction(){
     formData.append('image', document.getElementById('upload-button-input').files[0]);
     formData.append('accessToken',localStorage.getItem("authToken"));
 
-    fetch('/ZenGaku_Full_war/api/post',{
+    // old link -> /ZenGaku_Full_war/api/post
+    fetch('/api/post',{
         method: 'POST',
         // headers: {'Content-Type': 'multipart/form-data'},
         body: formData

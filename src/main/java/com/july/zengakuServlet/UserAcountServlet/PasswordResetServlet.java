@@ -21,6 +21,8 @@ import java.util.List;
 
 import com.zengaku.mvc.controller.SecureFactory;
 
+//NEED FIX -> Change static link at line 54 into dynamic link
+
 @WebServlet(name = "Password-Reset", urlPatterns = {"/recover"})
 public class PasswordResetServlet extends HttpServlet {
 

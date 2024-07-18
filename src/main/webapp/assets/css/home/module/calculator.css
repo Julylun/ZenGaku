@@ -1,0 +1,97 @@
+#calculator {
+    background-color: rgba(0, 0, 0, 0.658);
+    position: absolute;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.438);
+    overflow: hidden;
+    width: 320px; 
+    max-width: 400px; 
+    /* margin: 20px auto;  */
+
+    /* @media (max-width: 360px) {
+        width: 0.83vw; 
+        margin: 0.83vw; 
+    } */
+}
+
+.calculator-display {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.53);
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.calculator-display input {
+    width: 100%;
+    border: none; 
+    background: none;
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    padding: 0; 
+    outline: none;
+}
+
+#historyToggle {
+    background-color: rgba(0, 0, 0, 0.468);
+    border: none; 
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-right: 10px;
+}
+
+#historyToggle:hover {
+    background-color: rgba(0, 0, 0, 0.505); 
+}
+
+.calculator-history {
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgba(20, 17, 17, 0.395);
+    color: #aaa;
+    font-size: 0.8rem;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: none;
+}
+
+.calculator-button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.calculator-button-container .calculator-button-item {
+    background-color: rgba(18, 16, 16, 0.443); 
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none; 
+}
+
+.calculator-button-container .calculator-button-item:hover {
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.calculator-button-container .calculator-button-item:active {
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.calculator-button-container .calculator-operator {
+    background-color: rgba(39, 35, 42, 0.8); 
+}
+
+.alculator-button-container .calculator-operator:hover {
+    background-color: rgba(12, 9, 14, 0.543); 
+}
+
+.alculator-button-container .calculator-operator:active {
+    background-color:  rgba(12, 9, 14, 0.612);
+}

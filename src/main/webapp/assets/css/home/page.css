@@ -1,0 +1,25 @@
+html {
+    min-width: 270px;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 270px;
+    overflow: hidden;
+    background-color: black;
+    /* height: 100%; */
+    margin: 0;
+    background-image: url("../../resources/img/defaultBackground/aerial-view-tokyo-cityscape-with-fuji-mountain-japan.jpg");
+    background-attachment: fixed;
+    background-position: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media(min-width: 767px) {
+    body {
+
+    }
+
+}

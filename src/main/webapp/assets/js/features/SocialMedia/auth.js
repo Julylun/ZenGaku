@@ -35,7 +35,7 @@ const checkAuth = () => {
     }
 }
 
-fetch('/ZenGaku_Full_war/api/post',{
+fetch('/api/post',{
     method: 'GET'
 }).then((response) => {
         console.log(response.json());

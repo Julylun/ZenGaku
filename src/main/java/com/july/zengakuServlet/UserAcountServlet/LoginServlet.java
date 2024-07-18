@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.zengaku.mvc.controller.TokenUtils;
 import com.zengaku.mvc.model.*;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
 import org.apache.commons.codec.binary.Base64;
 
@@ -23,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet(name = "login", value = "/login")
+@MultipartConfig
 public class LoginServlet extends HttpServlet {
     private final String SI_CO_RET_KI = "HOANGLUANHONGHAINGUYENVYDUYENLANHHOANGLUANHONGHAINGUYENVYDUYENLANH";
 
@@ -49,10 +51,14 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            JsonReader jsonReader = Json.createReader(req.getInputStream());
-            JsonObject jsonObject = jsonReader.readObject();
-            String userName = jsonObject.getString("userName");
-            String userPassword = jsonObject.getString("userPassword");
+//            JsonReader jsonReader = Json.createReader(req.getInputStream());
+//            JsonObject jsonObject = jsonReader.readObject();
+//            String userName = jsonObject.getString("userName");
+//            String userPassword = jsonObject.getString("userPassword");
+            String userName = req.getParameter("userName");
+            String userPassword = req.getParameter("userPassword");
+            System.out.println("[LoginServlet]<doPost> username: " + userName + " - userpassword: " + userPassword);
+
             resp.setHeader("Access-Control-Allow-Origin", "*");
             resp.setContentType("application/json");
             PrintWriter out = resp.getWriter();

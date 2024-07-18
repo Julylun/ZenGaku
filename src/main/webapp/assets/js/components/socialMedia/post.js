@@ -136,7 +136,8 @@ const loadPost = () => {
     let formData = new FormData();
     formData.append('type','getPost');
     formData.append('userId',sessionStorage.userId);
-    fetch('/ZenGaku_Full_war/api/post',{
+    // old link -> /ZenGaku_Full_war/api/post
+    fetch('/api/post',{
         method: 'POST',
         body: formData
     }).then((response) => response.json()

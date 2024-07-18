@@ -33,7 +33,7 @@ public class LikePost extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
+//        super.doPost(req, resp
         try{
             System.out.println(PrintColor.YELLOW_BOLD_BRIGHT + "--- LikePost Post ---" + PrintColor.RESET);
             System.out.println(PrintColor.GREEN + "IP Address: " + req.getRemoteAddr() + PrintColor.RESET);
