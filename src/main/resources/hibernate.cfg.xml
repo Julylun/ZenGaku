@@ -7,7 +7,7 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> <!-- Updated driver class -->
         <property name="connection.url">jdbc:mysql://localhost:3306/zengaku_db</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">12345</property>
+        <property name="connection.password"></property>
 
         <!-- JDBC connection pool -->
         <property name="connection.pool_size">10</property>
@@ -34,6 +34,8 @@
         <mapping class="com.zengaku.mvc.model.RefreshToken"/>
         <mapping class="com.zengaku.mvc.model.Notification"/>
         <mapping class="com.zengaku.mvc.model.TreeHeartUser"/>
+        <mapping class="com.zengaku.mvc.model.Friendship"/>
+
 
 
 
