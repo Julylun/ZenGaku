@@ -44,6 +44,7 @@ public class FriendshipAPI extends HttpServlet {
         try {
             if (pathInfo == null) {
                 switch (req.getParameter("type")) {
+                    // /api/friendship?type=SendFriendRequest&fromId=  3 &toId=  4
                     case "SendFriendRequest": {
 
                         String senderId = req.getParameter("fromId");
@@ -58,7 +59,7 @@ public class FriendshipAPI extends HttpServlet {
                         out.flush();
                         break;
                     }
-
+                    // /api/friendship?type=AcceptFriendRequest&friendRequestId= 2
                     case "AcceptFriendRequest": {
                         String friendRequestId = req.getParameter("friendRequestId");
 
@@ -73,23 +74,78 @@ public class FriendshipAPI extends HttpServlet {
                             out.println("{\"isSuccessful\":\"true\"}");
                             out.flush();
                         }
+                        break;
 
                     }
-
-
+                    // /api/friendship?type=GetFriends&userId= 4
+                    // output:   [{"id":"1"},{"id":"2"}] or []
                     case "GetFriends": {
-                        String userId = req.getParameter("fromId");
-
+                        String userId = req.getParameter("userId");
+                        List<Friendship> friends = getFriends(databaseSession, Long.valueOf(userId));
+                        out.println(friendsToJson(friends));
+                        out.flush();
+                        break;
+                    }
+                    // /api/friendship?type=GetFriendRequests&userId= 4
+                    // output:   [{"id":"1"},{"id":"2"}] or []
+                    case "GetFriendRequests": {
+                        String userId = req.getParameter("userId");
+                        List<Friendship> friendRequests = getFriendRequests(databaseSession, Long.valueOf(userId));
+                        out.println(friendRequestsToJson(friendRequests));
+                        out.flush();
+                        break;
                     }
 
                 }
             }
 
         } catch (Exception e) {
-
+            out.println("{\"isSuccessful\":\"false\"}");
             e.printStackTrace();
         }
 
 
+    }
+
+    private List<Friendship> getFriends(Session databaseSession, Long userId) {
+        String hql = "FROM Friendship f WHERE (f.fromUser.id = :userId OR f.toUser.id = :userId) AND f.status = :status";
+        Query<Friendship> query = databaseSession.createQuery(hql, Friendship.class);
+        query.setParameter("userId", userId);
+        query.setParameter("status", Status.FriendshipStatus.Friend.toString());
+        return query.getResultList();
+    }
+
+    private List<Friendship> getFriendRequests(Session databaseSession, Long userId) {
+        String hql = "FROM Friendship f WHERE f.toUser.id = :userId AND f.status = :status";
+        Query<Friendship> query = databaseSession.createQuery(hql, Friendship.class);
+        query.setParameter("userId", userId);
+        query.setParameter("status", Status.FriendshipStatus.PendingFriend.toString());
+        return query.getResultList();
+    }
+
+    private String friendsToJson(List<Friendship> friends) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < friends.size(); i++) {
+            Friendship f = friends.get(i);
+            sb.append("{\"id\":\"").append(f.getId()).append("\"}");
+            if (i < friends.size() - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    private String friendRequestsToJson(List<Friendship> friendRequests) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < friendRequests.size(); i++) {
+            Friendship f = friendRequests.get(i);
+            sb.append("{\"id\":\"").append(f.getId()).append("\"}");
+            if (i < friendRequests.size() - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }
