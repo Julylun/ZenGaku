@@ -1,7 +1,20 @@
 import * as HTMLDom from '../HTMLDom.js'
 import * as CounterFunction from '../../features/ZenGakuWidget/counter.js'
+import * as Movement from '../../features/movement.js'
+
+export {
+    displayCounter
+}
+
 
 const displayCounter = () => {
+    { //Remove background configuration if it is existed
+        let tmpVal = document.getElementById('timer-container');
+        if(tmpVal) {
+            tmpVal.remove();
+            return
+        }
+    }
     const createGraphic = () => {
         let content = document.getElementsByClassName('content').item(0);
 
@@ -38,29 +51,30 @@ const displayCounter = () => {
         ,{innerText: 'Start'});
 
         let timerPauseButton = HTMLDom.createElement('div',['timer-button'],counter,{},'timer-pause-button');
-        HTMLDom.createElement('p',[], timerPauseButton,{innerText: 'Pause'}).style.display = 'none';
+        HTMLDom.createElement('p',[], timerPauseButton,{innerText: 'Pause'});
         timerPauseButton.style.display = 'none';
 
         let timerSkipButton = HTMLDom.createElement('div',['timer-button'],counter,{},'timer-skip-button');
-        HTMLDom.createElement('p',[], timerSkipButton,{innerText: 'Skip'}).style.display = 'none';
+        HTMLDom.createElement('p',[], timerSkipButton,{innerText: 'Skip'});
         timerSkipButton.style.display = 'none';
         
         let timerStopButton = HTMLDom.createElement('div',['timer-button'],counter,{},'timer-stop-button');
-        HTMLDom.createElement('p',[], timerStopButton,{innerText: 'Stop'}).style.display = 'none';
+        HTMLDom.createElement('p',[], timerStopButton,{innerText: 'Stop'});
         timerStopButton.style.display = 'none';
 
         let timerContinueButton = HTMLDom.createElement('div',['timer-button'],counter,{},'timer-continue-button');
-        HTMLDom.createElement('p',[],timerContinueButton,{innerText: 'Continue'}).style.display = 'none';
+        HTMLDom.createElement('p',[],timerContinueButton,{innerText: 'Continue'});
         timerContinueButton.style.display = 'none';
 
         return counter;
     }
     const addListener = (HTMLCounter) => {
         CounterFunction.counterDefaultConfig();
+        Movement.addMovement(document.getElementById('timer-move-area'),HTMLCounter);
     }
     
     let counter = createGraphic();
     addListener(counter);
 }
 
-displayCounter();
+// displayCounter();

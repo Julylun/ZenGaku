@@ -83,6 +83,6 @@ const getGeminiReply = async (message) => {
 const showReply = async (message) => {
     const reply = await getGeminiReply(message+" ");
     Assistant.addMessage('assistant',reply,(localStorage.getItem('userName') == null) ? 'Guest' : localStorage.getItem('userName'));
-    window.scrollTo(0, document.getElementById('zengaku-assistant-message-container').scrollHeight);
+    // window.scrollTo(0, document.getElementById('zengaku-assistant-message-container').scrollHeight);
     return reply;
 };

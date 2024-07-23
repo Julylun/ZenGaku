@@ -10,7 +10,7 @@
     border-radius: min(4vw,30px);
     backdrop-filter: blur(14px);
     overflow: hidden;
-    display: none;
+    /* display: none; */
 }
 
 .content-item-title {

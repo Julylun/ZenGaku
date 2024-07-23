@@ -4,6 +4,11 @@ export {
     timerButtonAddEvent
 }
 
+let endAudioClock = new Audio("assets/resources/audio/endTimerSound.mp3");
+let breakSound = new Audio("assets/resources/audio/breakSound.mp3")
+endAudioClock.loop = false;
+
+
 //Constant
 const TIMER_POMODORO_MODE = 0;
 const TIMER_SHORTBREAK_MODE = 1;
@@ -302,8 +307,10 @@ function timerButtonAddEvent(){
 
 function startButtonAddEvent() {
     console.log(document.getElementById('timer-start-button'));
+    document.getElementById('timer-start-button').addEventListener('mousedown',function(){
+        console.log("HEHEHE")
+    });
     document.getElementById('timer-start-button').addEventListener('click',function(){
-        console.log("HAAH")
         let choiceContainer = document.getElementById('timer-choice-container');
         var animationTime = 0;
         console.log("[counter/feature]<startButtonAddEvent>: clicked");
@@ -316,7 +323,7 @@ function startButtonAddEvent() {
           if(animationTime > 500){
             clearInterval(intervalId);
             animationTime = 0;
-            id = setInterval(function(){
+            let id = setInterval(function(){
               animationTime+=20;
               if(animationTime > 300){
                 clearInterval(id);
@@ -349,7 +356,9 @@ function startButtonAddEvent() {
 
 
 const counterDefaultConfig = () => {
+    
     startButtonAddEvent();
     timerButtonAddEvent();
+    
     
 }

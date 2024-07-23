@@ -35,11 +35,7 @@ const checkAuth = () => {
     }
 }
 
-fetch('/api/post',{
-    method: 'GET'
-}).then((response) => {
-        console.log(response.json());
-    })
+
 
 
 
