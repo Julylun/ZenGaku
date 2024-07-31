@@ -1,46 +1,27 @@
 import * as Assistant from '../../components/ZenGakuWidget/ZenGakuAssistant.js';
 
+
 export {
     getGeminiReply,
     showReply
 }
 
-// const getGeminiReply = (message) => {
-//     const geminiApiKey = "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";
-//     const geminiApiUrl = "https://api.groq.com/openai/v1/chat/completions";
-//     const geminiRequestBody = {
-//     messages: [
-//         {
-//         role: "user",
-//         content: message,
-//         },
-//     ],
-//     model: "mixtral-8x7b-32768",
-//     };
+const geminiAPI = async (message) => {
+    const geminiAPIKey = 'AIzaSyDSqL7LpA1vryPHodJ-Mjbnb8c0pJYQC_Q';
+    const geminiAPIUrl = 'https://api.gemini.com/v1/pubticker/btcusd'
 
-    
-//     return fetch(geminiApiUrl, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${geminiApiKey}`,
-//         },
-//         body: JSON.stringify(geminiRequestBody),
-//       })
-//         .then((response) => {
-//           if (response.ok) {
-//             return response.json()
-//           } else {
-//             throw new Error(`Error: ${response.status} ${response.statusText}`);
-//           }
-//         })
-//         .then((data) => {
-//             return data.choices[0].message.content;
-//         })
-//         .catch((error) => console.error(error));
 
-//     // return str;
-// }
+    // {
+    //     method: 'GET',
+    //     url: 'https://api.gemini.com/v1/pubticker/btcusd',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'X-Gemini-API-Key': api_key,
+    //       'X-Gemini-API-Sign': generateSignature(// ... ), // Implement signature generation
+    //     }
+    //   };
+
+}
 
 
 const getGeminiReply = async (message) => {

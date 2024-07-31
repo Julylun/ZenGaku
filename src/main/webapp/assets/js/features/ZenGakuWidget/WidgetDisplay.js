@@ -1,7 +1,7 @@
 import * as TodoList from '../../components/ZenGakuWidget/todolist.js'
 import * as Calculator from '../../components/ZenGakuWidget/calculator.js'
 import * as ZenGakuAssistant from '../../components/ZenGakuWidget/ZenGakuAssistant.js'
-import * as Timer from '../../components/ZenGakuWidget/counter.js'
+import * as Timer from '../../components/ZenGakuWidget/counter/counter.js'
 import * as BackgroundConfiguration from '../../components/ZenGakuWidget/backgroundConfiguration.js'
 import * as SoundConfiguration from '../../components/ZenGakuWidget/soundConfiguration.js'
 // import * as Quotes from '../../components/ZenGakuWidget/'

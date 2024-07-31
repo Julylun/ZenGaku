@@ -11,10 +11,11 @@
         <listener-class>com.july.zengakuServlet.Default</listener-class>
     </listener>
 
-<!--    <error-page>-->
-<!--        <error-code>401</error-code>-->
-<!--        <location>../ErrorPages/Error401.jsp</location>-->
-<!--    </error-page>-->
+
+    <error-page>
+        <error-code>401</error-code>
+        <location>/ErrorPages/Error401.jsp</location>
+    </error-page>
 </web-app>
 
 

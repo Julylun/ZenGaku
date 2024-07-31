@@ -1,6 +1,7 @@
 import * as HTMLDom from '../HTMLDom.js'
 import * as FetchAPI from '../../features/ZenGakuWidget/fetchAPI.js'
 import * as Movement from '../../features/movement.js'
+import * as Gemini from '../../features/ZenGakuWidget/GeminiAI.js'
 
 export {
     displayZenGakuAssistant,
@@ -89,15 +90,21 @@ const displayZenGakuAssistant = () => {
     HTMLDom.createElement('button',[],footer,{innerText: "Send"},'zengaku-assistant-send-button');
 
     addMessage('assistant','Hi! How can I help you?',(localStorage.getItem('userName') == null) ? 'Guest' : localStorage.getItem('userName'));
-    document.getElementById('zengaku-assistant-send-button').addEventListener('click', () => {
+    document.getElementById('zengaku-assistant-send-button').addEventListener('click', async () => {
         addMessage('user',
             document.getElementById('zengaku-assistant-input').value,
             (sessionStorage.getItem('userLastName') == null) ? 'Guest' : (sessionStorage.getItem('userLastName') + " " + sessionStorage.getItem('userFirstName'))
         )
         
         // addMessage('assistant',FetchAPI.getGeminiReply(document.getElementById('zengaku-assistant-input').value),(localStorage.getItem('userName') == null) ? 'Guest' : localStorage.getItem('userName'));
-        FetchAPI.showReply(document.getElementById('zengaku-assistant-input').value);
-        document.getElementById('zengaku-assistant-input').value = "";
+        // FetchAPI.showReply(document.getElementById('zengaku-assistant-input').value);
+        const userText = document.getElementById('zengaku-assistant-input').value;
+        document.getElementById('zengaku-assistant-input').value = '';
+        addMessage('assistant',
+            await Gemini.reply(userText),
+            (localStorage.getItem('userName') == null) ? 'Guest' : localStorage.getItem('userName')
+        );
+        // document.getElementById('zengaku-assistant-input').value = "";
     });
 
     Movement.addMovement(document.getElementById('zengaku-assistant-header'),zengakuAssistant);

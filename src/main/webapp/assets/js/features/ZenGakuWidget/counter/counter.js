@@ -1,3 +1,5 @@
+import * as CounterWidget from '../../../components/ZenGakuWidget/counter/CounterWidget.js'
+
 export {
     counterDefaultConfig,
     startButtonAddEvent,
@@ -26,7 +28,7 @@ class Time {
   }
 };
 
-let pomodoroTime = new Time(0,0,10,1,1);
+let pomodoroTime = new Time(0,0,3,1,1);
 let shortBreakTime = new Time(0,15,0,0,0);
 let longBreakTime = new Time(0,40,0,0,0);
 
@@ -228,6 +230,28 @@ function breakCounter(hour, min, sec, breakTime, repeatNumber) {
   let counterSec;
   let timerCircle = document.getElementById('timer-ring');
   let counterText = document.getElementById('timer-count-text');
+
+
+
+
+
+
+
+
+
+
+  CounterWidget.displayRelaxMusicMenu();
+
+
+
+
+
+
+
+
+
+
+
   function clickOnSkip(){
     isSkiped = true;
     timerCircle.style.transform = "rotate(0)";

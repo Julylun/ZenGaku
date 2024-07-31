@@ -39,72 +39,18 @@ import static java.util.Collections.replaceAll;
 @WebServlet("/api/post/*")
 @MultipartConfig
 public class PostAPI extends HttpServlet {
-
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		Session databaseSession = HibernateUtils.getSessionFactory().openSession();
-//		String json;
-//		String pathInfo = req.getPathInfo(); // request to "/api/post/abc" => pathInfo = "/abc"
-//
-//		if (pathInfo != null) {
-//			// get post by id
-//			String uuid = pathInfo.substring(1); // remove the leading '/'
-//			String hql = "FROM Post p WHERE p.uuid= :uuid";
-//			Query query = databaseSession.createQuery(hql, Post.class);
-//			query.setParameter("uuid", uuid);
-//			Post post = (Post) query.getResultList().get(0);
-//
-//			ObjectMapper mapper = new ObjectMapper();
-//			mapper.registerModule(new JavaTimeModule());
-//			ObjectNode objectNode = mapper.createObjectNode();
-//
-//			objectNode.set("post",(ObjectNode)(mapper.convertValue(new PostDTO(post), JsonNode.class)));
-//
-//			json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-//
-//		} else {
-//			// get all posts
-//			try{
-//				String hql = "FROM Post p ORDER BY p.uploadDate DESC";
-//				Query query = databaseSession.createQuery(hql, Post.class);
-//				List<Post> postList = query.getResultList();
-//
-//
-//				ObjectMapper mapper = new ObjectMapper();
-//				mapper.registerModule(new JavaTimeModule());
-//				ObjectNode objectNode = mapper.createObjectNode();
-//				List<PostDTO> postDTOS = new ArrayList<PostDTO>();
-//				for(Post post : postList){
-//					postDTOS.add(new PostDTO(post));
-//
-////					objectNode.set("post",(ObjectNode)(mapper.convertValue(postDTO, JsonNode.class)));
-//				}
-//				json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(postDTOS);
-//
-//				resp.setContentType("application/json");
-//				resp.getWriter().write(json);
-//			} catch (Exception e){
-//				e.printStackTrace();
-//			}
-//
-//		}
-//
-//
-//	}
-
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session databaseSession = HibernateUtils.getSessionFactory().openSession();
 		String pathInfo = req.getPathInfo();
-
-
 		try {
 			if (pathInfo == null) {
 				switch (req.getParameter("type")){
 					case "getPost":{
 							String json;
-							String userId = req.getParameter("userId");
+							String userId = null;
+							if(req.getSession().getAttribute("adminAuth") != null)
+								userId = req.getParameter("userId");
 							String hql = "FROM Post p ORDER BY p.uploadDate DESC ";
 							Query query = databaseSession.createQuery(hql, Post.class);
 							List<Post> postList = query.getResultList();

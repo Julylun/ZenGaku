@@ -1,6 +1,6 @@
-import * as HTMLDom from '../HTMLDom.js'
-import * as CounterFunction from '../../features/ZenGakuWidget/counter.js'
-import * as Movement from '../../features/movement.js'
+import * as HTMLDom from '../../HTMLDom.js'
+import * as CounterFunction from '../../../features/ZenGakuWidget/counter/counter.js'
+import * as Movement from '../../../features/movement.js'
 
 export {
     displayCounter
