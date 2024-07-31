@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name = "login", value = "/login")
@@ -57,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 //            String userPassword = jsonObject.getString("userPassword");
             String userName = req.getParameter("userName");
             String userPassword = req.getParameter("userPassword");
+            System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
             System.out.println("[LoginServlet]<doPost> username: " + userName + " - userpassword: " + userPassword);
 
             resp.setHeader("Access-Control-Allow-Origin", "*");

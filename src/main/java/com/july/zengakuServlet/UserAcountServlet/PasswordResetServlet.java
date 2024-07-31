@@ -17,6 +17,7 @@ import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.zengaku.mvc.controller.SecureFactory;
@@ -56,6 +57,7 @@ public class PasswordResetServlet extends HttpServlet {
 
             session.setAttribute("registerVerification", RegisterCode.FORGET_STATUS_SENT_EMAIL);
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+            System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
             System.out.println(PrintColor.GREEN + "[PasswordResetServlet]> "
                     + req.getRemoteAddr() + ":\tSent to email to" + userEmail);
             out.println("sent to email");

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/home/module/videoBackground.css">
     <link rel="stylesheet" href="assets/css/home/module/zengakuAssistant.css">
     <link rel="stylesheet" href="assets/css/home/module/todoList.css">
+    <link rel="stylesheet" href="assets/css/home/welcomePanel.css">
     <!-- End Import by developer -->
 
     <!-- Disable by developer -->
@@ -33,6 +34,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zengaku is a website used to study and relax.">
+    <meta name="keywords" content="study, tree, plant, student, zengaku, relax, study room, meeting">
+
+    <meta property="og:title" content="Zengaku">
+    <meta property="og:description" content="Studying with Zengaku!">
+    <meta property="og:image" content="assets\resources\img\previewImage.png">
+    <!-- <meta property="og:url" content="https://www.example.com/trang"> -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zengaku">
+    <meta name="twitter:description" content="Studying with Zengaku!">
+    <meta name="twitter:image" content="assets\resources\img\previewImage.png">
+    
     <link rel="icon" type="image/svg" href="assets/resources/img/zengaku_logo.svg">
 </head>
 
@@ -85,7 +98,7 @@
         <div class="quote-box">
             <button class="close-btn">&times;</button>
             <h2>Quote of the Day</h2>
-            <blockquote id="quote">Loading</blockquote>
+            <blockquote id="quote">Bảo trì</blockquote>
             <span id="author">Loading...</span>
             <div class="buttons">
                 <button onclick="getQuote(api_url)" id="new-quote">New Quote</button>
@@ -124,7 +137,8 @@
 <script type="module" src="assets/js/indexInitFunction.js"></script>
 
 <script type = "module" src="assets/js/index.js"></script>
-<script type="module" src="assets/js/components/ZenGakuWidget/soundConfiguration.js"></script>
+<script type="module" src="assets/js/components/home/welcomePanel.js"></script>
+<script type="module" src="assets/js/features/system/LanguageFilter.js"></script>
 <!-- <script src="assets/js/feature.js"></script> -->
 
 

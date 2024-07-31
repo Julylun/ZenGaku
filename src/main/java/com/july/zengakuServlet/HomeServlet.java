@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(name = "Home", value = (""))
 public class HomeServlet extends HttpServlet {
@@ -21,6 +22,7 @@ public class HomeServlet extends HttpServlet {
         HttpSession userSession =  req.getSession();
 
         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "--HomeServlet--\n" + "A device connected");
+        System.out.println(PrintColor.GREEN + "Time " + LocalDateTime.now() + PrintColor.RESET);
         System.out.println("IP Address:\t" + req.getRemoteAddr() +"\nLocal Address:\t" + req.getLocalAddr()
                 + "\n---------------" + PrintColor.RESET);
 //

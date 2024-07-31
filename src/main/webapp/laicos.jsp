@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <script type = "module" src="assets/js/features/SocialMedia/default.js"></script>
-
     </head>
     <body>
         <!-- Navigation bar -->
@@ -106,6 +105,7 @@
         <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
 
         <script type="module" src = "assets/js/laicos.js"></script>
+        
         
     </body>
 </html>

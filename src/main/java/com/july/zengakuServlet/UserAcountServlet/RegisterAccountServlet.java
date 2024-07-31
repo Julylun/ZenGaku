@@ -1,6 +1,7 @@
 package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.EmailFactory;
+import com.zengaku.mvc.controller.LanguageFilter;
 import com.zengaku.mvc.controller.SecureFactory;
 import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 
 //@WebServlet(name = "register", value = "/register_account")
 
@@ -58,7 +60,8 @@ public class RegisterAccountServlet extends HttpServlet {
 //                req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
                 EmailFactory.sendMail(userEmail,userName,verificationCode);
                 System.out.println(httpSession.getAttribute("registerVerification"));
-                System.out.println(PrintColor.YELLOW + "[RegisterAccountServlet]<doPost>: HAHAHHA" + PrintColor.RESET);
+                System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
+                System.out.println(PrintColor.YELLOW + "[RegisterAccountServlet]<doPost>: OKAY" + PrintColor.RESET);
                 out.write("{\"approve\":\"true\"}");
                 return;
             }

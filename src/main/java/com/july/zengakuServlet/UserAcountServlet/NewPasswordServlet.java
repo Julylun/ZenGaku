@@ -20,6 +20,7 @@ import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name = "New-Password", urlPatterns = {"/new-password"})
@@ -62,6 +63,7 @@ public class NewPasswordServlet extends HttpServlet {
                     session.setAttribute("registerVerification", RegisterCode.CHANGED_PASSWORD);
                     req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 
+                    System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
                     System.out.println(PrintColor.GREEN + "[NewPasswordServlet]> "
                             + req.getRemoteAddr() + ":\tUpdate password successfully" + PrintColor.RESET);
                 }

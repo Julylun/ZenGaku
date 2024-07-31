@@ -36,7 +36,9 @@ const widgetListenerInit = () => {
         });
 
         document.getElementById('quotes-feature').addEventListener(_event, () => {
-            
+            let quote = document.getElementsByClassName('all-quote-box').item(0);            
+            if(quote.style.display == 'none') quote.style.display = 'block';
+            else quote.style.display = 'none';
         });
         document.getElementById('laicos-feature').addEventListener(_event, () => {
             window.location.href = '/laicos.jsp';

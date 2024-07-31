@@ -18,6 +18,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(value = "/social/api/likePost")
@@ -36,6 +38,7 @@ public class LikePost extends HttpServlet {
 //        super.doPost(req, resp
         try{
             System.out.println(PrintColor.YELLOW_BOLD_BRIGHT + "--- LikePost Post ---" + PrintColor.RESET);
+            System.out.println(PrintColor.GREEN + "Time " + LocalDateTime.now() + PrintColor.RESET);
             System.out.println(PrintColor.GREEN + "IP Address: " + req.getRemoteAddr() + PrintColor.RESET);
             System.out.println(PrintColor.GREEN + "Local Address: " + req.getLocalAddr()+ PrintColor.RESET);
 

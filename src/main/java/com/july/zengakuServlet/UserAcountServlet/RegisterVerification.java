@@ -2,6 +2,7 @@ package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.model.HTTP.ErrorCode;
+import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(name = "RegisterVerification", value = "/register_verification")
 @MultipartConfig
@@ -26,6 +28,8 @@ public class RegisterVerification extends HttpServlet {
 //            req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
             return;
         }
+
+        System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
         System.out.println(httpSession.getAttribute("verificationCode").toString());
         System.out.println(req.getParameter("verificationCode"));
         if((httpSession.getAttribute("verificationCode").toString()).equals(req.getParameter("verificationCode"))){

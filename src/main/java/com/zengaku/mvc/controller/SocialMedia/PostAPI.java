@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 //import com.zengaku.mvc.model.LocalDateTimeTypeAdapter;
 import com.zengaku.mvc.controller.GoogleUtils;
 import com.zengaku.mvc.controller.HibernateUtils;
+import com.zengaku.mvc.controller.LanguageFilter;
 import com.zengaku.mvc.model.*;
 import com.zengaku.mvc.model.DTO.GoogleRes;
 import com.zengaku.mvc.model.DTO.PostDTO;
@@ -124,7 +125,7 @@ public class PostAPI extends HttpServlet {
 						break;
 					}
 					case "upPost": {
-						String caption = req.getParameter("caption");
+						String caption = LanguageFilter.filterBadWords(req.getParameter("caption"));
 						Part imagePart = req.getPart("image");
 						String accessToken = req.getParameter("accessToken");
 						User user = AuthToken.getUserByAccessToken(accessToken);

@@ -13,6 +13,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 
 import com.zengaku.mvc.model.AuthToken;
 import com.zengaku.mvc.model.RegisterCode;
@@ -56,6 +57,7 @@ public class ReloginServlet extends HttpServlet {
                 httpSession.setAttribute("registerVerification", RegisterCode.NON_REGISTER);
 
                 //Debug - delete in final version
+                System.out.println(PrintColor.GREEN + "Time -> " + LocalDateTime.now() + PrintColor.RESET);
                 System.out.println(PrintColor.GREEN + "[ReloginServlet]>"
                         + req.getRemoteAddr() + ": Token is available, the server is sending a approve to the client."
                         + PrintColor.RESET);
