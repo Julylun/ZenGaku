@@ -20,17 +20,15 @@ import com.zengaku.mvc.model.*;
 import com.zengaku.mvc.model.DTO.GoogleRes;
 import com.zengaku.mvc.model.DTO.PostDTO;
 import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import lombok.Data;
 import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.datatype.jsr310.*;
 
 import static java.util.Collections.replaceAll;
@@ -42,6 +40,8 @@ public class PostAPI extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session databaseSession = HibernateUtils.getSessionFactory().openSession();
+		Transaction transaction = databaseSession.getTransaction();
+		HttpSession httpSession = req.getSession();
 		String pathInfo = req.getPathInfo();
 		try {
 			if (pathInfo == null) {
@@ -49,8 +49,17 @@ public class PostAPI extends HttpServlet {
 					case "getPost":{
 							String json;
 							String userId = null;
-							if(req.getSession().getAttribute("adminAuth") != null)
+							if(req.getSession().getAttribute("adminAuth") == null) {
 								userId = req.getParameter("userId");
+								System.out.println("[PostAPI]<doPost - getPost>: userId: " + userId);
+								if(userId == null || userId.equals("undefined")){
+//									resp.sendError(401);
+									req.getRequestDispatcher("401").forward(req,resp);
+									System.out.println("HIII");
+									return;
+								}
+							}
+
 							String hql = "FROM Post p ORDER BY p.uploadDate DESC ";
 							Query query = databaseSession.createQuery(hql, Post.class);
 							List<Post> postList = query.getResultList();
@@ -144,11 +153,36 @@ public class PostAPI extends HttpServlet {
 						out.flush();
 						break;
 					}
+					case "editPost": {
+						if(httpSession.getAttribute("adminAuth").equals("true")) {
+							String id = req.getParameter("id");
+							String uuid = req.getParameter("uuid");
+							String postText = req.getParameter("postText");
+							String imageLink = req.getParameter("imageLink");
+							String treeHeartNumber = req.getParameter("treeHeartNumber");
+							System.out.println("[PostAPI]<doPost - editPost>: id:" + id + " - uuid: " + uuid +
+									" - postText: " + postText + " - imageLink: " + imageLink + " - treeHeartNumber: "
+									+ treeHeartNumber );
+
+							Post currentPost = databaseSession.get(Post.class,Integer.parseInt(id));
+							currentPost.setUuid(uuid);
+							currentPost.setPostText(postText);
+							currentPost.setImageLink(imageLink);
+							currentPost.setTreeHeartNumber(Integer.parseInt(treeHeartNumber));
+							databaseSession.update(currentPost);
+							databaseSession.beginTransaction().commit();
+							databaseSession.close();
+							System.out.println("[PostAPI]<doPost - editPost>: Completed");
+						} else {
+							System.out.println("[PostAPI]<doPost - editPost>: U're not administrator");
+							return;
+						}
+					}
 				}
 			}
 		} catch (Exception e) {
-
 			e.printStackTrace();
+			resp.sendError(401);
 		}
 
 

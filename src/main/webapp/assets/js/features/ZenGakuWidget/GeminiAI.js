@@ -8,7 +8,7 @@ let history = [];
 const APIKey = 'AIzaSyDSqL7LpA1vryPHodJ-Mjbnb8c0pJYQC_Q';
 
 const AI = new GoogleGenerativeAI(APIKey);
-const model = AI.getGenerativeModel({ model: "gemini-1.5-flash",tools: [{codeExecution: {}}]},
+const model = AI.getGenerativeModel({ model: "gemini-1.5-flash"}
 );
 
 async function reply(prompt) {
