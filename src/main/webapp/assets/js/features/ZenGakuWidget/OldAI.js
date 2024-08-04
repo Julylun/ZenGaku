@@ -6,24 +6,6 @@ export {
     showReply
 }
 
-const geminiAPI = async (message) => {
-    const geminiAPIKey = 'AIzaSyDSqL7LpA1vryPHodJ-Mjbnb8c0pJYQC_Q';
-    const geminiAPIUrl = 'https://api.gemini.com/v1/pubticker/btcusd'
-
-
-    // {
-    //     method: 'GET',
-    //     url: 'https://api.gemini.com/v1/pubticker/btcusd',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'X-Gemini-API-Key': api_key,
-    //       'X-Gemini-API-Sign': generateSignature(// ... ), // Implement signature generation
-    //     }
-    //   };
-
-}
-
-
 const getGeminiReply = async (message) => {
     const geminiApiKey = "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";
     const geminiApiUrl = "https://api.groq.com/openai/v1/chat/completions";

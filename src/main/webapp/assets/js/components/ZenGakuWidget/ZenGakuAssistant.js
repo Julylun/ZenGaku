@@ -1,5 +1,5 @@
 import * as HTMLDom from '../HTMLDom.js'
-import * as FetchAPI from '../../features/ZenGakuWidget/fetchAPI.js'
+import * as FetchAPI from '../../features/ZenGakuWidget/OldAI.js'
 import * as Movement from '../../features/movement.js'
 import * as Gemini from '../../features/ZenGakuWidget/GeminiAI.js'
 

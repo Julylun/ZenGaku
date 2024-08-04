@@ -534,9 +534,18 @@
         padding-left: 10px;
     }
 
+    #login-input input::-moz-placeholder {
+        padding-left: 10px;
+    }
+
     #login-input input::selection {
         padding-left: 10px;
     }
+
+    #login-input input::-moz-selection {
+        padding-left: 10px;
+    }
+
 
     #login-button-container {
         display: flex;

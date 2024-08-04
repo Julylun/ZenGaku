@@ -2,6 +2,7 @@ package com.july.zengakuServlet;
 
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import com.zengaku.mvc.controller.HibernateUtils;
+import com.zengaku.mvc.controller.LocalStorage.FileAnalyzer;
 import com.zengaku.mvc.model.DefaultData;
 import com.zengaku.mvc.model.PrintColor;
 import jakarta.servlet.ServletContext;
@@ -48,6 +49,7 @@ public class Default implements ServletContextListener {
         System.out.println(PrintColor.CYAN_BOLD_BRIGHT + "[Default]: Server -> Creating a hibernate session..." + PrintColor.RESET);
         HibernateUtils.getSessionFactory().openSession();
         System.out.println(PrintColor.CYAN_BOLD_BRIGHT + "--- -*-*-*-*-*-*-*-*-*-*-* ---" + PrintColor.RESET);
+//        System.out.println("[LoginServlet]<test>" + FileAnalyzer.readAllTextFromFile(FileAnalyzer.savedDataPath));
     }
 
     @Override

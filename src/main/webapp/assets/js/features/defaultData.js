@@ -1,83 +1,45 @@
+/**
+ * DefaultData contains constaint and value of default user 
+ * (guest) and this will be changed when user login to their account
+ */
+
 export {
     BackgoundConfiguration,
     SoundConfiguration,
-    WELCOME_PANEL
+    WELCOME_PANEL,
+    userData,
+    load,
+    backgroundConfigurationLoad,
+    soundConfigurationLoad,
+    CounterData
 }
 
-const BackgoundConfiguration = {
-    name: [
-        '🗻 Mountain and lake',
-        '🌗 Moon and Sun',
-        '🌃 The sky night',
-        '🤵 Danger person',
-        '🚓 Old car',
-        '🌉 The bridge',
-        '🌿 Leaves',
-        '🌻 Flowers',
-        '🧑‍🤝‍🧑 Study with BTS',
-        '☕ Study in coffee shop',
-        '🚶‍♀️ Night Walk in Tokyo Shibuya',
-        '🚶‍♀️ Snowfall in Times Square, NYC',
-        '🚶‍♀️ FLYING OVER JAPAN',
-        '🪟 DOWNTOWN LOS ANGELES City View day '
-    ],
-    
-    url: [
-        'https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg',
-        'https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp',
-        'https://pbs.twimg.com/media/Fxto7UTXgAEtKVC.jpg:large',
-        'https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg',
-        'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        'https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        'https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        'https://www.youtube.com/embed/UZ9uyQI3pF0',
-        'https://www.youtube.com/embed/SVDooWT60Ho',
-        'https://www.youtube.com/embed/2XK0zoPWdi4',
-        'https://www.youtube.com/embed/0nTO4zSEpOs',
-        'https://www.youtube.com/embed/F8MN0o6RS9o',
-        'https://www.youtube.com/embed/AY5qcIq5u2g',
-        'https://www.youtube.com/embed/M9cJMXmQ_ZU'
-    ],
+class Time {
+    constructor(hour, minute, second, breakTime, repeatNumber){
+      this.hour = hour;
+      this.minute = minute;
+      this.second = second;
+      this.breakTime = breakTime;
+      this.repeatNumber = repeatNumber;
+    }
+  };
 
+/**
+ * This constaint contains data of background configuration
+ */
+const BackgoundConfiguration = {
+    name: [],
+    url: [],
+    setBackground: '',
     currentBackground: '',
     isVideoSelecting: false,
     defaultURL: '?autoplay=1&mute=1&controls=0&start=26&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=3&fs=0&amp'
 }
 
 const SoundConfiguration = {
-    name: [
-        'Chill wind',
-        'Cold wind',
-        'Ocean wave',
-        'Ocean wave 2',
-        'Office sound',
-        'Pretty Real Office sound',
-        'Keyboard type',
-        'Campfire',
-    ],
-
-    icon: [
-        'assets/resources/img/defaultAudioImg/wind.svg',
-        'assets/resources/img/defaultAudioImg/wind.svg',
-        'assets/resources/img/defaultAudioImg/oceanwave.svg',
-        'assets/resources/img/defaultAudioImg/oceanwave.svg',
-        'assets/resources/img/defaultAudioImg/office.svg',
-        'assets/resources/img/defaultAudioImg/office.svg',
-        'assets/resources/img/defaultAudioImg/keyboard.svg',
-        'assets/resources/img/defaultAudioImg/campfire.svg',
-    ],
-
-    sound: [
-        'assets/resources/audio/ChillWind.mp3',
-        'assets/resources/audio/ColdWind.mp3',
-        'assets/resources/audio/OceanWave.mp3',
-        'assets/resources/audio/OceanWave2.mp3',
-        'assets/resources/audio/OfficeSound.mp3',
-        'assets/resources/audio/3DOfficeSound.mp3',
-        'assets/resources/audio/KeyboardType.mp3',
-        'assets/resources/audio/Campfire.mp3',
-    ],
-
+    name: [],
+    icon: [],
+    sound: [],
     audioList: new Array()
 }
 
@@ -108,4 +70,102 @@ const WELCOME_PANEL = {
       +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Doanh thu đến từ quảng cáo sẽ được sử dụng để kêu gọi trồng cây. Nhưng trước hết, bạn phải tích điểm mới có thể kêu gọi được nhé!</i><br><br>'
 
       
+}
+
+let userData;
+class CounterData {
+    static position = class {
+        static x = 0;
+        static y = 0;
+    }
+    static pomodoro = class {
+        static hour = 0;
+        static minute = 25;
+        static second = 0;
+        static breakTime = 5;
+        static repeat = 5;
+    }
+    static shortBreak = class {
+        static hour = 0;
+        static minute = 25;
+        static second = 0;
+        static breakTime = 10;
+        static repeat = 5;
+    }
+    static longBreak = class {
+        static hour = 0;
+        static minute = 30;
+        static second = 0;
+        static breakTime = 0;
+        static repeat = 3;
+    }
+    static isMuted = false;
+    static alarmVolume = 100;
+    
+    //method
+    static setPomodoro(hour,minute,second,breakTime,repeat) {CounterData.pomodoro.hour = hour;CounterData.pomodoro.minute = minute;CounterData.pomodoro.second = second;CounterData.pomodoro.breakTime = breakTime;CounterData.pomodoro.repeat = repeat;}
+    static setShortBreak(hour,minute,second,breakTime,repeat) {CounterData.shortBreak.hour = hour;CounterData.shortBreak.minute = minute;CounterData.shortBreak.second = second;CounterData.shortBreak.breakTime = breakTime;CounterData.shortBreak.repeat = repeat;}
+    static setLongBreak(hour,minute,second,breakTime,repeat) {CounterData.longBreak.hour = hour;CounterData.longBreak.minute = minute;CounterData.longBreak.second = second;CounterData.longBreak.breakTime = breakTime;CounterData.longBreak.repeat = repeat;}
+    static setPosition(x,y) {CounterData.position.x = x; CounterData.position.y = y;}
+    static getTime(typeOfTime) {
+        return new Time(typeOfTime.hour,typeOfTime.minute,typeOfTime.second,typeOfTime.breakTime,typeOfTime.repeat);
+    }
+}
+
+/**
+ * 
+ * @param {JSON} userData 
+ */
+const load = (userData) => {
+    //set current background
+    // BackgoundConfiguration.currentBackground = userData.backgroundUrl;
+
+    //couuter load
+    CounterData.setPosition(
+        userData.counter.position.x,
+        userData.counter.position.y
+    );
+    CounterData.setPomodoro(
+        userData.counter.setting.countingTime.pomodoro.hour,
+        userData.counter.setting.countingTime.pomodoro.minute,
+        userData.counter.setting.countingTime.pomodoro.second,
+        userData.counter.setting.countingTime.pomodoro.breakTime,
+        userData.counter.setting.countingTime.pomodoro.repeat
+    )
+    CounterData.setShortBreak(
+        userData.counter.setting.countingTime.shortBreak.hour,
+        userData.counter.setting.countingTime.shortBreak.minute,
+        userData.counter.setting.countingTime.shortBreak.second,
+        userData.counter.setting.countingTime.shortBreak.breakTime,
+        userData.counter.setting.countingTime.shortBreak.repeat
+    )
+    CounterData.setLongBreak(
+        userData.counter.setting.countingTime.longBreak.hour,
+        userData.counter.setting.countingTime.longBreak.minute,
+        userData.counter.setting.countingTime.longBreak.second,
+        userData.counter.setting.countingTime.longBreak.breakTime,
+        userData.counter.setting.countingTime.longBreak.repeat
+    )
+    CounterData.isMuted = userData.counter.setting.isMuted;
+    CounterData.alarmVolume = userData.counter.setting.alarmVolume;
+
+    //background configuration load
+    backgroundConfigurationLoad(userData);
+    //sound configuration load
+    soundConfigurationLoad(userData);
+
+    console.log("[defaultData - load]: data is loaded")
+
+
+}
+
+const backgroundConfigurationLoad = (userData) => {
+    BackgoundConfiguration.name = userData.backgroundConfiguration.data.name;
+    BackgoundConfiguration.url = userData.backgroundConfiguration.data.url;
+    BackgoundConfiguration.setBackground = userData.backgroundConfiguration.data.currentBackground;
+}
+const soundConfigurationLoad = (userData) => {
+    SoundConfiguration.name = userData.soundConfiguration.data.name;
+    SoundConfiguration.icon = userData.soundConfiguration.data.iconUrl;
+    SoundConfiguration.sound = userData.soundConfiguration.data.soundUrl;
 }

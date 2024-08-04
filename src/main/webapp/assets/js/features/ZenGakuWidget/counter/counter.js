@@ -1,4 +1,5 @@
 import * as CounterWidget from '../../../components/ZenGakuWidget/counter/CounterWidget.js'
+import * as DefaultData from '../../defaultData.js'
 
 export {
     counterDefaultConfig,
@@ -18,19 +19,8 @@ const TIMER_LONGBREAK_MODE = 2;
 
 //Timer variable
 let timerMode = TIMER_SHORTBREAK_MODE;
-class Time {
-  constructor(hour, minute, second, breakTime, repeatNumber){
-    this.hour = hour;
-    this.minute = minute;
-    this.second = second;
-    this.breakTime = breakTime;
-    this.repeatNumber = repeatNumber;
-  }
-};
 
-let pomodoroTime = new Time(0,0,3,1,1);
-let shortBreakTime = new Time(0,15,0,0,0);
-let longBreakTime = new Time(0,40,0,0,0);
+
 
 
 
@@ -78,6 +68,9 @@ function setCounterText(h,m,s, counterElement){
   }
 }
 
+/**
+ * Reset counter to default display
+ */
 function resetCounterStyle(){
   let timerCircle = document.getElementById('timer-ring');
   document.getElementsByClassName('timer-logo').item(0).id = "timer-logo";
@@ -97,6 +90,9 @@ function resetCounterStyle(){
   timerButtonAddEvent();
 }
 
+/**
+ * Stop counter when it is counting
+ */
 function stopCounter(){
   let counterText = document.getElementById('timer-count-text');
   let nameLabel = document.getElementsByClassName('timer-choice-selected').item(0);
@@ -142,6 +138,14 @@ function stopCounter(){
   },200);
 }
 
+/**
+ * Start counting time and running animation
+ * @param {number} hour 
+ * @param {number} min 
+ * @param {number} sec 
+ * @param {number} breakTime 
+ * @param {number} repeatNumber 
+ */
 function counter(hour, min, sec, breakTime, repeatNumber){
   let isPaused;
   let counterHour;
@@ -223,6 +227,14 @@ function counter(hour, min, sec, breakTime, repeatNumber){
   }, 1000)
 }
 
+/**
+ * Change state of counter from counting to breaking and run breaking animation
+ * @param {number} hour 
+ * @param {number} min 
+ * @param {number} sec 
+ * @param {number} breakTime 
+ * @param {number} repeatNumber 
+ */
 function breakCounter(hour, min, sec, breakTime, repeatNumber) {
   let isSkiped;
   let counterHour;
@@ -355,15 +367,15 @@ function startButtonAddEvent() {
                 let time;
                 switch(timerMode){
                   case TIMER_POMODORO_MODE:{
-                    time = pomodoroTime;
+                    time = DefaultData.CounterData.getTime(DefaultData.CounterData.pomodoro);
                     break;
                   }
                   case TIMER_SHORTBREAK_MODE: {
-                    time = shortBreakTime;
+                    time = DefaultData.CounterData.getTime(DefaultData.CounterData.shortBreak);
                     break;
                   }
                   case TIMER_LONGBREAK_MODE: {
-                    time = longBreakTime;
+                    time = DefaultData.CounterData.getTime(DefaultData.CounterData.longBreak);
                     break;
                   }
                 }
@@ -378,7 +390,9 @@ function startButtonAddEvent() {
     );
 }
 
-
+/**
+ * Configurate counter (don't do anything without call this function)
+ */
 const counterDefaultConfig = () => {
     
     startButtonAddEvent();

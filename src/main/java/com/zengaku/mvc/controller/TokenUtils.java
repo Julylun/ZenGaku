@@ -28,12 +28,17 @@ public class TokenUtils {
     }
 
     public static long getIdByJWT(String JWT){
-        System.out.println("TOKEN DEBUGGUG: " + JWT);
-        String splitToken = JWT.split("\\.")[1];
-        Base64 base64 = new Base64();
-        String body = new String(base64.decode(splitToken.getBytes(StandardCharsets.UTF_8)));
-        JSONObject readJson = new JSONObject(body);
-        Long userId = Long.valueOf(readJson.getInt("sub"));
-        return userId;
+        try{
+            System.out.println("TOKEN DEBUGGUG: " + JWT);
+            String splitToken = JWT.split("\\.")[1];
+            Base64 base64 = new Base64();
+            String body = new String(base64.decode(splitToken.getBytes(StandardCharsets.UTF_8)));
+            JSONObject readJson = new JSONObject(body);
+            Long userId = Long.valueOf(readJson.getInt("sub"));
+            return userId;
+        } catch (Exception e) {
+            return -1;
+        }
+
     }
 }

@@ -5,6 +5,9 @@ export {
     fetchLogin
 }
 
+/**
+ * get data from login form and use thoose to login to use account
+ */
 const fetchLogin = () => {
     let tmpUsername = document.getElementById("login-username-input");
             const formData = new FormData();
@@ -30,12 +33,11 @@ const fetchLogin = () => {
                          console.log("RT: " + data.refreshJWT)
                          
                          sessionStorage.setItem('loginStatus',true);
-                         sessionStorage.setItem('loginStatus',true);
                          sessionStorage.setItem('userId',data.userId);
                          sessionStorage.setItem('userFirstName',data.firstName);
                          sessionStorage.setItem('userLastName',data.lastName);
                          sessionStorage.setItem('userAvtHref',data.avtHref);
-                         
+                         sessionStorage.setItem('data',data.data);
                          Browser.safeReload();
                      }else {
                          sessionStorage.setItem('loginStatus',false);

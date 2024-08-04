@@ -45,6 +45,9 @@ public class User {
 	@Column(name = "userAvatar", nullable = false)
 	private String userAvatar;
 
+	@Column(name = "savedData")
+	private String savedData;
+
 //	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<PasswordResetToken> tokenList;

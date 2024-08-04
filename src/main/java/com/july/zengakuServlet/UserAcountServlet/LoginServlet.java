@@ -2,6 +2,7 @@ package com.july.zengakuServlet.UserAcountServlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.zengaku.mvc.controller.LocalStorage.FileAnalyzer;
 import com.zengaku.mvc.controller.TokenUtils;
 import com.zengaku.mvc.model.*;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -17,6 +18,7 @@ import org.hibernate.Session;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -98,6 +100,7 @@ public class LoginServlet extends HttpServlet {
                         rootNode.put("firstName",user.getUserFirstName());
                         rootNode.put("lastName",user.getUserLastName());
                         rootNode.put("avtHref", user.getUserAvatar());
+                        if(user.getSavedData() != null) rootNode.put("data", user.getSavedData());
 
                         databaseSession.close();
 
@@ -114,6 +117,7 @@ public class LoginServlet extends HttpServlet {
 
                         json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
                         System.out.println(json);
+
                         out.print(json);
                         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " + req.getRemoteAddr() + ":\tLogin Successfully!" + PrintColor.RESET);
                         System.out.println(PrintColor.GREEN_BOLD_BRIGHT + "[LoginServlet]> " +

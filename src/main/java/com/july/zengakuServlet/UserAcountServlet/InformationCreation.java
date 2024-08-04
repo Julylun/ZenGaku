@@ -2,6 +2,7 @@ package com.july.zengakuServlet.UserAcountServlet;
 
 import com.zengaku.mvc.controller.HibernateUtils;
 import com.zengaku.mvc.controller.LanguageFilter;
+import com.zengaku.mvc.controller.LocalStorage.FileAnalyzer;
 import com.zengaku.mvc.model.HTTP.ErrorCode;
 import com.zengaku.mvc.model.PrintColor;
 import com.zengaku.mvc.model.RegisterCode;
@@ -45,6 +46,7 @@ public class InformationCreation extends HttpServlet {
             user.setUserFirstName(LanguageFilter.filterBadWords(req.getParameter("userFirstName")));
             user.setUserLastName(LanguageFilter.filterBadWords(req.getParameter("userLastName")));
             user.setUserBirthday(userBirthday);
+            user.setSavedData(FileAnalyzer.readAllTextFromFile(FileAnalyzer.savedDataPath));
             System.out.println(PrintColor.GREEN + "[InformationCreation]>" +
                     "Created user object -> username: " + user.getUserName() + PrintColor.RESET);
 

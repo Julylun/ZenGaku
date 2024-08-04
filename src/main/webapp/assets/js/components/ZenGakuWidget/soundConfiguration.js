@@ -144,11 +144,11 @@ const displaySoundConfiguration = () => {
         });
 
         document.getElementById('sound-add-container-button').addEventListener('click', () =>{
-            addElementToSoundBoard(
-                document.getElementById('audio-name-sound-input').value,
-                document.getElementById('icon-link-sound-input').value,
-                document.getElementById('audio-link-sound-input').value
-            );
+            let name = document.getElementById('audio-name-sound-input').value;
+            let iconUrl = document.getElementById('icon-link-sound-input').value;
+            let soundUrl =document.getElementById('audio-link-sound-input').value;
+            addElementToSoundBoard(name,iconUrl,soundUrl);
+            SoundConfiguration.addItemToSavedData(name,iconUrl,soundUrl);
             document.getElementById('audio-name-sound-input').value = "";
             document.getElementById('icon-link-sound-input').value = "";
             document.getElementById('audio-link-sound-input').value = "";

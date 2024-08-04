@@ -75,6 +75,7 @@ public class ReloginServlet extends HttpServlet {
                 rootNode.put("firstName",user.getUserFirstName());
                 rootNode.put("lastName",user.getUserLastName());
                 rootNode.put("avtHref", user.getUserAvatar());
+                rootNode.put("data", user.getSavedData());
                 System.out.println("TEST RELOGIN: userid = " + user.getId());
 //                rootNode.put("userid",user.getId());
 

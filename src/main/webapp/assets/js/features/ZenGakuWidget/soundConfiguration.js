@@ -1,7 +1,10 @@
 import * as DefaultData from '../defaultData.js'
+import * as DataAPI from '../user/DataAPI.js'
+
 export {
     addClickEventToSoundItem,
-    addChangeEventToSoundItem
+    addChangeEventToSoundItem,
+    addItemToSavedData
 }
 
 class AudioModel {
@@ -82,6 +85,33 @@ function addChangeEventToSoundItem(soundItemSlider){
         soundConfigItem.parentElement.parentElement.parentElement.getElementsByTagName('div').item(1).getElementsByClassName('sound-item-slider').item(0).disabled = true;
       }
     })
+  }
+
+  /**
+   * Add sound item to savedData and default data
+   * @param {string} _name 
+   * @param {string} iconUrl 
+   * @param {string} soundUrl 
+   */
+  const addItemToSavedData = (_name, iconUrl, soundUrl) => {
+    let savedData = JSON.parse(sessionStorage.data);
+
+    let savedData__arrayOfName = savedData.soundConfiguration.data.name;
+    let savedData__arrayOfIconUrl = savedData.soundConfiguration.data.iconUrl;
+    let savedData__arrayOfSoundUrl = savedData.soundConfiguration.data.soundUrl;
+    savedData__arrayOfName.push(_name);
+    savedData__arrayOfIconUrl.push(iconUrl);
+    savedData__arrayOfSoundUrl.push(soundUrl);
+
+    savedData.soundConfiguration.data.name = savedData__arrayOfName;
+    savedData.soundConfiguration.data.iconUrl = savedData__arrayOfIconUrl;
+    savedData.soundConfiguration.data.soundUrl = savedData__arrayOfSoundUrl;
+
+    console.log(savedData);
+    sessionStorage.setItem('data',JSON.stringify(savedData));
+    DataAPI.uploadSavedData(localStorage.authToken, sessionStorage.data);
+    console.log(JSON.parse(sessionStorage.data));
+    DefaultData.soundConfigurationLoad(savedData);
   }
 
   function addAudioToList(soundConfigItem){

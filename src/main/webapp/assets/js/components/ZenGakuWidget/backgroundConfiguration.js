@@ -123,10 +123,11 @@ const displayBackgroundConfiguration = () => {
             document.getElementsByClassName('background-choice').item(0).style.display = 'none';
         });
         document.getElementsByClassName('background-config-add-link-button').item(0).addEventListener('click', () => {
-            addElementToBackgroundConfig(
-               document.getElementsByClassName('background-config-name-field').item(0).value,
-               document.getElementsByClassName('background-config-text-field').item(0).value,
-            )
+            let name = document.getElementsByClassName('background-config-name-field').item(0).value;
+            let url = document.getElementsByClassName('background-config-text-field').item(0).value;
+            addElementToBackgroundConfig(name,url);
+            if(sessionStorage.loginStatus == 'true')
+                BackgroundConfiguration.addItemToSavedData(name,url);
             document.getElementsByClassName('background-config-add-content').item(0).style.display = 'none';
             document.getElementsByClassName('background-choice').item(0).style.display = 'flex';
 

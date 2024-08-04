@@ -1,9 +1,11 @@
 import * as DefaultData from '../defaultData.js'
+import * as DataAPI from '../user/DataAPI.js'
 
 export {
     getYotubeId,
     addSelectedBCItemListener,
-    changeBackground
+    changeBackground,
+    addItemToSavedData
 }
 
 function changeBackgroundPicture(srcPath){
@@ -42,22 +44,57 @@ function addSelectedBCItemListener(){
   }
 }
 
+const addItemToSavedData = (_name, url) => {
+  let savedData = JSON.parse(sessionStorage.data);
+
+  let savedData__arrayOfName = savedData.backgroundConfiguration.data.name;
+  let savedData__arrayOfUrl = savedData.backgroundConfiguration.data.url;
+  savedData__arrayOfName.push(_name);
+  savedData__arrayOfUrl.push(url);
+
+  savedData.backgroundConfiguration.data.name = savedData__arrayOfName;
+  savedData.backgroundConfiguration.data.url = savedData__arrayOfUrl;
+
+  console.log(savedData);
+  sessionStorage.setItem('data',JSON.stringify(savedData));
+  DataAPI.uploadSavedData(localStorage.authToken, sessionStorage.data);
+  console.log(JSON.parse(sessionStorage.data));
+  DefaultData.backgroundConfigurationLoad(savedData);
+}
+
 
 
 //change background when click on apply button
-const changeBackground = () => {
-    var videoElement = document.getElementById('background-video');
-    if(DefaultData.BackgoundConfiguration.isVideoSelecting){
-      // videoElement.getElementsByTagName('source').item(0).setAttribute('src', background);
-      videoElement.setAttribute('src', (DefaultData.BackgoundConfiguration.currentBackground + DefaultData.BackgoundConfiguration.defaultURL));
-      // videoElement.style.display = "block";
+const changeBackground = (filePath) => {
+  var videoElement = document.getElementById('background-video');
+  if(filePath){
+    if(getYotubeId(filePath) != null) {
+      console.log("default video");
+      videoElement.setAttribute('src', (filePath + DefaultData.BackgoundConfiguration.defaultURL));
       document.getElementsByClassName('video-container').item(0).style.display = "flex";
-      // videoElement.load();
-      // videoElement.play();
+    } else {
+      console.log("default image");
+      document.getElementsByClassName('video-container').item(0).style.display = "none";
+      changeBackgroundPicture(filePath);
+    }
+  } else {
+    if(DefaultData.BackgoundConfiguration.isVideoSelecting){
+      videoElement.setAttribute('src', (DefaultData.BackgoundConfiguration.currentBackground + DefaultData.BackgoundConfiguration.defaultURL));
+
+      document.getElementsByClassName('video-container').item(0).style.display = "flex";
+
     } else {
       document.getElementsByClassName('video-container').item(0).style.display = "none";
-      // videoElement.pause();
+
       changeBackgroundPicture(DefaultData.BackgoundConfiguration.currentBackground);
     }
+    //Save data after changing background
+    if(sessionStorage.data){
+      let json = JSON.parse(sessionStorage.data);
+      json.backgroundConfiguration.data.currentBackground = DefaultData.BackgoundConfiguration.currentBackground;
+      sessionStorage.setItem('data',JSON.stringify(json));
+      if(sessionStorage.loginStatus) DataAPI.uploadSavedData(localStorage.authToken,sessionStorage.data);
+    }
+  }
 }
     

@@ -1,21 +1,11 @@
 import * as NotificationComponents from './components/notificationPanel.js'
-import * as WidgetDisplay from './features/ZenGakuWidget/WidgetDisplay.js'
 import * as Menu from './components/home/menu.js'
 import * as AuthMenu from './components/home/login.js'
+import * as Browser from '../js/features/system/browser.js'
+import * as DefaultLoader from '../js/features/home/defaultLoader.js'
 
 // import "./indexInitFunction.js";
 //Init
-
-// addNotificationPanel('assets/resources/img/meomeo.jpg');
-
-//Register code
-const STATUS_NON_STATUS_REGISTERED = 0;
-const STATUS_REGISTERED = 1;
-const STATUS_VERIFICATED = 2;
-const STATUS_CREATED = 3;
-const STATUS_CHANGED_PASSWORD = 400;
-const STATUS_FORGET_EMAIL_SENT = 300;
-const STATUS_LOGIN_FAILED = -101;
 
 
 //Define------
@@ -24,18 +14,7 @@ const loadingFrame = document.getElementsByClassName("loading-layer").item(0);
 //-------Login - Register---------------
 const authMenuList = document.getElementsByClassName("auth-menu");
 
-const closeLineList = document.getElementsByClassName("close-line-container");
-
-const loginMenu = document.getElementById("login-menu");
 const loginButton = document.getElementById("login-button");
-
-const haveAccountButton = document.getElementById("have-account-button");
-const registerButton = document.getElementById("register-button");
-const registerMenu = document.getElementById("register-menu");
-
-
-const forgetAccountButton = document.getElementById("forget-button");
-const forgetMenu = document.getElementById("forget-menu");
 
 const treeButton = document.getElementById("tree-button");
 //--------------menu---------------------
@@ -46,15 +25,13 @@ let bgContent;
 // --------
 
 //Servlet
-let verificationLevel = document.getElementById("vf-lv").value;
+// let verificationLevel = document.getElementById("vf-lv").value;
 let loginStatus = sessionStorage.getItem('loginStatus');
 if(loginStatus == null) loginStatus = "false";
 
 
 
 //function
-
-
 function hideAllAuthMenu(){
     for(let authMenu of authMenuList){
         authMenu.style.display = "none";
@@ -65,14 +42,7 @@ function displayLoginMenu(){
     treeButton.style.display = "block";
     AuthMenu.createLoginMenu();
     loginButton.style.display = "none";
-    // loginMenu.style.display = "block";
-    // registerMenu.style.display = "none";
 }
-
-function safeReload(){
-    window.location.reload();
-}
-
 
 //Listener
 function getAccessToken() {
@@ -134,7 +104,8 @@ function relogin(){
                     sessionStorage.setItem('userFirstName',data.firstName);
                     sessionStorage.setItem('userLastName',data.lastName);
                     sessionStorage.setItem('userAvtHref',data.avtHref);
-                    safeReload();
+                    sessionStorage.setItem('data',data.data);
+                    // Browser.safeReload();
                     return true;
                 } else { // <--- the bug occurs here
                     sessionStorage.setItem('loginStatus',false);
@@ -162,127 +133,130 @@ function relogin(){
         return false;
     }
 }
-
-relogin();
-    
+   
 
 //Change the login button into tree icon and display login menu
-loginButton.addEventListener("mousedown",function(){
-    loginButton.addEventListener("mouseup",displayLoginMenu);
-});
-
-window.addEventListener('resize',function(){
-    if(bgContent != null)
-    if(window.innerWidth < 767){
-        if(arrayOfborderDot[0].className == "border-dot"){
-            bgContent.id = "closed-bg-content";
-            
-        } else {
-            bgContent.id = "opened-bg-content";
-        }
-    } else {
-        if(arrayOfborderDot[0].className == "border-dot"){
-            bgContent.id = "big-closed-bg-content";
-            
-        } else {
-            bgContent.id = "big-opened-bg-content";
-        }
-    }
-})
-
-//IMPORTANT <----
-//Create animation when clicking on the menu button
-let count = 0;
-menuButton.addEventListener("mousedown", function handleMouseDown(){
-    menuButton.addEventListener("mouseup", function handleMouseUp(){
-        hideAllAuthMenu();
+function _default(){
+    loginButton.addEventListener("mousedown",function(){
+        loginButton.addEventListener("mouseup",displayLoginMenu);
+    });
+    
+    window.addEventListener('resize',function(){
+        if(bgContent != null)
         if(window.innerWidth < 767){
             if(arrayOfborderDot[0].className == "border-dot"){
-                // bgContent.id = "opened-bg-content";
-                bgContent = Menu.createMenu();
-                document.getElementById("logo-name").style.color = "black";
-                document.getElementById("nav-bar").style.background = "rgba(0,0,0,0)";
-                bgContent.style.display = "flex";
-                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                    arrayOfborderDot[index].className = "black-border-dot";
-                }
-            }
-            else {
                 bgContent.id = "closed-bg-content";
-                Menu.deleteMenu(bgContent);
-                bgContent = null;
-                document.getElementById("logo-name").style.color = "white";
-                document.getElementById("nav-bar").style.background = "linear-gradient(180deg, rgba(0, 0, 0, 0.517) 40%, rgba(0, 0, 0, 0) 100%)";
-    
-                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                    arrayOfborderDot[index].className = "border-dot";
-                }
+                
+            } else {
+                bgContent.id = "opened-bg-content";
+            }
+        } else {
+            if(arrayOfborderDot[0].className == "border-dot"){
+                bgContent.id = "big-closed-bg-content";
+                
+            } else {
+                bgContent.id = "big-opened-bg-content";
             }
         }
-        else {
-            if(arrayOfborderDot[0].className == "border-dot"){
-                bgContent = Menu.createMenu();
-                bgContent.id = "big-opened-bg-content";
-                
-                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                    arrayOfborderDot[index].className = "black-border-dot";
+    })
+    
+    //IMPORTANT <----
+    //Create animation when clicking on the menu button
+    let count = 0;
+    menuButton.addEventListener("mousedown", function handleMouseDown(){
+        menuButton.addEventListener("mouseup", function handleMouseUp(){
+            hideAllAuthMenu();
+            if(window.innerWidth < 767){
+                if(arrayOfborderDot[0].className == "border-dot"){
+                    // bgContent.id = "opened-bg-content";
+                    bgContent = Menu.createMenu();
+                    document.getElementById("logo-name").style.color = "black";
+                    document.getElementById("nav-bar").style.background = "rgba(0,0,0,0)";
+                    bgContent.style.display = "flex";
+                    for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                        arrayOfborderDot[index].className = "black-border-dot";
+                    }
                 }
-                bgContent.style.display = "block";
+                else {
+                    bgContent.id = "closed-bg-content";
+                    Menu.deleteMenu(bgContent);
+                    bgContent = null;
+                    document.getElementById("logo-name").style.color = "white";
+                    document.getElementById("nav-bar").style.background = "linear-gradient(180deg, rgba(0, 0, 0, 0.517) 40%, rgba(0, 0, 0, 0) 100%)";
+        
+                    for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                        arrayOfborderDot[index].className = "border-dot";
+                    }
+                }
             }
             else {
-                bgContent.id = "big-closed-bg-content";
-                Menu.deleteMenu(bgContent);
-                bgContent = null;
-                for(let index = 0; index < arrayOfborderDot.length; index+=1) {
-                    arrayOfborderDot[index].className = "border-dot";
+                if(arrayOfborderDot[0].className == "border-dot"){
+                    bgContent = Menu.createMenu();
+                    bgContent.id = "big-opened-bg-content";
+                    
+                    for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                        arrayOfborderDot[index].className = "black-border-dot";
+                    }
+                    bgContent.style.display = "block";
                 }
+                else {
+                    bgContent.id = "big-closed-bg-content";
+                    Menu.deleteMenu(bgContent);
+                    bgContent = null;
+                    for(let index = 0; index < arrayOfborderDot.length; index+=1) {
+                        arrayOfborderDot[index].className = "border-dot";
+                    }
+                }
+                
+    
             }
             
-
-        }
-        
-        menuButton.removeEventListener("mouseup", handleMouseUp); //don't remove this
+            menuButton.removeEventListener("mouseup", handleMouseUp); //don't remove this
+        });
     });
-});
-
-
-
-if(loginStatus == "true") {
-    treeButton.style.display = "block";
-    loginButton.style.display = "none"; 
-    console.log("signed in");
+    
+    
+    
+    if(loginStatus == "true") {
+        treeButton.style.display = "block";
+        loginButton.style.display = "none"; 
+        DefaultLoader.loadDataFromUserData();
+        console.log("signed in");
+    }
+    
+    
+    //Loading frame
+    window.addEventListener('load',function(){
+        loadingFrame.style.display = "none";
+    })
+    
+    
+    //Notify panel | treeButton
+    let isNotificationPanelAppear = false;
+    document.getElementById('tree-button').addEventListener('click',function(){
+        if(loginStatus == 'false') return;
+        document.getElementById('notify-panel').style.display = 'block';
+        NotificationComponents.addNotificationPanel();
+        document.addEventListener('click',function(event){
+            let tmp = document.getElementById('notify-panel');
+            
+            if(tmp.offsetLeft < event.clientX && event.clientX <tmp.offsetLeft+tmp.offsetWidth
+                && tmp.offsetTop < event.clientY && event.clientY < tmp.offsetHeight+tmp.offsetTop
+            ){
+            }
+            else {
+                // document.getElementById('notify-panel').style.display = 'none';
+                document.getElementById('notify-panel').innerHTML = "";
+                document.getElementById('notify-panel').style.display = 'none';
+            }
+        })
+    })
 }
 
 
-//Loading frame
-window.addEventListener('load',function(){
-    loadingFrame.style.display = "none";
-})
 
-
-//Notify panel | treeButton
-let isNotificationPanelAppear = false;
-document.getElementById('tree-button').addEventListener('click',function(){
-    if(loginStatus == 'false') return;
-    document.getElementById('notify-panel').style.display = 'block';
-    NotificationComponents.addNotificationPanel();
-    document.addEventListener('click',function(event){
-        let tmp = document.getElementById('notify-panel');
-        
-        if(tmp.offsetLeft < event.clientX && event.clientX <tmp.offsetLeft+tmp.offsetWidth
-            && tmp.offsetTop < event.clientY && event.clientY < tmp.offsetHeight+tmp.offsetTop
-        ){
-        }
-        else {
-            // document.getElementById('notify-panel').style.display = 'none';
-            document.getElementById('notify-panel').innerHTML = "";
-            document.getElementById('notify-panel').style.display = 'none';
-        }
-    })
-})
-
-
-
+relogin();
+_default();
 
 
 
