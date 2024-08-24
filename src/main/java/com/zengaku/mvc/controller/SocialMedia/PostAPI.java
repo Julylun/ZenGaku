@@ -70,8 +70,6 @@ public class PostAPI extends HttpServlet {
 							List<PostDTO> postDTOS = new ArrayList<PostDTO>();
 							for(Post post : postList){
 								postDTOS.add(new PostDTO(post, TreeHeartUser.findByUUIDAndUserId(post.getUuid(), userId, databaseSession) != null));
-
-//					objectNode.set("post",(ObjectNode)(mapper.convertValue(postDTO, JsonNode.class)));
 							}
 							json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(postDTOS);
 

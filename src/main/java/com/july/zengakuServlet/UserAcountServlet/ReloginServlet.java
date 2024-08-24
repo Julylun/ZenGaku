@@ -50,7 +50,7 @@ public class ReloginServlet extends HttpServlet {
 
             //new code
             PrintWriter out = resp.getWriter();
-            if(AuthToken.isExpired(accessToken)){
+            if(!AuthToken.isExpired(accessToken)){
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("isSkipHome", true);
                 httpSession.setAttribute("loginStatus", true);

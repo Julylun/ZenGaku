@@ -3,7 +3,12 @@ package com.zengaku.mvc.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.annotations.JsonAdapter;
+import com.zengaku.mvc.controller.HibernateUtils;
+import com.zengaku.mvc.model.DTO.PostDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -69,5 +74,41 @@ public class Post {
 				.getResultList();
 		return (postList.isEmpty()) ? null : postList.get(0);
 	}
+
+	public static List<Post> getPostsByUserObject(User user, Session session) {
+		List postList = null;
+		try {
+			postList = session.createQuery("FROM Post WHERE author = :user")
+					.setParameter("user", user)
+					.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return postList;
+		}
+	}
+
+	public static List<Post> getPostsByUserObject(User user) {
+		return getPostsByUserObject(user, HibernateUtils.getSessionFactory().openSession());
+	}
+
+	public static String listToJSON(List<Post> postList,long userId, Session session) {
+		String json = null;
+        try {
+			if(postList.isEmpty()) throw new Exception();
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new JavaTimeModule());
+			ObjectNode objectNode = mapper.createObjectNode();
+			List<PostDTO> postDTOS = new ArrayList<PostDTO>();
+			for(Post post : postList){
+				postDTOS.add(new PostDTO(post, TreeHeartUser.findByUUIDAndUserId(post.getUuid(), userId, session) != null));
+			}
+            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(postDTOS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+			return json;
+		}
+    }
 
 }

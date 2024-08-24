@@ -27,6 +27,11 @@ public class TokenUtils {
         return jwtToken;
     }
 
+    /**
+     * return userId or -1 if jwt is not available.
+     * @param JWT
+     * @return
+     */
     public static long getIdByJWT(String JWT){
         try{
             System.out.println("TOKEN DEBUGGUG: " + JWT);

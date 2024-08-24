@@ -43,4 +43,12 @@ public class TreeHeartUser {
         List<TreeHeartUser> list = query.getResultList();
         return (list.isEmpty()) ? null : (session.get(TreeHeartUser.class,list.get(0).id));
     }
+
+    public static TreeHeartUser findByUUIDAndUserId(String uuid, long userId, Session session){
+        Query query = session.createQuery("From TreeHeartUser as thu WHERE thu.user.id = :userId and thu.post.uuid = :uuid");
+        query.setParameter("uuid",uuid);
+        query.setParameter("userId",userId);
+        List<TreeHeartUser> list = query.getResultList();
+        return (list.isEmpty()) ? null : (session.get(TreeHeartUser.class,list.get(0).id));
+    }
 }

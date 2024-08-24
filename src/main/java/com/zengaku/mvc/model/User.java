@@ -6,10 +6,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.source.tree.Tree;
 import com.zengaku.mvc.controller.HibernateUtils;
 import jakarta.persistence.*;
+import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -79,8 +81,35 @@ public class User {
 		}
 	}
 
+	public static User getUserById(Long userId, Session session){
+		try{
+			User user = session.get(User.class,userId);
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public User() {
 		this.userAvatar = "assets/resources/img/default-avt.png";
+	}
+	public static JSONObject getUserJson(User user, JSONObject jsonObject, String jsonName) {
+		JSONObject leafJson = null;
+		try {
+			leafJson = new JSONObject();
+
+			leafJson.put("username", user.getUserName());
+			leafJson.put("firstname", user.getUserFirstName());
+			leafJson.put("lastname", user.getUserLastName());
+			leafJson.put("userAvatar", user.getUserAvatar());
+
+			jsonObject.put(jsonName, leafJson);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("[User]<getUserJson>: jsonString -> " + jsonObject.toString());
+		}
+		return jsonObject;
 	}
 
 }

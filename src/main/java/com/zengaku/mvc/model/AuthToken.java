@@ -76,7 +76,7 @@ public class AuthToken {
         List<AuthToken> authTokenList = query.list();
 
         for(AuthToken authToken : authTokenList){
-            if(authToken.getAccessToken().equals(accessToken) && !authToken.isExpired()){
+            if(authToken.getAccessToken().equals(accessToken) && authToken.isExpired()){
                 return true;
             }
         }

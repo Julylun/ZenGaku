@@ -41,7 +41,7 @@ const widgetListenerInit = () => {
             else quote.style.display = 'none';
         });
         document.getElementById('laicos-feature').addEventListener(_event, () => {
-            window.location.href = '/laicos.jsp';
+            window.location.href = '/Zentizen';
         });
 
     })

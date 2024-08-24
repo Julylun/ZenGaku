@@ -1,34 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%> -->
 
-<!DOCTYPE html>
 <html>
-    <head>
-        <link rel = "stylesheet" href="assets/css/laicos.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="UTF-8">
-        <script type = "module" src="assets/css/laicos.css"></script>
-    </head>
-    <body>
-        <!-- Navigation bar -->
-        <nav id="nav-bar">
-            <div id="space">
-            </div>
-            <div id="logo-name">
-                <p>ZENGAKU</p>
-            </div>
-            <div id="tree-button" style="display: block;">
-                <img src="assets/resources/img/tree-icon-dark.png">
-            </div>
-        </nav>
-        <div class = "split-line"></div>
+<head>
+    <title></title>
+    <link rel = "stylesheet" href = "assets/css/laicos.css">
+    <link rel = "stylesheet" href = "assets/css/laicos/profile/profile.css">
 
-        <div id = "notify-panel" style="display: none;">
+</head>
+<body>
+    <nav id="nav-bar">
+        <div id="space">
         </div>
+        <div id="logo-name">
+            <p>ZENGAKU</p>
+        </div>
+        <div id="tree-button" style="display: block;">
+            <img src="assets/resources/img/tree-icon-dark.png">
+        </div>
+    </nav>
+    
+    <div class = "split-line"></div>
+    <div id = "notify-panel" style="display: none;"> </div>
+
+        
+    <div class = "newsfeed">
+        <div class = "profile-information">
+            <div class = "profile-information__user">
+                <div class = "profile-information__user--avatar-block">
+                    <div id = "profile-image-container">
+                        <img src = "/assets/resources/img/demoImage/ly.jpg"id = "profile-image">
+                    </div>
+                </div>
+                <div class = "profile-information__user--information-block">
+                    <div id = "name-block">
+                        <div class = 'profile-name'>
+                            <p>Hoang Luan</p>                       
+                        </div>
+                        <div class = 'profile-username'>
+                            <p>@Hoangluan</p>                      
+                        </div>
+                    </div>
+                    <div id = "badge-block">
+						<div id = "badge-hiding-layer">
+						    <div class = 'badge-item visible-badge-item'></div>
+						    <div class = 'badge-item visible-badge-item'></div>
+						    <div class = 'badge-item visible-badge-item'></div>
+                            <div class = 'badge-item visible-badge-item'></div>
+						</div>
+                    </div>
+                </div>
+                <div class = "profile-information__user--button-block">
+                    <div class = "profile-information__user--button-arrange">
+                        <button class = "profile-information__user--show-button">Friend</button> 
+                        <button class = "profile-information__user--hiding-button">Message</button> 
+                        <button class = "profile-information__user--hiding-button">Edit profile</button> 
+                    </div>
+                </div>
+            </div>
+            <div class="line-container"><div class="end-post-line"></div></div>
+            <div class = "profile-information__bio">
+                <p>Tôi không làm gì và bạn cũng chả làm mọe gì</p>
+            </div>
+            <div class="line-container"><div class="end-post-line"></div></div>
+
+    </div>
 
 
-        <!-- Newsfeed -->
-        <div class = "newsfeed">
-            <!-- <div class = "post">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class = "post">
                 <div class = "post-user-information">
                     <div class = "post-avatar">
                         <img class = "avatar-image" src = "assets/resources/img/HoangLuan_Avt_demo.png">
@@ -73,14 +126,15 @@
                 <div class = "line-container">
                     <div class = "end-post-line"></div>
                 </div>
-            </div> -->
+            </div> 
 
-            </div>
 
-            
-           <!-- Controller -->
-        </div>
-        <nav id = "bottom-nav-bar">
+
+        
+    </div>
+
+
+    <nav id = "bottom-nav-bar">
             <div class = "nav-item">
                 <a href="index.jsp">
                     <img class = "nav-item-image" src = "assets/resources/img/back-button-laicos-white.svg">
@@ -98,23 +152,9 @@
             <div class = "nav-item">
                 <img class = "nav-item-image" src = "assets/resources/img/setting-laicos-white.svg">
             </div>
-        </nav>
+    </nav>
 
 
-        <!-- Default configuration -->
-        <input type="hidden" id = "lg-vl" name = "loginValue" value="${sessionScope.loginStatus}"/>
-
-        <script type="module" src = "assets/js/laicos.js"></script>
-        
-        
-    </body>
+</body>
+    <script type = "module" src="/assets/js/features/SocialMedia/profile/profile.js"></script>
 </html>
-
-<%--<filter>--%>
-<%--    <filter-name>CorsFilter</filter-name>--%>
-<%--    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>--%>
-<%--  </filter>--%>
-<%--  <filter-mapping>--%>
-<%--    <filter-name>CorsFilter</filter-name>--%>
-<%--    <url-pattern>/*</url-pattern>--%>
-<%--  </filter-mapping>--%>

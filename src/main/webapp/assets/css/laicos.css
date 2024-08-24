@@ -132,20 +132,6 @@ body {
     cursor: pointer;
 }
 
-/* .split-line {
-    width: 95vw;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.33);
-    border-radius: 2px;
-    position: fixed;
-    z-index: 10;
-    top: 64px;
-    left: calc(5vw / 2);
-    
-} */
-
-
-
 .loading-layer img {
     width: 30vw;
     height: 30vw;
@@ -612,11 +598,6 @@ min-width: 250px;
     max-width: 360px;
     max-height: 360px;
     margin-top: min(2vw,8px);
-    margin-bottom: min(5vw,20px);
-    /* box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.252); */
-    /* border-radius: 30px; */
-    /* overflow: hidden; */
-    /* background-color: blueviolet; */
 }
 
 .post-user-information {
