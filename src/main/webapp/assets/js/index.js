@@ -105,7 +105,7 @@ function relogin(){
                     sessionStorage.setItem('userLastName',data.lastName);
                     sessionStorage.setItem('userAvtHref',data.avtHref);
                     sessionStorage.setItem('data',data.data);
-                    // Browser.safeReload();
+                    Browser.safeReload();
                     return true;
                 } else { // <--- the bug occurs here
                     sessionStorage.setItem('loginStatus',false);

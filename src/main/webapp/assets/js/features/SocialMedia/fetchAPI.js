@@ -10,7 +10,7 @@ const likePost = (uuid, userId) => {
         formData.append("userId",userId);
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "social/api/likePost", true);
+        xhr.open("POST", "/social/api/likePost", true);
 
         xhr.onload = function() {
             if (xhr.status === 200) {

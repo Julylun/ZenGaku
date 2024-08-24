@@ -51,8 +51,12 @@ public class Profile extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("[Profile]<doGet>: Someone is getting information.");
         HttpSession session = req.getSession();
-        if(session.getAttribute("allowForward") == null) session.setAttribute("allowForward","true");
+        if(session.getAttribute("allowForward") == null) {
+            System.out.println("[Profile]<doGet>: Set \"allowForward\" to true");
+            session.setAttribute("allowForward","true");
+        }
         if(session.getAttribute("allowForward").equals("true")) {
             System.out.println("[Profile]<doGet>: Start stalking profile");
             session.setAttribute("allowForward","false");
@@ -63,6 +67,7 @@ public class Profile extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().setAttribute("allowForward","true");
         Session session = null;
         System.out.println("[Profile]<doPost>: Start stalking profile");
         try {

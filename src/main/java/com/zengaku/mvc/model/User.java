@@ -93,6 +93,15 @@ public class User {
 	public User() {
 		this.userAvatar = "assets/resources/img/default-avt.png";
 	}
+
+	/**
+	 * Put User object and JSONObject object to this function then it will put user's information to
+	 * your JSONObject and that information will name with a string (@param jsonName).
+	 * @param user
+	 * @param jsonObject
+	 * @param jsonName
+	 * @return
+	 */
 	public static JSONObject getUserJson(User user, JSONObject jsonObject, String jsonName) {
 		JSONObject leafJson = null;
 		try {

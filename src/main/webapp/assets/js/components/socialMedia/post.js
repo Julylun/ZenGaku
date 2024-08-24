@@ -19,7 +19,7 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
 
     let postUserInformation = HTMLDom.createElement('div',['post-user-information'],post,{});
     //Create avatar
-    if(avatarHref == 'dEfAuLt') avatarHref = 'assets/resources/img/default_avatar.png';
+    if(avatarHref == 'dEfAuLt') avatarHref = '/assets/resources/img/default_avatar.png';
     HTMLDom.createElement('img',['avatar-image'],
         HTMLDom.createElement('div',['post-avatar'],postUserInformation,{}),
     {src: avatarHref}
@@ -35,7 +35,7 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
 
     let timePrivacy = HTMLDom.createElement('div',['time-privacy'],timeUserInformation,{});
     HTMLDom.createElement('p',['post-time'],timePrivacy,{innerText: postTime});
-    HTMLDom.createElement('img',['privacy-icon'],timePrivacy,{src: 'assets/resources/img/public-icon-black.svg'});
+    HTMLDom.createElement('img',['privacy-icon'],timePrivacy,{src: '/assets/resources/img/public-icon-black.svg'});
 
     let postContent = HTMLDom.createElement('div',['post-content'],post,{});
 
@@ -61,8 +61,8 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
     if(isLiked){
         checkbox.checked = true;
     }
-    let unChecked = HTMLDom.createElement('img',['tree-heart-image-unchecked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-unchecked-2.svg'});
-    let checked = HTMLDom.createElement('img',['tree-heart-image-checked'],treeHeartButton,{src: 'assets/resources/img/tree-heart-icon-checked-2.svg'});
+    let unChecked = HTMLDom.createElement('img',['tree-heart-image-unchecked'],treeHeartButton,{src: '/assets/resources/img/tree-heart-icon-unchecked-2.svg'});
+    let checked = HTMLDom.createElement('img',['tree-heart-image-checked'],treeHeartButton,{src: '/assets/resources/img/tree-heart-icon-checked-2.svg'});
     
     console.log(isLiked);
     
@@ -83,12 +83,12 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
 
     HTMLDom.createElement('img',['comment-image'],
         HTMLDom.createElement('div',['comment-button'],postControlPaneButton,{}),
-    {src: 'assets/resources/img/comment-icon-white.svg'}
+    {src: '/assets/resources/img/comment-icon-white.svg'}
     );
 
     HTMLDom.createElement('img',['share-image'],
         HTMLDom.createElement('div',['share-button'],postControlPaneButton,{}),
-    {src: 'assets/resources/img/share-icon-white.svg'}
+    {src: '/assets/resources/img/share-icon-white.svg'}
     );
 
     let treeNum = HTMLDom.createElement('p',['post-number-of-view'],

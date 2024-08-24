@@ -11,6 +11,5 @@ const getPostByJwt = async (jwtString) => {
         body: formData
     });
 
-    let data = await response.json();
-    console.log(await data);
+    return response;
 }
