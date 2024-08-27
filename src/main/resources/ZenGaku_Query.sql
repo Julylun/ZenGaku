@@ -119,3 +119,5 @@ select * from RefreshToken
 use zengaku_db
 select * from AuthToken
 select * from TreeHeartUserList
+select * from friendship
+use zengaku_db
