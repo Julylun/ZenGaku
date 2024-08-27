@@ -89,11 +89,11 @@ public class Profile extends HttpServlet {
         } catch (AuthenticationException e) {
             System.out.println("[Profile]<doPost>: Response -> User doesn't login; Error code 404");
             e.printStackTrace();
-            resp.sendError(404);
+            resp.sendError(401);
         } catch (IncorrectProfileException e) {
             System.out.println("[Profile]<doPost>: Response -> Profile user doesn't exist; Error code 401");
             e.printStackTrace();
-            resp.sendError(401);
+            resp.sendError(404);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -90,6 +90,14 @@ public class User {
 		}
 	}
 
+	public static boolean isUserExist(String id, Session session) {
+		return session.get(User.class, id) != null;
+	}
+
+	public static boolean isUserExist(Long id, Session session) {
+		return session.get(User.class, id) != null;
+	}
+
 	public User() {
 		this.userAvatar = "assets/resources/img/default-avt.png";
 	}

@@ -28,7 +28,7 @@
             <div class = "profile-information__user">
                 <div class = "profile-information__user--avatar-block">
                     <div id = "profile-image-container">
-                        <img src = "/assets/resources/img/demoImage/ly.jpg"id = "profile-image">
+                        <img src = "/assets/resources/img/demoImage/ly.jpg" id = "profile-image">
                     </div>
                 </div>
                 <div class = "profile-information__user--information-block">
@@ -51,11 +51,12 @@
                 </div>
                 <div class = "profile-information__user--button-block">
                     <div class = "profile-information__user--button-arrange">
-                        
-                        <button class = "profile-information__user--show-button profile-add-button">Add</button>                        
-                        <button class = "profile-information__user--hiding-button profile-friend-button">Friend</button> 
-                        <button class = "profile-information__user--hiding-button profile-bestie-button">Bestie</button> 
-                        <button class = "profile-information__user--hiding-button profile-edit-button">Edit profile</button> 
+                        <button id = 'profile-add-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-add-button">Add</button>                        
+                        <button id = 'profile-cancel-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-cancel-button">Cancel</button>
+                        <button id = 'profile-response-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-response-button">Response</button>
+                        <button id = 'profile-friend-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-friend-button">Friend</button>
+                        <button id = 'profile-bestie-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-bestie-button">Bestie</button>
+                        <button id = 'profile-edit-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-edit-button">Edit profile</button>
                     </div>
                 </div>
             </div>

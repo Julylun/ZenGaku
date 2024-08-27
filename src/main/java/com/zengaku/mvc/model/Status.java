@@ -4,7 +4,10 @@ public class Status {
 
     public enum FriendshipStatus {
         Friend,
-        PendingFriend
+        PendingFriend,
+        Bestie,
+        NotFriend,
+        Responding
     }
 
 }
