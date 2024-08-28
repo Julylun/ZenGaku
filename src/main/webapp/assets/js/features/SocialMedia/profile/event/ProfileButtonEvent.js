@@ -1,5 +1,7 @@
 import * as Server from '../Server.js'
 import * as Interface from '../../../../components/socialMedia/profile/interface.js'
+import * as UserButtonList from '../../../../components/socialMedia/profile/userButtonList.js'
+
 export {
     ADD_FRIEND_BUTTON,
     FRIEND_BUTTON,
@@ -15,6 +17,11 @@ const BESTIE_BUTTON = 2;
 const EDIT_PROFILE_BUTTON = 3; 
 const CANCEL_BUTTON = 4;
 const RESPONSE_BUTTON = 5;
+const ACCEPT_BUTTON = 6;
+const DENY_BUTTON = 7;
+const BLOCK_BUTTON = 8;
+
+
 
 
 
@@ -77,27 +84,53 @@ const createCancelFriendEvent = async (cancelButtonElement) => {
 
 const createResponseFriendEvent = async (responseButtonElement) => {
     responseButtonElement.addEventListener('click', async () => {
-        let inputVal = prompt('[A]: Accept; [D]: Deny');
-        let response = null;
-        if(inputVal === "A")
-            response =  await Server.acceptFriendRequest(localStorage.authToken);
-        else 
-            response = await Server.cancelFriendRequest(localStorage.authToken);
-
-        switch(response.status) {
-            case 200: {
-                console.log(response.json());
-                confirm.length("Accept friend request succcessfully");
-                break;
-            }
-            
-            default: {
-                console.log("ERROR: " + response.status);
-                break;
-            }
-        }
+        let userMenuList = UserButtonList.createButtonListMenu();
+        let acceptButton = UserButtonList.createButtonListElement('Accept','profile-rsp-accept-btn',UserButtonList.NONE,userMenuList);
+        let denyButton = UserButtonList.createButtonListElement('Deny','profile-rsp-deny-btn',UserButtonList.RED,userMenuList);
+        setEventToButton(acceptButton,ACCEPT_BUTTON);
+        setEventToButton(denyButton,DENY_BUTTON);
     })
 
+}
+
+const createAcceptFriendEvent = async (acceptButtonElement) => {
+    acceptButtonElement.addEventListener('click', async () => {
+        let response = await Server.acceptFriendRequest(localStorage.authToken);
+        
+        if(response.status == 200) {
+            console.log("Accept successfully!");
+        } else {
+            console.log("Occur error -> " + response.status);
+        }
+        UserButtonList.removeButtonListMenu();
+        Interface.changeProfileButton();
+    })
+}
+
+const createDenyFriendEvent = async (denyButtonElement) => {
+    denyButtonElement.addEventListener('click', async () => {
+        let response = await Server.cancelFriendRequest(localStorage.authToken);
+        
+        if(response.status == 200) {
+            console.log('Deny successfully');
+        } else {
+            console.log("Occur error -> " + response.status);
+        }
+        UserButtonList.removeButtonListMenu();
+        Interface.changeProfileButton();
+    })
+    }
+
+const createFriendEvent = async (friendButton) => {
+    friendButton.addEventListener('click', async () => {
+        let userMenuList = UserButtonList.createButtonListMenu();
+        let bestieButton = UserButtonList.createButtonListElement('Bestie','profile-rsp-bestie-btn',UserButtonList.NONE,userMenuList);
+        let unfriendButton = UserButtonList.createButtonListElement('Unfriend','profile-rsp-unfriend-btn',UserButtonList.NONE,userMenuList);
+        let blockButton = UserButtonList.createButtonListElement('Block','profile-rsp-block-btn',UserButtonList.RED,userMenuList);
+        setEventToButton(bestieButton,BESTIE_BUTTON);
+        setEventToButton(unfriendButton,DENY_BUTTON);
+        setEventToButton(blockButton,BLOCK_BUTTON);
+    })
 }
 
 /**
@@ -112,6 +145,7 @@ const setEventToButton = (buttonElement, buttonType) => {
             break;
         }
         case FRIEND_BUTTON: {
+            createFriendEvent(buttonElement);
             break;
         }
         case BESTIE_BUTTON: {
@@ -129,5 +163,18 @@ const setEventToButton = (buttonElement, buttonType) => {
             break;
         }
 
+        case ACCEPT_BUTTON: {
+            createAcceptFriendEvent(buttonElement);
+            break;
+        }
+
+        case DENY_BUTTON: {
+            createDenyFriendEvent(buttonElement);
+            break;
+        }
+        
+        case BLOCK_BUTTON: {
+            console.log("CHƯA LÀM")
+        }
     } 
 }

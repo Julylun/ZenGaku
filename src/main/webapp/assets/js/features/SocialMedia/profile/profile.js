@@ -30,6 +30,8 @@ const fillDataToProfile = async () => {
     ProfileButtonEvent.setEventToButton(document.getElementById('profile-add-btn'),ProfileButtonEvent.ADD_FRIEND_BUTTON);
     ProfileButtonEvent.setEventToButton(document.getElementById('profile-cancel-btn'),ProfileButtonEvent.CANCEL_BUTTON);
     ProfileButtonEvent.setEventToButton(document.getElementById('profile-response-btn'),ProfileButtonEvent.RESPONSE_BUTTON);
+    ProfileButtonEvent.setEventToButton(document.getElementById('profile-friend-btn'),ProfileButtonEvent.FRIEND_BUTTON);
+
     
     console.log("profileId = " + profileId);
     
