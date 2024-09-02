@@ -1,10 +1,10 @@
 package com.zengaku.mvc.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Data
 @Entity
 @Table(name = "Comment")
 public class Comment {
