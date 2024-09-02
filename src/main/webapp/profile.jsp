@@ -53,12 +53,19 @@
                     <div class = "profile-information__user--button-arrange">
                         <button id = 'profile-add-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-add-button">Add</button>                        
                         <button id = 'profile-cancel-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-cancel-button">Cancel</button>
-                        <button id = 'profile-response-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-response-button">Response</button>
+                        <button id = 'profile-response-btn' class = "profile-information__user--button profile-information__user--show-button profile-response-button">Response</button>
                         <button id = 'profile-friend-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-friend-button">Friend</button>
                         <button id = 'profile-bestie-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-bestie-button">Bestie</button>
                         <button id = 'profile-edit-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-edit-button">Edit profile</button>
                     </div>
                 </div>
+                <!-- <div class = "profile-information__user--button-list">
+                    <div class = "button-list-item"><p>Bestie</p></div>
+                    <div class = "button-list-split-line"></div>
+                    <div class = "button-list-item"><p>Unfriend</p></div>
+                    <div class = "button-list-split-line"></div>
+                    <div class = "button-list-item button-list-red-item"><p>Block</p></div>
+                </div> -->
             </div>
             <div class="line-container"><div class="end-post-line"></div></div>
             <div class = "profile-information__bio">

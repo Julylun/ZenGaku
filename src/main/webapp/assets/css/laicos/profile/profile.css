@@ -211,8 +211,74 @@
     /* max-height: 360px; */
     /* margin-top: min(2vw,8px); */
 
+.profile-information__user--button-list {
+    position: absolute;
+    width: 20vw;
+    max-width: 80px;
+    height: auto;
+    background-color: #ffffff;
+    filter: drop-shadow(0 0 0.5vw #b8b8b8);
+    border-radius: min(2vw,8px);
+    right: max(6.5vw,calc(26px + ( 100vw - 400px ) / 2 ));
+    top: min(20vw, 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.button-list-item {
+    font-family: Inter;
+    font-weight: 300;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0.4px 0 0.4px 0;
+    transition: all 0.2s ease-in-out;
+}
+.button-list-item:hover {
+    background-color: rgb(216, 216, 216);
+    cursor: pointer;
+}
+.button-list-item p {
+    font-size: min(2.5vw,10px);
+}
+
+.button-list-red-item p {
+    color: #FF4343;
+}
+
+.button-list-red-item:hover {
+    background-color:  #ffd6d6;
+}
+
+.button-list-red-item:hover .button-list-red-item p {
+    color: #000;
+}
+
+
+
+.button-list-split-line {
+    width: 80%;
+    height: 0.4px;
+    background-color: #E1E0E0;
+}
 
 @media (min-width: 767px) {
+    .profile-information__user--button-list {
+        width: 20vw;
+        max-width: 80px;
+        height: auto;
+        background-color: #ffffff;
+        filter: drop-shadow(0 0 0.5vw #b8b8b8);
+        border-radius: min(3vw,12px);
+        right: max(6.5vw,calc(33px + ( 100vw - 500px) / 2 ));
+        top: min(20vw, 80px);       
+    }
     .profile-information {
         display: flex;
         flex-direction: column;
