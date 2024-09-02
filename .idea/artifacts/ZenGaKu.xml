@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ZenGaKu">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="root" />
+  </artifact>
+</component>

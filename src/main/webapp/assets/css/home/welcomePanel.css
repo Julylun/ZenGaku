@@ -1,0 +1,184 @@
+#temp-black-background {
+    height: 100vh;
+    width: 100vw;
+    background-color: #0000009a;
+    position: fixed;
+    z-index: 10;
+    
+}
+#welcome {
+    position: absolute;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5vw 0.5vw hsl(0, 0%, 0%);
+
+    filter: drop-shadow(30px);
+
+    width: 90vw;
+    max-width: 680px;
+    height: 70vh;
+    left: max(5vw,calc((100vw - 680px) / 2));
+    top: 15vh;
+    border-radius: min(9vw,30px);
+    max-height: 475px;
+    /*devices-height = 680px */
+    background: linear-gradient(162deg, #004634, #000000, #25002e, #003666, #660000);
+    background-size: 1000% 1000%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    -o-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:37% 0%}
+    50%{background-position:64% 100%}
+    100%{background-position:37% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:37% 0%}
+    50%{background-position:64% 100%}
+    100%{background-position:37% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:37% 0%}
+    50%{background-position:64% 100%}
+    100%{background-position:37% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:37% 0%}
+    50%{background-position:64% 100%}
+    100%{background-position:37% 0%}
+}
+
+#welcome-head {
+    /* background-color:aquamarine; */
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Inter;
+    font-weight: bold;
+    height: 15vh; 
+    /* 55vh */
+    margin-top: min(3vh,calc(680/100*3px));
+    margin-left: 10%;
+    width: 80%;
+}
+
+.welcome__head--title {
+    font-weight: bold;
+    margin: 0;
+    font-size: min(6vw,24px);
+}
+
+#welcome-head-first-text-container {
+    /* background-color: blue; */
+    margin-top: 2vh;
+    display: flex;
+    align-items: end;
+    height: 5vh;
+}
+
+#welcome-head-first-text-container p {
+    /* margin: 0; */
+}
+
+#welcome-head-second-text-container {
+    display: flex;
+    align-items:baseline;
+    /* background-color: rgb(98, 255, 0); */
+    height: 5vh;
+}
+
+#welcome-head-earlyaccess-text {
+    /* background-color:brown; */
+    margin: min(1vw, 4px) 0 0 min(2vw, 8px);
+    font-size: min(4vw,16px);
+    color: rgb(252, 219, 30);
+    align-self: flex-start;
+}
+
+.welcome-line {
+    background-color: white;
+    height: 1px;
+    width: 80%;
+    align-self: center;
+    margin: min(3vw,12px) 0 min(3vw,12px) 0;
+}
+
+#welcome-content-container {
+    width: 80%;
+    height: 43vh;
+    max-height: 229.719px;
+    margin-left: 10%;
+    overflow-y: scroll;
+    
+}
+
+#welcome-content-container p {
+    margin: 0;
+    word-wrap: break-word;
+    font-family: Inter;
+    font-weight: 250;
+    font-size: min(4vw,16px);
+    /* text-indent: 5em; */
+}
+
+#welcome-content-container strong {
+    margin: 0;
+    word-wrap: break-word;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: min(4vw,16px);
+}
+
+#welcome-button-container {
+    /* background-color: rgb(0, 130, 37); */
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 90%;
+    height: 12vh;
+    max-height: 73.656px;
+    margin-left: 5%;
+}
+
+#welcome-button-container button {
+    height: 9vw;
+    width: 23vw;
+    max-width: 80px;
+    max-height: 34px;
+    margin: 0 0 min(3vw, 12px) 0;
+    font-family: Inter;
+    font-weight: bold;
+    color: white;
+    font-size: min(3vw,12px);
+}
+
+#welcome-try-now-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+#welcome-take-a-tour-button {
+    border-radius: min(3.3vw, 13.2px);
+    border: none;
+    background-color: rgb(86, 23, 146);
+    box-shadow: 0px 0px min(2vw, 8px) min(0.05vw, 0.2px) #000;
+    
+}
+
+#welcome-content-container::-webkit-scrollbar {
+    width: 0;
+}
+
+#welcome-content-item {
+    font-family: Inter;
+    color: white;
+}

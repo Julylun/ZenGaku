@@ -1,0 +1,114 @@
+{
+  "counter": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "setting": {
+      "countingTime": {
+        "pomodoro": {
+          "hour": 0,
+          "minute": 25,
+          "second": 0,
+          "breakTime": 5,
+          "repeat": 5
+        },
+        "shortBreak": {
+          "hour": 0,
+          "minute": 25,
+          "second": 0,
+          "breakTime": 2,
+          "repeat": 5
+        },
+        "longBreak": {
+          "hour": 0,
+          "minute": 40,
+          "second": 0,
+          "breakTime": 20,
+          "repeat": 4
+        }
+      },
+      "isMuted": false,
+      "alarmVolume": 100
+    }
+  },
+  "backgroundConfiguration": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "currentBackground": "https://pbs.twimg.com/media/Fxto7UTXgAEtKVC.jpg:large",
+      "name": [
+        "🗻 Mountain and lake",
+        "🌗 Moon and Sun",
+        "🌃 The sky night",
+        "🤵 Danger person",
+        "🚓 Old car",
+        "🌉 The bridge",
+        "🌿 Leaves",
+        "🌻 Flowers",
+        "🧑‍🤝‍🧑 Study with BTS",
+        "☕ Study in coffee shop",
+        "🚶‍♀️ Night Walk in Tokyo Shibuya",
+        "🚶‍♀️ Snowfall in Times Square, NYC",
+        "🚶‍♀️ FLYING OVER JAPAN",
+        "🪟 DOWNTOWN LOS ANGELES City View day "
+      ],
+      "url": [
+        "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg",
+        "https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp",
+        "https://pbs.twimg.com/media/Fxto7UTXgAEtKVC.jpg:large",
+        "https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg",
+        "https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://www.youtube.com/embed/UZ9uyQI3pF0",
+        "https://www.youtube.com/embed/SVDooWT60Ho",
+        "https://www.youtube.com/embed/2XK0zoPWdi4",
+        "https://www.youtube.com/embed/0nTO4zSEpOs",
+        "https://www.youtube.com/embed/F8MN0o6RS9o",
+        "https://www.youtube.com/embed/AY5qcIq5u2g",
+        "https://www.youtube.com/embed/M9cJMXmQ_ZU"
+      ]
+    }
+  },
+  "soundConfiguration": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "name": [
+        "Chill wind",
+        "Cold wind",
+        "Ocean wave",
+        "Ocean wave 2",
+        "Office sound",
+        "Pretty Real Office sound",
+        "Keyboard type",
+        "Campfire"
+      ],
+      "iconUrl": [
+        "assets/resources/img/defaultAudioImg/wind.svg",
+        "assets/resources/img/defaultAudioImg/wind.svg",
+        "assets/resources/img/defaultAudioImg/oceanwave.svg",
+        "assets/resources/img/defaultAudioImg/oceanwave.svg",
+        "assets/resources/img/defaultAudioImg/office.svg",
+        "assets/resources/img/defaultAudioImg/office.svg",
+        "assets/resources/img/defaultAudioImg/keyboard.svg",
+        "assets/resources/img/defaultAudioImg/campfire.svg"
+      ],
+      "soundUrl": [
+        "assets/resources/audio/ChillWind.mp3",
+        "assets/resources/audio/ColdWind.mp3",
+        "assets/resources/audio/OceanWave.mp3",
+        "assets/resources/audio/OceanWave2.mp3",
+        "assets/resources/audio/OfficeSound.mp3",
+        "assets/resources/audio/3DOfficeSound.mp3",
+        "assets/resources/audio/KeyboardType.mp3",
+        "assets/resources/audio/Campfire.mp3"
+      ]
+    }
+  }
+}
