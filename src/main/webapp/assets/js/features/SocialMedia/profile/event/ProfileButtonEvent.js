@@ -84,8 +84,10 @@ const createCancelFriendEvent = async (cancelButtonElement) => {
 
 const createResponseFriendEvent = async (responseButtonElement) => {
     responseButtonElement.addEventListener('click', async () => {
+        if(UserButtonList.removeButtonListMenuIfExisting()) return;
         let userMenuList = UserButtonList.createButtonListMenu();
         let acceptButton = UserButtonList.createButtonListElement('Accept','profile-rsp-accept-btn',UserButtonList.NONE,userMenuList);
+        UserButtonList.createSplitLine(userMenuList);
         let denyButton = UserButtonList.createButtonListElement('Deny','profile-rsp-deny-btn',UserButtonList.RED,userMenuList);
         setEventToButton(acceptButton,ACCEPT_BUTTON);
         setEventToButton(denyButton,DENY_BUTTON);
@@ -123,9 +125,12 @@ const createDenyFriendEvent = async (denyButtonElement) => {
 
 const createFriendEvent = async (friendButton) => {
     friendButton.addEventListener('click', async () => {
+        if(UserButtonList.removeButtonListMenuIfExisting()) return;
         let userMenuList = UserButtonList.createButtonListMenu();
         let bestieButton = UserButtonList.createButtonListElement('Bestie','profile-rsp-bestie-btn',UserButtonList.NONE,userMenuList);
+        UserButtonList.createSplitLine(userMenuList);
         let unfriendButton = UserButtonList.createButtonListElement('Unfriend','profile-rsp-unfriend-btn',UserButtonList.NONE,userMenuList);
+        UserButtonList.createSplitLine(userMenuList);
         let blockButton = UserButtonList.createButtonListElement('Block','profile-rsp-block-btn',UserButtonList.RED,userMenuList);
         setEventToButton(bestieButton,BESTIE_BUTTON);
         setEventToButton(unfriendButton,DENY_BUTTON);

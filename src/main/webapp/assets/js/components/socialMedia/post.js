@@ -8,7 +8,7 @@ export {
     addPosts,
     loadPost
 }
-const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNumber, caption, parent, isLiked, isBefore) => {
+const createPost = (uuid, authorId, avatarHref, userName, postTime, postImageHref, treeNumber, caption, parent, isLiked, isBefore) => {
     let post; 
     if(isBefore) {
         post = HTMLDom.createElement('div',['post'],null,{},uuid);
@@ -30,7 +30,7 @@ const createPost = (uuid, avatarHref, userName, postTime, postImageHref, treeNum
     HTMLDom.createElement('p',['user-name'],
         HTMLDom.createElement('a',['user-hyperlink'],
             timeUserInformation
-        ,{href: '#'})
+        ,{href: '/Zentizen/profile?id=' + authorId})
     ,{innerText: userName});
 
     let timePrivacy = HTMLDom.createElement('div',['time-privacy'],timeUserInformation,{});
@@ -120,6 +120,7 @@ const addPosts = (postList) => {
     let newsfeed = document.getElementsByClassName('newsfeed').item(0);
     for(let post of postList){
         createPost(post.uuid,
+            post.authorId,
             post.authorAvatarLink,
             post.authorFirstName + " " + post.authorLastName,
             post.uploadDate[0],

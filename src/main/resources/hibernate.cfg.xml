@@ -35,7 +35,7 @@
         <mapping class="com.zengaku.mvc.model.Notification"/>
         <mapping class="com.zengaku.mvc.model.TreeHeartUser"/>
         <mapping class="com.zengaku.mvc.model.Friendship"/>
-
+        <mapping class="com.zengaku.mvc.model.SocialMedia.Message"/>
 
 
 

@@ -92,10 +92,22 @@ create table friendship(
 id int auto_increment primary key ,
 from_userid BIGINT,
 to_userid BIGINT,
+isMessageConnected BOOL,
 status text,
 foreign key(from_userid) references user(id),
 foreign key(to_userid) references user(id)
-)
+);
+
+create table message(
+	id BIGINT auto_increment primary key,
+    fromUserId BIGINT,
+    toUserId BIGINT,
+    bodyText TEXT,
+    seen BOOL,
+    sendTime DATETIME,
+    foreign key(fromUserId) references user(id),
+    foreign key(toUserId) references user(id)
+);
 
 INSERT INTO USER 
 (userName, userPassword, userEmail, userFirstName, userLastName,userAvatar, userBirthday, savedData)
@@ -120,4 +132,9 @@ use zengaku_db
 select * from AuthToken
 select * from TreeHeartUserList
 select * from friendship
+select * from message
 use zengaku_db
+
+
+
+

@@ -87,7 +87,9 @@
                 </a>
             </div>
             <div class = "nav-item">
+                <a href="/Zentizen/messages">
                 <img class = "nav-item-image" src = "assets/resources/img/message-button-laicos-white.svg">
+                </a>
             </div>
             <div class = "nav-item" id = 'nav-add-post'>
                 <img class = "nav-item-image" src = "assets/resources/img/add-post-laicos-white.svg">

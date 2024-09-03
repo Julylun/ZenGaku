@@ -5,7 +5,7 @@
     <title></title>
     <link rel = "stylesheet" href = "/assets/css/laicos.css">
     <link rel = "stylesheet" href = "/assets/css/laicos/profile/profile.css">
-
+    <link rel = "stylesheet" href = "/assets/css/laicos/profile/editProfileForm.css">
 </head>
 <body>
     <nav id="nav-bar">
@@ -19,9 +19,40 @@
         </div>
     </nav>
     
-    <div class = "split-line"></div>
+    <!-- <div class = "split-line"></div>
     <div id = "notify-panel" style="display: none;"> </div>
-
+    <div class="profile-edit-container">
+        <div class="profile-edit-form">
+            <div class="profile-edit-head">
+                <p id="profile-edit-title">Edit-profile</p>
+            </div>
+            <div class="profile-edit-long-split-line"></div>
+            <div class="profile-edit-body">
+                <div class="profile-edit-avatar-container">
+                    <img id="profile-edit-avatar-image">
+                </div>
+                <div class="profile-edit-short-split-line"></div>
+                <div class="profile-edit-content">
+                    <div class="profile-edit-item">
+                        <p>First name</p>
+                        <input id="profile-edit-input-firstname" type="text">
+                    </div>
+                    <div class="profile-edit-item">
+                        <p>Last name</p>
+                        <input id="profile-edit-input-lastname" type="text">
+                    </div>
+                    <div class="profile-edit-item">
+                        <p>Bio</p>
+                        <input id="profile-edit-input-bio" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="profile-edit-foot">
+                <button id="profile-edit-save-btn">Save</button>
+                <button id="profile-edit-discard-btn">Discard</button>
+            </div>
+        </div>
+    </div> -->
         
     <div class = "newsfeed">
         <div class = "profile-information">
@@ -49,11 +80,12 @@
 						</div>
                     </div>
                 </div>
+                
                 <div class = "profile-information__user--button-block">
                     <div class = "profile-information__user--button-arrange">
                         <button id = 'profile-add-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-add-button">Add</button>                        
                         <button id = 'profile-cancel-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-cancel-button">Cancel</button>
-                        <button id = 'profile-response-btn' class = "profile-information__user--button profile-information__user--show-button profile-response-button">Response</button>
+                        <button id = 'profile-response-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-response-button">Response</button>
                         <button id = 'profile-friend-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-friend-button">Friend</button>
                         <button id = 'profile-bestie-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-bestie-button">Bestie</button>
                         <button id = 'profile-edit-btn' class = "profile-information__user--button profile-information__user--hiding-button profile-edit-button">Edit profile</button>
@@ -91,8 +123,8 @@
 
 
 
- <div class = "post">
-                <div class = "post-user-information">
+ <!-- <div class = "post"> -->
+                <!-- <div class = "post-user-information">
                     <div class = "post-avatar">
                         <img class = "avatar-image" src = "/assets/resources/img/HoangLuan_Avt_demo.png">
                     </div>
@@ -136,12 +168,12 @@
                 <div class = "line-container">
                     <div class = "end-post-line"></div>
                 </div>
-            </div> 
+            </div>  -->
 
 
 
         
-    </div>
+    <!-- </div> -->
 
 
     <nav id = "bottom-nav-bar">
@@ -151,7 +183,9 @@
                 </a>
             </div>
             <div class = "nav-item">
-                <img class = "nav-item-image" src = "/assets/resources/img/message-button-laicos-white.svg">
+                <a href = "/Zentizen/messages">
+                    <img class = "nav-item-image" src = "/assets/resources/img/message-button-laicos-white.svg">
+                </a>
             </div>
             <div class = "nav-item" id = 'nav-add-post'>
                 <img class = "nav-item-image" src = "/assets/resources/img/add-post-laicos-white.svg">

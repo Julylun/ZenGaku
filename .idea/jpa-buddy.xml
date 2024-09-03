@@ -3,6 +3,8 @@
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="aaa7189c-c85e-4484-8454-8f3d3fe55c2d__zengaku_db" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/zengaku/mvc/model/SocialMedia" />
     <option name="newEntityIdStrategy" value="Identity" />
   </component>
 </project>

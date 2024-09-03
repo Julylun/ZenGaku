@@ -158,10 +158,18 @@
     cursor: pointer;
 }
 
+.profile-information__user--button-block button:focus {
+    filter: drop-shadow(0 0 0.15vw #828282);
+}
+
+
 .profile-add-button {
     background-color: #D9D9D9;
 }
 .profile-add-button:hover {
+    background-color: #BDBDBD;
+}
+.profile-add-button:focus {
     background-color: #BDBDBD;
 }
 .profile-friend-button {
@@ -169,20 +177,49 @@
 }
 .profile-friend-button:hover {
     background-color: #96EA95}
+.profile-friend-button:focus {
+    background-color: #96EA95}
+
 .profile-bestie-button {
     background-color: #B5E9FF;
 }
 .profile-bestie-button:hover {
     background-color: #72CBE8; 
 }
-
+.profile-bestie-button:focus {
+    background-color: #72CBE8; 
+}
+.profile-cancel-button {
+    background-color: #ededed;
+    color: #FF4545;
+}
+.profile-cancel-button:focus {
+    background-color: #fecccc;
+    color: #303030;
+}
+.profile-cancel-button:hover {
+    background-color: #fecccc;
+    color: #303030;
+}
 .profile-edit-button {
     background-color: #D9D9D9;
 }
 .profile-edit-button:hover {
     background-color: #BDBDBD;
 }
+.profile-edit-button:focus {
+    background-color: #BDBDBD;
+}
 
+.profile-response-button {
+    background-color: #FFE37F;
+}
+.profile-response-button:hover {
+    background-color: #F4D873;
+}
+.profile-response-button:focus {
+    background-color: #F4D873;
+}
 .profile-information__user--hiding-button {
     display: none;
 }

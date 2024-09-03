@@ -15,10 +15,20 @@ export {
     createButtonListElement,
     createSplitLine,
     createButtonListMenu,
-    removeButtonListMenu
+    removeButtonListMenu,
+    removeButtonListMenuIfExisting
 }
 const RED = 1;
 const NONE = 0;
+
+const removeButtonListMenuIfExisting = () => {
+    if(document.getElementsByClassName('profile-information__user--button-list').item(0)) {
+        removeButtonListMenu();
+        return true;
+    }
+
+    return false;
+}
 
 const removeButtonListMenu = () => {
     console.log('removed button list');

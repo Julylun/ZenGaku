@@ -3,6 +3,7 @@ import * as Menu from './components/home/menu.js'
 import * as AuthMenu from './components/home/login.js'
 import * as Browser from '../js/features/system/browser.js'
 import * as DefaultLoader from '../js/features/home/defaultLoader.js'
+import * as SocketConnector from './features/SocialMedia/message/socketConnector.js'
 
 // import "./indexInitFunction.js";
 //Init
@@ -222,6 +223,7 @@ function _default(){
         loginButton.style.display = "none"; 
         DefaultLoader.loadDataFromUserData();
         console.log("signed in");
+        SocketConnector.connectToServer();
     }
     
     
