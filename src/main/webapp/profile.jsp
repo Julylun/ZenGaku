@@ -5,7 +5,7 @@
     <title></title>
     <link rel = "stylesheet" href = "/assets/css/laicos.css">
     <link rel = "stylesheet" href = "/assets/css/laicos/profile/profile.css">
-    <link rel = "stylesheet" href = "/assets/css/laicos/profile/editProfileForm.css">
+    <link rel = "stylesheet" href = "/assets/css/laicos/profile/editProfile.css">
 </head>
 <body>
     <nav id="nav-bar">
@@ -18,6 +18,37 @@
             <img src="/assets/resources/img/tree-icon-dark.png">
         </div>
     </nav>
+
+    <div class="all_editProfile" style="display: none;">
+        <div class="form-container">
+            <h2 class="edit-profile-form">Edit profile</h2>
+            <div class="profile-picture">
+                <input type="file" id="fileInput" style="display: none;" />
+                <img id="profileImage" src="" alt=""
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+            </div>
+            <form id="edit-profile-form">
+                <div class="form-group">
+                    <label for="first-name">First name</label>
+                    <input type="text" id="first-name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last name</label>
+                    <input type="text" id="last-name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" placeholder=""></textarea>
+                </div>
+                <div class="button-group">
+                    <hr class="divider">
+                    <button type="button" class="save-button">Save</button>
+                    <button type="button" class="discard-button">Discard</button>
+                </div>
+    
+            </form>
+        </div>
+    </div>
     
     <!-- <div class = "split-line"></div>
     <div id = "notify-panel" style="display: none;"> </div>
@@ -178,7 +209,7 @@
 
     <nav id = "bottom-nav-bar">
             <div class = "nav-item">
-                <a href="index.jsp">
+                <a href="/Zentizen/messages">
                     <img class = "nav-item-image" src = "/assets/resources/img/back-button-laicos-white.svg">
                 </a>
             </div>

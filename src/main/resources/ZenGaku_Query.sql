@@ -13,6 +13,7 @@ CREATE TABLE USER (
     userPassword text not null,
     userAvatar text not null,
     userEmail text(320) not null,
+    userBio text(50),
     savedData text 
 );
 

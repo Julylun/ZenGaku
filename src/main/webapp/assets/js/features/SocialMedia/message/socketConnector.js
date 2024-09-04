@@ -1,6 +1,7 @@
 import * as ChatCreator from '../../../components/socialMedia/messages/inbox/ElementCreator.js'
 import { receiverName } from './inbox/inbox.js';
-const WEB_SOCKET_SERVER_PATH = "ws://localhost:8080/Zentizen/message";
+// const WEB_SOCKET_SERVER_PATH = "ws://localhost:8080/Zentizen/message";
+const WEB_SOCKET_SERVER_PATH = "ws://"+document.location.host+"/Zentizen/message";
 export {
     connectToServer,
     sendMessage

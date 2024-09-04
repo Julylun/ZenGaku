@@ -102,8 +102,9 @@ body {
     width: min(0.3vw,1.2px);
 }
 .inbox-body__message-item {
-    width: 80%;
-    max-width: 286px;
+    /* width: 80%; */
+    width: auto;
+    max-width: min(286px,80%);
     height: auto;
     min-height: min(23vw,92px);
     background-color: white;

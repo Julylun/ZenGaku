@@ -161,7 +161,7 @@
 
   <nav id="bottom-nav-bar">
     <div class="nav-item">
-      <a href="index.jsp">
+      <a href="/Zentizen">
         <img class="nav-item-image" src="/assets/resources/img/back-button-laicos-white.svg">
       </a>
     </div>

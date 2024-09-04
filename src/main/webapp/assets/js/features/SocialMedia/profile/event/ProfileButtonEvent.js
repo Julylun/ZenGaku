@@ -128,13 +128,23 @@ const createFriendEvent = async (friendButton) => {
         if(UserButtonList.removeButtonListMenuIfExisting()) return;
         let userMenuList = UserButtonList.createButtonListMenu();
         let bestieButton = UserButtonList.createButtonListElement('Bestie','profile-rsp-bestie-btn',UserButtonList.NONE,userMenuList);
+        let inboxButton = UserButtonList.createButtonListElement('Inbox','profile-rsp-inbox-btn',UserButtonList.NONE,userMenuList);
         UserButtonList.createSplitLine(userMenuList);
         let unfriendButton = UserButtonList.createButtonListElement('Unfriend','profile-rsp-unfriend-btn',UserButtonList.NONE,userMenuList);
         UserButtonList.createSplitLine(userMenuList);
         let blockButton = UserButtonList.createButtonListElement('Block','profile-rsp-block-btn',UserButtonList.RED,userMenuList);
+        let newHref = window.location.origin + "/Zentizen/messages/direct?id=" + new URLSearchParams(window.location.search).get('id');
+        inboxButton.addEventListener('click', () => {window.location.href = newHref });
         setEventToButton(bestieButton,BESTIE_BUTTON);
         setEventToButton(unfriendButton,DENY_BUTTON);
         setEventToButton(blockButton,BLOCK_BUTTON);
+    })
+}
+
+const createEditProfileEvent = async (editButton) => {
+    editButton.addEventListener('click', () => {
+        let editProfileElement = document.getElementsByClassName('all_editProfile').item(0);
+        editProfileElement.style.display = "flex";
     })
 }
 
@@ -157,6 +167,7 @@ const setEventToButton = (buttonElement, buttonType) => {
             break;
         }
         case EDIT_PROFILE_BUTTON: {
+            createEditProfileEvent(buttonElement);
             break;
         }
         case CANCEL_BUTTON : {

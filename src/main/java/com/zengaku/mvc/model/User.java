@@ -47,6 +47,9 @@ public class User {
 	@Column(name = "userAvatar", nullable = false)
 	private String userAvatar;
 
+	@Column(name = "userBio", nullable = true)
+	private String userBio;
+
 	@Column(name = "savedData")
 	private String savedData;
 
@@ -119,6 +122,7 @@ public class User {
 			leafJson.put("firstname", user.getUserFirstName());
 			leafJson.put("lastname", user.getUserLastName());
 			leafJson.put("userAvatar", user.getUserAvatar());
+			leafJson.put("userBio", user.getUserBio());
 
 			jsonObject.put(jsonName, leafJson);
 		} catch (Exception e) {

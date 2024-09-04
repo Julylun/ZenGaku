@@ -3,8 +3,12 @@ export {
     sendFrendRequest,
     getFriendStatus,
     cancelFriendRequest,
-    acceptFriendRequest
+    acceptFriendRequest,
+    editProfile 
 }
+
+const EDIT_PROFILE_TYPE = 0;
+
 
 const getPostByJwt = async (jwtString) => {
     let formData = new FormData();
@@ -16,6 +20,27 @@ const getPostByJwt = async (jwtString) => {
     });
 
     return response;
+}
+
+const editProfile = async (jwtString, firstname, lastname, bio, avatar) => {
+    let formData = new FormData();
+    formData.append('type',EDIT_PROFILE_TYPE);
+    formData.append('firstname',firstname);
+    formData.append('lastname',lastname);
+    formData.append('bio',bio);
+    formData.append('avatar',avatar);
+    formData.append('accessToken',localStorage.authToken);
+    
+    let response = await fetch('/Zentizen/profile/edit', {
+        method: 'POST',
+        body: formData
+    });
+
+    if(response) {
+        response = response.json();
+        if(response.isSuccessful) console.log('Edit profile successfully!');
+        else console.error('Failed when edit profile');
+    }
 }
 
 const sendFrendRequest = async (jwtString) => {
