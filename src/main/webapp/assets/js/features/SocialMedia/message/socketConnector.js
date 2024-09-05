@@ -1,5 +1,6 @@
 import * as ChatCreator from '../../../components/socialMedia/messages/inbox/ElementCreator.js'
 import { receiverName } from './inbox/inbox.js';
+import * as NotificationServer from '../../NotificationServer.js'
 // const WEB_SOCKET_SERVER_PATH = "ws://localhost:8080/Zentizen/message";
 const WEB_SOCKET_SERVER_PATH = "ws://"+document.location.host+"/Zentizen/message";
 export {
@@ -7,6 +8,7 @@ export {
     sendMessage
 }
 var websocket = undefined;
+let queueOfTempMessage = [];
 
 const connectToServer = () => {
     websocket = new WebSocket(WEB_SOCKET_SERVER_PATH);
@@ -28,10 +30,19 @@ const processMessage = (websocketResult) => {
     console.log("Websocket receives a message -> ["+websocketResult.data+"]");
     let data = JSON.parse(websocketResult.data);
     // let jsonData = data.json();
-    ChatCreator.createChatElement(ChatCreator.CHAT_ELEMENT_RECEIVER,receiverName,data.message,'null');
-    let messsageContainer = document.getElementsByClassName('inbox-body__message-container').item(0);
-    messsageContainer.scrollTop = messsageContainer.scrollHeight;
-}
+    if(data.isServer) {
+        NotificationServer.sendNotification(
+            queueOfTempMessage.shift(),
+            sessionStorage.userFirstName + ' ' + sessionStorage.userLastName + ' sent a message.',
+            '{\"message\":\"'+queueOfTempMessage.shift()+'\",\"senderId\":\"'+sessionStorage.userId+'\"}',
+            NotificationServer.TYPE_MESSAGE
+        );
+    } else {
+        ChatCreator.createChatElement(ChatCreator.CHAT_ELEMENT_RECEIVER,receiverName,data.message,'null');
+        let messsageContainer = document.getElementsByClassName('inbox-body__message-container').item(0);
+        messsageContainer.scrollTop = messsageContainer.scrollHeight;
+    }
+    }
 
 const processClose = (websocketResult) => {
     console.log("Websocket is closed!");
@@ -43,5 +54,7 @@ const processError = (websocketResult) => {
 }
 
 const sendMessage = (message,receiverId) => {
+    queueOfTempMessage.push(receiverId);
+    queueOfTempMessage.push(message);
     websocket.send('{\"receiverId\":\"'+receiverId+'\",\"message\":\"'+message+'\"}');
 }

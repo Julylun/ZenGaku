@@ -62,6 +62,7 @@ public class ServerEndPoint {
                         Session receiverSession =  usersHashMap.get(Long.valueOf(receiverId));
                         receiverSession.getBasicRemote().sendText("{\"message\":\""+ bodyMessage +"\"}");
                     }
+                    userSession.getBasicRemote().sendText("{\"isServer\":true}");
                     System.out.println("[ServerEndPoint]: send message successfully!");
                 }
 

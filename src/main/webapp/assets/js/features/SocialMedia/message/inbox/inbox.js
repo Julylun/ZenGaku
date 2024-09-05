@@ -1,6 +1,7 @@
 import * as ChatElementCreator from '../../../../components/socialMedia/messages/inbox/ElementCreator.js'
 import * as Server from './Server.js'
 import * as SocketConnector from '../socketConnector.js'
+import * as NotificationServer from '../../../NotificationServer.js'
 export {
     receiverName
 }
@@ -10,6 +11,7 @@ const messageContainer = document.getElementsByClassName('inbox-body__message-co
 // let websocket = SocketConnector.websocket;
 
 const setup = async () => {
+    NotificationServer.connectToServer();
     SocketConnector.connectToServer();
     let messageData = await Server.getChatStory(receiverId);
     if (messageData.isSuccessful) {

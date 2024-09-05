@@ -2,10 +2,14 @@ import * as Server from './Server.js'
 import * as Post from '../../../components/socialMedia/post.js'
 import * as Interface from '../../../components/socialMedia/profile/interface.js'
 import * as ProfileButtonEvent from './event/ProfileButtonEvent.js'
+import * as NotificationServer from '../../NotificationServer.js'
 
 
 let testVal;
 
+/**
+ * Setup default setting of edit profile form
+ */
 const editProfileSetup = async (profileDataJsonObject) => {
     //sub-function
     const setDefaultInformation = (profileDataJsonObject) => {
@@ -36,6 +40,8 @@ const editProfileSetup = async (profileDataJsonObject) => {
  * Used to get fetch POST to profile through authToken in localStorage.
  */
 const fillDataToProfile = async () => {
+
+
     let profileId = -1;
     let profileDataJsonObject = await Server.getPostByJwt(localStorage.authToken);
     
@@ -55,6 +61,9 @@ const fillDataToProfile = async () => {
 
     //Change profile button basing on status attribute on database from back-end
     await Interface.changeProfileButton();
+
+    //Connect to Notification websocket
+    NotificationServer.connectToServer();
 
     //Add button event to profile button (I would like to change this becomes a switch case condition which makes this code be better)
     ProfileButtonEvent.setEventToButton(document.getElementById('profile-add-btn'),ProfileButtonEvent.ADD_FRIEND_BUTTON);

@@ -72,7 +72,8 @@ create table Notification(
 	id bigint auto_increment primary key,
     title text not null,
     content text not null,
-    href text,
+    type int,
+    seen boolean not null,
     notificationTime timestamp not null,
     userId bigint not null,
     

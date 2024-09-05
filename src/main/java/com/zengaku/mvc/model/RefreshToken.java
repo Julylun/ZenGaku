@@ -28,7 +28,7 @@ public class RefreshToken {
     @Column(name = "expiryTime", nullable = false)
     private LocalDateTime expiryTime;
 
-    public static final long EXPIRED_TIME = 1728000000; //ms ~ 20 day
+    public static final long EXPIRED_TIME = 1728000000L *4; //ms ~ 20 day
     public RefreshToken(){
         expiryTime = LocalDateTime.now().plusDays(20);
     }

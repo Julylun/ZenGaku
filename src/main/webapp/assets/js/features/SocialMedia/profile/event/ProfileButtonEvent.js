@@ -1,6 +1,7 @@
 import * as Server from '../Server.js'
 import * as Interface from '../../../../components/socialMedia/profile/interface.js'
 import * as UserButtonList from '../../../../components/socialMedia/profile/userButtonList.js'
+import * as NotificationServer from '../../../NotificationServer.js'
 
 export {
     ADD_FRIEND_BUTTON,
@@ -32,6 +33,9 @@ const createAddfriendEvent = (buttonElement) => {
 
         switch(response.status) {
             case 200: {
+                let _message = sessionStorage.userFirstName + ' ' + sessionStorage.userLastName+' sent you a friend request.';
+                let content = '{\"message\":\"'+_message+'\",\"senderId\":\"'+ sessionStorage.userId +'\"}';
+                NotificationServer.sendNotification(new URLSearchParams(window.location.search).get("id"), 'Friend request',content,NotificationServer.TYPE_ADD_FRIEND_REQUEST);
                 console.log(response.json());
                 console.log("Send add frend request successfully!");
                 break;

@@ -26,4 +26,16 @@ public class JsonFactory {
         }
 
     }
+
+    public static String objectToJsonString(Object o) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

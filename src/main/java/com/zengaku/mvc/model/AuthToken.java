@@ -32,7 +32,7 @@ public class AuthToken {
 
     @Column(name = "expiryTime", nullable = false)
     private LocalDateTime expiryTime;
-    public static final long EXPIRED_TIME = 3600000; //ms ~ 1 hour
+    public static final long EXPIRED_TIME = 3600000*25; //ms ~ 1 hour
 
     public AuthToken(){
         expiryTime = LocalDateTime.now().plusHours(1);

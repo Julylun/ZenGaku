@@ -3,8 +3,7 @@ import * as Menu from './components/home/menu.js'
 import * as AuthMenu from './components/home/login.js'
 import * as Browser from '../js/features/system/browser.js'
 import * as DefaultLoader from '../js/features/home/defaultLoader.js'
-import * as SocketConnector from './features/SocialMedia/message/socketConnector.js'
-import * as WidgetDisplay from './features/ZenGakuWidget/WidgetDisplay.js'
+import * as NotificationServer from './features/NotificationServer.js'
 
 // import "./indexInitFunction.js";
 //Init
@@ -138,7 +137,7 @@ function relogin(){
    
 
 //Change the login button into tree icon and display login menu
-function _default(){
+async function _default(){
     loginButton.addEventListener("mousedown",function(){
         loginButton.addEventListener("mouseup",displayLoginMenu);
     });
@@ -224,7 +223,7 @@ function _default(){
         loginButton.style.display = "none"; 
         DefaultLoader.loadDataFromUserData();
         console.log("signed in");
-        SocketConnector.connectToServer();
+        NotificationServer.connectToServer();
     }
     
     
@@ -236,10 +235,10 @@ function _default(){
     
     //Notify panel | treeButton
     let isNotificationPanelAppear = false;
-    document.getElementById('tree-button').addEventListener('click',function(){
+    document.getElementById('tree-button').addEventListener('click',async function(){
         if(loginStatus == 'false') return;
         document.getElementById('notify-panel').style.display = 'block';
-        NotificationComponents.addNotificationPanel();
+        await NotificationComponents.addNotificationPanel();
         document.addEventListener('click',function(event){
             let tmp = document.getElementById('notify-panel');
             
@@ -260,7 +259,12 @@ function _default(){
 
 relogin();
 // WidgetDisplay.widgetListenerInit();
-_default();
+await _default();
+
+if(Notification.permission == 'default') {
+    Notification.requestPermission();
+}
+
 
 
 

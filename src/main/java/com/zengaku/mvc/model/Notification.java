@@ -22,8 +22,11 @@ public class Notification {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "href")
-    private String href;
+    @Column(name = "type")
+    private int type;
+
+    @Column(name = "seen")
+    private boolean seen;
 
     @Column(name = "notificationTime")
     private LocalDateTime dateTime;
