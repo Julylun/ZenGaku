@@ -85,6 +85,7 @@
             <img src="assets/resources/img/tree-icon.png" alt="">
         </div>
     </nav>
+    <div class = 'content'></div>
 <!-- 
     <style>
         .counter-setting-container {

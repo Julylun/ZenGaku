@@ -8,7 +8,7 @@ export {
 const removeWelcomePanel = () => {
     document.getElementById('welcome').remove();
     document.getElementById('temp-black-background').remove();
-    alert('Đừng quên vào trang Khoa Khoa Học Máy Tính - VKU bình chọn cho nhóm của tụi mình nhé. Cảm ơn bạn.')
+    alert('Hiện tại website Zengaku đang trong quá trình cập nhật phân đoạn nên có thể sập hoặc lỗi bất cứ lúc nào, bên cạnh đó một số chức năng của website cũng có thể chạy không đúng trong thời điểm hiện tại. Chúc các bạn sử dụng website vui vẻ.')
 }
 const createWelcomePanel = () => {
     if(sessionStorage.getItem('isDisplayed_welcomePanel') != null) {

@@ -46,7 +46,8 @@ const SoundConfiguration = {
 const WELCOME_PANEL = {
     NOTIFICATION_TEXT:
       '<br><strong>A. MỘT SỐ TRÁCH NHIỆM VÀ ĐIỀU KHOẢN</strong><br><br><br>'
-      +'<strong>&nbsp;Chào mọi người đang tham gia sử dụng Zengaku Early Access 0.1!</strong><br>'
+      +'<strong>&nbsp;Chào mọi người đang tham gia sử dụng Zengaku Early Access 0.2!</strong><br><br>'
+      + '&nbsp;Hiện tại Zengaku đang trong quá trình cập nhật phân đoạn nên một vài chức năng sẽ không chạy đúng. Chức năng Hội thảo có thể sẽ không xuất hiện vì lý do chứng chỉ và cổng giao thức.<br><br>'
       +'<strong>&nbsp;Trước khi sử dụng Zengaku, vui lòng đọc kĩ và đồng ý những điều sau: </strong><br><br><br>'
       +'&nbsp;&nbsp;&nbsp;&nbsp;<i>1. Một khi sử dụng các dịch vụ của Zengaku đồng nghĩa với việc bạn đã đọc hiểu các điều dưới và sẵn sàng chịu trách nhiệm với các hoạt động của mình trên Zengaku.</i><br><br>'
       +'&nbsp;&nbsp;&nbsp;&nbsp;<i>2. Zengaku là một trang mạng cung cấp các tiện ích học tập nhằm giúp mọi người học tập và làm việc một cách thuận tiện hơn. Đây là một dự án sử dụng tham gia cuộc thi Best Web Design 2024 của Trường Đại Học Công Nghệ Thông Tin Và Truyền Thông Việt Hàn. Do đó, dự án được sinh ra với mục đích giáo dục và không mang lại bất kì lợi ích kinh tế trực tiếp nào dành cho nhóm sáng lập.</i><br><br>'

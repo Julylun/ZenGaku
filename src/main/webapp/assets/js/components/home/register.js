@@ -109,7 +109,8 @@ const createRegisterMenu = () => {
         form = HTMLDom.createElement('form',['auth-input'],registerMenu,{method: 'post', action: 'register_verification', display: 'none'},'register-verification');
         form.style.display = 'none';
         let registerParagraph = HTMLDom.createElement('div',['register-paragraph'],form,{});
-        HTMLDom.createElement('p',[],registerParagraph,{innerText: 'We sent an email containing code to ${sessionScope.userEmail}'});
+        // let tempEmail = sessionStorage.tempEmail;
+        HTMLDom.createElement('p',['Verify__note-text'],registerParagraph,{/*innerText: 'We sent an email containing code to ' + (sessionStorage.tempEmail) ? sessionStorage.tempEmail : 'your email.'*/});
         HTMLDom.createElement('br',[],registerParagraph,{});
         let verificationCodeInput = HTMLDom.createElement('input',['auth-text-field'],form, {name: 'verificationCode', required: 'true'},'verification-code');
         //--| 
@@ -142,7 +143,11 @@ const createRegisterMenu = () => {
         registerParagraph = HTMLDom.createElement('div',['register-paragraph'], form, {}, 'created-notify-text');
         HTMLDom.createElement('p',[],registerParagraph,{innerText: 'You created ZenGaku account successfully! Please return login page to login.'});
         HTMLDom.createElement('br',[],registerParagraph,{});
-        HTMLDom.createElement('button',['auth-button'],form,{innerText: 'Return'},'return-normal-page-button');
+        let returnButton = HTMLDom.createElement('button',['auth-button'],form,{innerText: 'Return'},'return-normal-page-button');
+        registerMenu.addEventListener('click', () => {
+            deleteRegisterMenu();
+        })
+
 
         return authContainer;
     }
@@ -173,6 +178,8 @@ const createRegisterMenu = () => {
                 console.log('[Register.js]<createRegisterMenu>: inputValue[' + tmpIndex  +'] -> ' + inputElement.value);
                 tmpIndex += 1;
             }
+            // sessionStorage.setItem('tempEmail',inputList[3].value);
+            document.getElementsByClassName('Verify__note-text').item(0).innerText = 'We sent an email containing code to ' + inputList[3].value;
             let errorCode = RegisterAPI.registerAccount(
                 inputList[0].value,
                 inputList[1].value,

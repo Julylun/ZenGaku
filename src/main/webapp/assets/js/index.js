@@ -4,6 +4,7 @@ import * as AuthMenu from './components/home/login.js'
 import * as Browser from '../js/features/system/browser.js'
 import * as DefaultLoader from '../js/features/home/defaultLoader.js'
 import * as SocketConnector from './features/SocialMedia/message/socketConnector.js'
+import * as WidgetDisplay from './features/ZenGakuWidget/WidgetDisplay.js'
 
 // import "./indexInitFunction.js";
 //Init
@@ -258,6 +259,7 @@ function _default(){
 
 
 relogin();
+// WidgetDisplay.widgetListenerInit();
 _default();
 
 

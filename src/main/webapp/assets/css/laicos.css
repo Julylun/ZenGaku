@@ -230,7 +230,9 @@ body {
     justify-content: space-between;
     /* background-color: rgb(0, 0, 0) */
 }
-
+.notify-profile-link {
+    text-decoration: none;
+}
 .notify-account-name {
     font-family: Inter;
     font-size: min(4vw,17.2px);    
@@ -1285,7 +1287,7 @@ min-width: 250px;
     font-weight: medium;
 }
 
-/*ranking*/
+/* ranking
 .all_rank{
     position: sticky;
     top: 0;
@@ -1502,12 +1504,12 @@ min-width: 250px;
     .rank_number {
         font-size: 16px;
     }
-}
+} */
 
 
 /* editProfile */
-.all_editProfile {
-    /* padding-top: 10px; */
+/* .all_editProfile { */
+    /* padding-top: 10px; */ /*
     font-family: inter;
     background-color: #0000002d;
     display: flex;
@@ -1658,3 +1660,4 @@ min-width: 250px;
     color: #ffff;
     filter: drop-shadow(0 0 0.5vw #cfcfcf);
 }
+*/

@@ -90,6 +90,7 @@
 }
 
 .notify-account-name {
+    color: white;
     font-family: Inter;
     font-size: min(4vw,17.2px);
     margin: 0;
@@ -130,7 +131,9 @@
 }
 
 
-
+.notify-profile-link {
+    text-decoration: none;
+}
 .notify-bottom-panel {
     /* background-color: #4f008b; */
     height: 4vh;

@@ -34,7 +34,9 @@ const addNotificationPanel = () => {
     HTMLDom.createElement('p', '', textOnTop, { innerHTML: "Hello" });
 
     let dayXaHoi = HTMLDom.createElement('div', ['notify-text-day-xa-hoi'], textContainer);
-    HTMLDom.createElement('p', ['notify-account-name'], dayXaHoi, { innerText: sessionStorage.getItem('userFirstName') + " " + sessionStorage.getItem('userLastName') });
+    HTMLDom.createElement('p', ['notify-account-name'], 
+            HTMLDom.createElement('a', ['notify-profile-link'],dayXaHoi, {href: '/Zentizen/profile?id=' + sessionStorage.getItem('userId')})
+    ,{ innerText: sessionStorage.getItem('userFirstName') + " " + sessionStorage.getItem('userLastName') });
     HTMLDom.createElement('p', ['notify-account-point'], dayXaHoi, { innerText: "1234 tree points" });
 
     let boldLineContainer = HTMLDom.createElement('div', ['notify-line-container'], notificationDivTag);
