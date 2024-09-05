@@ -91,6 +91,20 @@ const createLoginMenu = () => {
             deleteLoginMenu();
             Register.createRegisterMenu();
          })
+        
+         document.getElementById('forget-button').addEventListener('click', () => {
+            let forgetMenu = document.getElementById('forget-menu');
+            deleteLoginMenu();
+            
+            document.getElementsByClassName('content').item(0).innerHTML += forgetString;
+            document.getElementById('forget-menu').style.display = 'flex';
+            document.getElementById('forget-close-btn').addEventListener('click', () => {
+                document.getElementById('forget-menu').remove();
+                document.getElementById('tree-button').style.display = 'none';
+                document.getElementById('login-button').style.display = 'block';
+            })
+         })
+
 
 
     }
@@ -102,3 +116,9 @@ const createLoginMenu = () => {
 
     return loginMenu;
 }
+
+
+
+
+
+let forgetString = '<div class ="auth-menu" id = "forget-menu" style = "display: none;"><div id ="forget-close-btn" class="close-button"><div class="close-line-container"><div class="close-line close-left-line"></div><div class="close-line close-right-line"></div></div></div><div id="forget-password-name" class="auth-logo-name"><p>Forget Password</p></div><!-- Quên mật khẩu: Nhập Mail--><form method = "post" action="recover" class = "auth-input" id = "recovery-email-auth"style="display: flex;"><input class="auth-text-field" id="recovery-email-input" name="userRecoveryEmail" type="email"placeholder="Type your recovery email address"><button class="auth-button" id="Confirm">Confirm</button></form><div class="register-paragraph" id = "recovery-notify-text" style="display: none;"><p>We sent a reset password link to your email</p><br></div><div class="register-paragraph" id = "changed-password-notify-text" style="display: none;"><p>You changed your password successfully!</p><br></div></div>'

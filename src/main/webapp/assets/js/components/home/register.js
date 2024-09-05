@@ -1,5 +1,6 @@
 import * as HTMLDom from '../HTMLDom.js'
 import * as RegisterAPI from '../../features/home/registerAPI.js'
+import * as LoginCreator from './login.js'
 export {
     createRegisterMenu,
     displayMenu,
@@ -144,7 +145,7 @@ const createRegisterMenu = () => {
         HTMLDom.createElement('p',[],registerParagraph,{innerText: 'You created ZenGaku account successfully! Please return login page to login.'});
         HTMLDom.createElement('br',[],registerParagraph,{});
         let returnButton = HTMLDom.createElement('button',['auth-button'],form,{innerText: 'Return'},'return-normal-page-button');
-        registerMenu.addEventListener('click', () => {
+        returnButton.addEventListener('click', () => {
             deleteRegisterMenu();
         })
 
@@ -167,6 +168,11 @@ const createRegisterMenu = () => {
                 event.preventDefault();
             })         
         });
+
+        document.getElementById('have-account-button').addEventListener('click', () => {
+            deleteRegisterMenu();
+            LoginCreator.createLoginMenu();
+        })
 
         //Add event to register
         document.getElementById('_register-button').addEventListener('click',() => {

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -13,8 +14,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 //import com.zengaku.mvc.model.LocalDateTimeTypeAdapter;
+import com.zengaku.mvc.controller.Exception.IncorrectProfileException;
+import com.zengaku.mvc.controller.Exception.Message.MissingParameterException;
 import com.zengaku.mvc.controller.GoogleUtils;
 import com.zengaku.mvc.controller.HibernateUtils;
+import com.zengaku.mvc.controller.JsonFactory;
 import com.zengaku.mvc.controller.LanguageFilter;
 import com.zengaku.mvc.model.*;
 import com.zengaku.mvc.model.DTO.GoogleRes;
@@ -46,6 +50,25 @@ public class PostAPI extends HttpServlet {
 		try {
 			if (pathInfo == null) {
 				switch (req.getParameter("type")){
+					case "getPostByUUID": {
+						String uuid = req.getParameter("uuid");
+						String accessToken = req.getParameter("accessToken");
+
+						if(Objects.isNull(uuid) || Objects.isNull(accessToken)) throw new MissingParameterException("uuid is null");
+						User user = AuthToken.getUserByAccessToken(accessToken);
+						if(Objects.isNull(user)) throw new IncorrectProfileException("User is null");
+
+						Post post = (Post) databaseSession.createQuery("FROM Post p WHERE p.uuid = :uuid")
+								.setParameter("uuid",uuid)
+								.getSingleResultOrNull();
+						if(Objects.isNull(post)){
+							resp.sendError(404);
+							return;
+						}
+						PostDTO postDTO = new PostDTO(post,TreeHeartUser.findByUUIDAndUserId(uuid,user.getId(),databaseSession)!=null);
+						resp.getWriter().println(JsonFactory.objectToJsonString(postDTO));
+						break;
+					}
 					case "getPost":{
 							String json;
 							String userId = null;

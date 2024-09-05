@@ -85,7 +85,11 @@
             <img src="assets/resources/img/tree-icon.png" alt="">
         </div>
     </nav>
-    <div class = 'content'></div>
+    <div class = 'content'>
+
+
+
+        
 <!-- 
     <style>
         .counter-setting-container {
@@ -199,6 +203,8 @@
                 </div>
             </div>
         </div> -->
+        
+
 
         <div class="all-quote-box auto-moving" style="display: none;">
             <div class="quote-box">

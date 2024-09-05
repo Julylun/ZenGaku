@@ -4,50 +4,12 @@ let contentContainer = document.getElementsByClassName('content').item(0);
 
 //QUOTES --------------------------------
 //quote
-document.getElementById('quotes-feature').addEventListener('click',function(){
-  document.getElementsByClassName('all-quote-box').item(0).style.display = "block";
-  document.getElementsByClassName('quote-box').item(0).style.display = "block";
-})
-document.addEventListener('DOMContentLoaded', function() {
-  const quote = document.getElementById("quote");
-  const author = document.getElementById("author");
-  const closeBtn = document.querySelector('.close-btn');
-  const quoteBox = document.querySelector('.quote-box');
-  // const api_url = "https://api.quotable.io/random";
-  async function getRandomQuote(){
-    const response = await fetch("../resources/data/quotes.csv");
-    const quotesString = await response.text();
-    const quotes = quotesString
-        .split("\n")
-        .map((line) => {
-          const [author, content] = line.split(/","/);
-          return {
-            author: author.replace(/"/g, ""),
-            content: content.replace(/"/g, ""),
-          };
-        });
+// document.getElementById('quotes-feature').addEventListener('click',function(){
+  // document.getElementsByClassName('all-quote-box').item(0).style.display = "block";
+  // document.getElementsByClassName('quote-box').item(0).style.display = "block";
+// })
 
-    return quotes[Math.floor(Math.random() * quotes.length)];
-  }
-  async function getQuote() {
-     // const response = await fetch(url);
-     // var data = await response.json();
-      const data = await getRandomQuote();
-
-      quote.innerHTML = data.content;
-      author.innerHTML = data.author;
-  }
-
-  document.getElementById("new-quote").addEventListener("click", function() {
-      getQuote();
-  });
-
-  closeBtn.addEventListener('click', function() {
-      quoteBox.style.display = 'none';
-  });
-
-  getQuote();
-});
+// });
 
 
 

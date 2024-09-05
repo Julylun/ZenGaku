@@ -8,6 +8,8 @@ export {
     addPosts,
     loadPost
 }
+
+
 const createPost = (uuid, authorId, avatarHref, userName, postTime, postImageHref, treeNumber, caption, parent, isLiked, isBefore) => {
     let post; 
     if(isBefore) {
@@ -80,11 +82,14 @@ const createPost = (uuid, authorId, avatarHref, userName, postTime, postImageHre
         });
     })
     
+    
+    let commentContainer = HTMLDom.createElement('div',['comment-button'],postControlPaneButton,{});
+    let commentButton = HTMLDom.createElement('img',['comment-image'],commentContainer,{src: '/assets/resources/img/comment-icon-white.svg'});
 
-    HTMLDom.createElement('img',['comment-image'],
-        HTMLDom.createElement('div',['comment-button'],postControlPaneButton,{}),
-    {src: '/assets/resources/img/comment-icon-white.svg'}
-    );
+    let hrefTag = document.createElement('a');
+    commentContainer.appendChild(hrefTag);
+    hrefTag.href = window.location.origin + '/Zentizen/post?uuid='+uuid;
+    hrefTag.appendChild(commentButton);
 
     HTMLDom.createElement('img',['share-image'],
         HTMLDom.createElement('div',['share-button'],postControlPaneButton,{}),

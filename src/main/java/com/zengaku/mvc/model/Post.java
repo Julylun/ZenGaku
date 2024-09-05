@@ -69,10 +69,17 @@ public class Post {
 	}
 
 	public static Post getPostByUUIDAndId(String uuid, Session session){
-		List<Post> postList = session.createQuery("From Post WHERE uuid = :uuid")
-				.setParameter("uuid", uuid)
-				.getResultList();
-		return (postList.isEmpty()) ? null : postList.get(0);
+		try {
+			List<Post> postList = session.createQuery("From Post WHERE uuid = :uuid")
+					.setParameter("uuid", uuid)
+					.getResultList();
+			for(Post p: postList) System.out.println(p.id);
+			return (postList.isEmpty()) ? null : postList.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	public static List<Post> getPostsByUserObject(User user, Session session) {

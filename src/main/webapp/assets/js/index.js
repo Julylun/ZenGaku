@@ -4,6 +4,7 @@ import * as AuthMenu from './components/home/login.js'
 import * as Browser from '../js/features/system/browser.js'
 import * as DefaultLoader from '../js/features/home/defaultLoader.js'
 import * as NotificationServer from './features/NotificationServer.js'
+import * as Movement from './features/movement.js'
 
 // import "./indexInitFunction.js";
 //Init
@@ -269,3 +270,44 @@ if(Notification.permission == 'default') {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  const quote = document.getElementById("quote");
+  const author = document.getElementById("author");
+  const closeBtn = document.querySelector('.close-btn');
+  const quoteBox = document.querySelector('.quote-box');
+//   const api_url = "https://api.quotable.io/random";
+  async function getRandomQuote(){
+    const response = await fetch("/assets/resources/data/quotes.csv");
+    const quotesString = await response.text();
+    const quotes = quotesString
+        .split("\n")
+        .map((line) => {
+          const [author, content] = line.split(/","/);
+          return {
+            author: author.replace(/"/g, ""),
+            content: content.replace(/"/g, ""),
+          };
+        });
+
+    return quotes[Math.floor(Math.random() * quotes.length)];
+  }
+  async function getQuote() {
+     // const response = await fetch(url);
+     // var data = await response.json();
+      const data = await getRandomQuote();
+
+      quote.innerHTML = data.content;
+      author.innerHTML = data.author;
+  }
+
+  document.getElementById("new-quote").addEventListener("click", function() {
+      getQuote();
+  });
+
+  closeBtn.addEventListener('click', function() {
+      quoteBox.style.display = 'none';
+  });
+
+  getQuote(); 
+  Movement.addMovement(document.getElementsByClassName('all-quote-box').item(0),document.getElementsByClassName('all-quote-box').item(0))
+});
