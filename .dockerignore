@@ -1,0 +1,8 @@
+.git
+.idea
+.m2
+.vs
+apache-tomcat-10.1.56
+apache-tomcat-10.1.56.zip
+target
+*.iml

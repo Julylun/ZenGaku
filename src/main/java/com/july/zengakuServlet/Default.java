@@ -13,6 +13,7 @@ import lombok.Data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -22,7 +23,14 @@ public class Default implements ServletContextListener {
         Scanner sc = null;
         try {
             System.out.println(PrintColor.CYAN_BOLD_BRIGHT + "[Default]: Server -> Reading toxic word..." + PrintColor.RESET);
-            sc = new Scanner(new File("../webapps/ROOT/WEB-INF/classes/badwords.csv"));
+            InputStream badWordsStream = sce.getServletContext().getResourceAsStream("/WEB-INF/classes/badwords.csv");
+            if (badWordsStream == null) {
+                badWordsStream = Default.class.getClassLoader().getResourceAsStream("badwords.csv");
+            }
+            if (badWordsStream == null) {
+                throw new FileNotFoundException("badwords.csv");
+            }
+            sc = new Scanner(badWordsStream);
             sc.useDelimiter(",");
             //setting comma as delimiter pattern
             while (sc.hasNext()) {

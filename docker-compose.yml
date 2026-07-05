@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.0
+    command: --lower-case-table-names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: "12345"
+    ports:
+      - "3306:3306"
+    volumes:
+      - zengaku-mysql-data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/001-database.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  app:
+    build: .
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      HIBERNATE_CONNECTION_URL: "jdbc:mysql://mysql:3306/zengaku_db"
+      HIBERNATE_CONNECTION_USERNAME: "root"
+      HIBERNATE_CONNECTION_PASSWORD: "12345"
+    ports:
+      - "8080:8080"
+
+volumes:
+  zengaku-mysql-data:

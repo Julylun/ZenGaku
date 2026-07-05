@@ -16,9 +16,12 @@ public class HibernateUtils {
 
     private static SessionFactory buildSessionFactory() {
         try{
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder() //
-                    .configure() // Load hibernate.cfg.xml from resource folder by default
-                    .build();
+            StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder()
+                    .configure(); // Load hibernate.cfg.xml from resource folder by default
+            applyEnvironmentSetting(registryBuilder, "HIBERNATE_CONNECTION_URL", "hibernate.connection.url");
+            applyEnvironmentSetting(registryBuilder, "HIBERNATE_CONNECTION_USERNAME", "hibernate.connection.username");
+            applyEnvironmentSetting(registryBuilder, "HIBERNATE_CONNECTION_PASSWORD", "hibernate.connection.password");
+            ServiceRegistry serviceRegistry = registryBuilder.build();
             Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
             return metadata.getSessionFactoryBuilder().build();
         } catch (Exception e){
@@ -26,6 +29,13 @@ public class HibernateUtils {
             throw new ExceptionInInitializerError(e);
         }
 
+    }
+
+    private static void applyEnvironmentSetting(StandardServiceRegistryBuilder registryBuilder, String envName, String hibernateName) {
+        String value = System.getenv(envName);
+        if (value != null && !value.isBlank()) {
+            registryBuilder.applySetting(hibernateName, value);
+        }
     }
 
     public static SessionFactory getSessionFactory() {
